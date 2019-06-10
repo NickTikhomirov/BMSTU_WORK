@@ -1,0 +1,38 @@
+<RCC>
+    <qresource prefix="/main">
+        <file>Pictures/backgrounds/fon0.png</file>
+        <file>Pictures/backgrounds/fon1.png</file>
+        <file>Pictures/backgrounds/fon-1.png</file>
+        <file>Pictures/backgrounds/fon2.png</file>
+        <file>Pictures/backgrounds/fon3.png</file>
+        <file>Pictures/backgrounds/fon4.png</file>
+        <file>Pictures/backgrounds/fon5.png</file>
+        <file>Pictures/backgrounds/fon6.png</file>
+        <file>Pictures/backgrounds/darkness.png</file>
+        <file>Pictures/backgrounds/box.png</file>
+        <file>Pictures/backgrounds/stamps.png</file>
+        <file>Pictures/backgrounds/fon7.png</file>
+        <file>Pictures/switches/SwB0.png</file>
+        <file>Pictures/switches/SwB0'.png</file>
+        <file>Pictures/switches/SwB-0.png</file>
+        <file>Pictures/switches/SwB-0'.png</file>
+        <file>Pictures/switches/SwB1.png</file>
+        <file>Pictures/switches/SwB1'.png</file>
+        <file>Pictures/switches/SwB-1.png</file>
+        <file>Pictures/switches/SwB-1'.png</file>
+        <file>Pictures/switches/SwB2.png</file>
+        <file>Pictures/switches/SwB2'.png</file>
+        <file>Pictures/switches/SwB-2.png</file>
+        <file>Pictures/switches/SwB-2'.png</file>
+        <file>Pictures/other/icon.png</file>
+        <file>Pictures/other/door0.png</file>
+        <file>Pictures/other/Cursor0.png</file>
+        <file>Pictures/other/Cursor1.png</file>
+        <file>Pictures/other/Cursor2.png</file>
+        <file>Pictures/other/Cursor3.png</file>
+        <file>Pictures/other/egg2.jpg</file>
+        <file>Pictures/other/egg1.jpg</file>
+        <file>Pictures/backgrounds/fon-2.png</file>
+        <file>Pictures/backgrounds/fon-3.png</file>
+    </qresource>
+</RCC>
