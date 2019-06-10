@@ -1,6 +1,4 @@
 #include "Level.h"
-#include <string>
-#include "Generators\Randomizer.h"
 
 using std::string;
 using std::to_string;

@@ -1,5 +1,4 @@
 #include "AdditionalWindow.h"
-#include "Graphics/TutorialPage.h"
 
 using std::to_string;
 

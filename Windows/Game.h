@@ -8,17 +8,19 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 
-#include "MyPlayer.h"
 #include "WindowManager.h"
+#include "SubWindow.h"
+
+#include "MyPlayer.h"
 #include "CursorManager.h"
 
-#include "Graphics\CustomButton.h"
-#include "Graphics\TextButton.h"
-#include "VeryComplicatedButton.h"
-#include "TwinButtons.h"
+#include "Graphics/CustomButton.h"
+#include "Graphics/TextButton.h"
+#include "Graphics/VeryComplicatedButton.h"
+#include "Graphics/TwinButtons.h"
 #include "Graphics/VisitorFace.h"
 #include "Logic/ItemLockable.h"
-#include "Windows/SubWindow.h"
+
 
 using std::vector;
 

@@ -90,4 +90,4 @@ DISTFILES += \
 RESOURCES += \
     backgrounds.qrc \
     buttons.qrc \
-    sources.qrc
+    music.qrc

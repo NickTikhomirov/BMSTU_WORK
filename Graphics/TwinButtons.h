@@ -3,7 +3,7 @@
 
 #include "Graphics\CustomButton.h"
 
-class TwinButtons : public QGraphicsObject
+class TwinButtons : public QObject
 {
     Q_OBJECT
 public:
@@ -12,9 +12,6 @@ public:
     CustomButton *left;
     void unlock();
     void lock();
-
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-    QRectF boundingRect() const;
 
 public slots:
     void analyze_correct();

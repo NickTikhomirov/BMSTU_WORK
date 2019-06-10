@@ -2,7 +2,6 @@
 #define SIMPLEBUTTON_H
 
 
-
 #include <QObject>
 #include <QGraphicsPixmapItem>
 #include <QGraphicsTextItem>

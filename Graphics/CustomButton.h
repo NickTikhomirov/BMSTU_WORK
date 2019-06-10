@@ -5,7 +5,6 @@
 #include <QGraphicsPixmapItem>
 #include <QGraphicsTextItem>
 #include <QGraphicsSceneMouseEvent>
-//#include <QGraphicsRectItem>
 
 
 #include "Logic/ItemLockable.h"

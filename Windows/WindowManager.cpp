@@ -1,5 +1,4 @@
 #include "WindowManager.h"
-#include "CursorManager.h"
 
 
 WindowManager::WindowManager(QObject *parent) : QObject(parent)

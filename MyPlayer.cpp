@@ -10,7 +10,7 @@ MyPlayer::MyPlayer(short n, QGraphicsItem *parent)
     playlist = new QMediaPlaylist;
     player = new QMediaPlayer;
     player->setPlaylist(playlist);
-    playlist->addMedia(QUrl(QString::fromStdString("qrc:/mus/Track"+to_string(n)+".mp3")));
+    playlist->addMedia(QUrl(QString::fromStdString("qrc:/mus/Mus/Track"+to_string(n)+".mp3")));
     isPlaying=false;
     playlist->setPlaybackMode(playlist->Loop);
     QObject::connect(lever,SIGNAL(enable()),this,SLOT(play_change()));
@@ -33,7 +33,7 @@ void MyPlayer::init(short song, short icon){
     if(song!=songNumber){
         songNumber=song;
       playlist->clear();
-      playlist->addMedia(QUrl(QString::fromStdString("qrc:/mus/Track"+to_string(song)+".mp3")));
+      playlist->addMedia(QUrl(QString::fromStdString("qrc:/mus/Mus/Track"+to_string(song)+".mp3")));
     }
     isPlaying=false;
     lever = new SwitchingButton(icon,par);
