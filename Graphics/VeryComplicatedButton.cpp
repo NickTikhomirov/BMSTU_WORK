@@ -21,6 +21,13 @@ void VeryComplicatedButton::update_b(){
 }
 
 
+void VeryComplicatedButton::track_time(){
+    emit time_pressed('H',5);
+}
+
+
+
+
 void VeryComplicatedButton::mousePressEvent(QGraphicsSceneMouseEvent *event){
     if(isFree()){
         if(param%3==0) {

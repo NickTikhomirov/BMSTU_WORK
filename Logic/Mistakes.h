@@ -42,6 +42,9 @@ public:
     bool isDinner();
     bool isItYours(char,char);
     bool isSans(char);
+    bool hasCorrectCountry();
+    bool xHealthy();
+    bool medicineNumberMistakes();
     string toString();
     QString text_form();
 };

@@ -123,7 +123,7 @@ void Game::mode_play(){
 
 //    connect(b2->left,SIGNAL(clicked()),this, SLOT(renovation()));
   //  connect(b2->left,SIGNAL(clicked()),b, SLOT(update_b()));
-    connect(b2->left,SIGNAL(clicked()), this,SLOT(lock_screen()));
+    //connect(b2->left,SIGNAL(clicked()), this,SLOT(lock_screen()));
     connect(door, SIGNAL(clicked()), this, SLOT(switch_menu()));
     if(wm!=0){
         connect(passport,SIGNAL(clicked()),wm,SLOT(open_passport()));
@@ -134,11 +134,17 @@ void Game::mode_play(){
         connect(faks,SIGNAL(clicked()),wm,SLOT(open_stenography()));
         connect(tutorial, SIGNAL(clicked()),wm, SLOT(open_tutorial()));
     }
-
     connect(paper,SIGNAL(clicked()),this,SLOT(show_stamps()));
     connect(paper,SIGNAL(clicked()),this,SLOT(lock_screen()));
 
 
+    connect(this,SIGNAL(addPoint()),b2,SLOT(score_increase()));
+    connect(wm,SIGNAL(provide(char,char)),this,SLOT(playersGuess(char,char)));
+    connect(b,SIGNAL(time_pressed(char,char)),this,SLOT(playersGuess(char,char)));
+
+    connect(b2,SIGNAL(result(char)),this,SLOT(level_finalize(char)));
+    connect(this,SIGNAL(waveOfChange()),b2,SLOT(ennul()));
+    connect(this,SIGNAL(waveOfChange()),b,SLOT(update_b()));
 
 
     b->setCursor(CursorManager::cloud());
@@ -278,6 +284,7 @@ void Game::subwindowSetuper(char a){
         sw->krestik->hide();
         sw->t->hide();
         sw->krestik->safe_lock();
+        if(levelsLeft==0) switch_finalle();
     }
 }
 
@@ -285,8 +292,36 @@ void Game::subwindowSetuper(char a){
 
 
 
+void Game::level_finalize(char a){
+    bool greenPressed = (a>=0);
+    bool level_complete = level->mistakes->isCorrect();
+    if(!greenPressed){
+        a++;
+        a*=-1;
+    }
+    if(greenPressed && a==0 && level_complete){
+        score+=5;
+    } else if(!greenPressed){
+        if(level_complete) score+=4;
+        else score+=3;
+    }
+
+    wm->clear_dynamics();
+    levelsLeft--;
+    lock_screen();
+    if(levelsLeft!=0) {
+        level->regenerate();
+        wm->dynamic_documents();
+        emit waveOfChange();
+    }
+}
 
 
+
+void Game::playersGuess(char a, char b){
+    if(level->mistakes->isItYours(a,b))
+        emit addPoint();
+}
 
 
 
@@ -309,7 +344,7 @@ void Game::mode_finalle(bool first){
         mus->lever->setPos(490,10);
 
         scene->addPixmap(p1);
-        //scene->addItem(sw->krestik);
+        scene->addItem(sw->krestik);
         sw->krestik->show();
         scene->addItem(mus->lever);
 
@@ -343,8 +378,8 @@ void Game::switch_play(){
 
 void Game::switch_finalle(){
     delete mus->lever;
-    //delete sw;
-    //sw=0;
+    delete sw;
+    sw=0;
     wm->kill();
     delete level;
     level=0;

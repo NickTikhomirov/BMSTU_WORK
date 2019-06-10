@@ -19,8 +19,6 @@ public:
     string insuranceNumber;
 	bool isDinnerLevel();
     bool agreementMistakes();
-    bool xNumberProblems();
-    bool xHealthy();
     void regenerate();
 };
 

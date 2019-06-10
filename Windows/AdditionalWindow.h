@@ -26,6 +26,9 @@ private:
     void closeEvent(QCloseEvent *event);
 signals:
     void closed();
+    void provide(char);
+public slots:
+    void provide_input(char);
 };
 
 #endif // ADDITIONALWINDOW_H

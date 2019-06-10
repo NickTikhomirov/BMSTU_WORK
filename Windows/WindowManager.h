@@ -20,7 +20,6 @@ public:
     AdditionalWindow *agreement;
     AdditionalWindow *rights;
     AdditionalWindow *tutorial;
-    //AdditionalWindow *stamps;
     AdditionalWindow *stenography;
 
     AdditionalWindow *first;
@@ -41,6 +40,7 @@ private:
 
 signals:
     void privacyBreak();
+    void provide(char,char);
 public slots:
     void s_kill();
     void close1();
@@ -52,7 +52,12 @@ public slots:
     void open_tutorial();
     void open_agreement();
     void open_stenography();
-    //void open_stamps();
+
+    void provide_passport(char);
+    void provide_x(char);
+    void provide_license(char);
+    void provide_medicine(char);
+    void provide_agreement(char);
 };
 
 #endif // WINDOWMANAGER_H

@@ -22,6 +22,7 @@ Mistakes::Mistakes()
             else {
                 char b;
                 twoMistakes(a,b);
+                if(a==b) throw 1;
                 makeSomebodyHappy(b);
             }
             makeSomebodyHappy(a);
@@ -209,6 +210,19 @@ QString Mistakes::text_form(){
     return QString::fromStdString(p);
 }
 
+
+bool Mistakes::hasCorrectCountry(){
+    return (forH%11!=0 || forH==0);
+}
+
+
+bool Mistakes::xHealthy(){
+    return (forX%7==0);
+}
+
+bool Mistakes::medicineNumberMistakes(){
+    return (forX<0);
+}
 
 
 

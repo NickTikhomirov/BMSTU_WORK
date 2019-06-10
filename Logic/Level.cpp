@@ -37,11 +37,3 @@ bool Level::isDinnerLevel() {
 bool Level::agreementMistakes(){
     return mistakes->isA();
 }
-
-bool Level::xNumberProblems(){
-    return false;
-}
-
-bool Level::xHealthy(){
-    return true;
-}

@@ -45,12 +45,17 @@ public:
     void subwindowSetuper(char);
 signals:
     void button_pressed();
-
+    void addPoint();
+    void waveOfChange();
 public slots:
     void renovation();
     void lock_screen();
     void unlock_screen();
     void show_stamps();
+
+    void playersGuess(char,char);
+    void level_finalize(char);
+
     void switch_menu();
     void switch_play();
     void switch_finalle();

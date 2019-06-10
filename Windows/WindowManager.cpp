@@ -12,10 +12,8 @@ WindowManager::WindowManager(QObject *parent) : QObject(parent)
     rights = 0;
     psycho = 0;
     stenography = 0;
-    //stamps = new AdditionalWindow(7);
     tutorial = new AdditionalWindow(7);
 
-    //stamps->setCursor(CursorManager::greenArrow());
     tutorial->setCursor(CursorManager::greenArrow());
 
 }
@@ -47,6 +45,28 @@ void WindowManager::clear_dynamics(){
     delete psycho;
 }
 
+
+void WindowManager::provide_passport(char r){
+    if(r==6) emit provide('H',3);
+    else if(r==12) emit provide('H',11);
+    else emit provide('P',r);
+}
+
+void WindowManager::provide_x(char r){
+    emit provide('X',r);
+}
+
+void WindowManager::provide_license(char r){
+    emit provide('R',r);
+}
+
+void WindowManager::provide_medicine(char r){
+    emit provide('M',r);
+}
+
+void WindowManager::provide_agreement(char r){
+    emit provide('A',r);
+}
 void WindowManager::s_kill(){
     kill();
 }
@@ -121,7 +141,6 @@ void WindowManager::toggleW(char a){
     } else if(a==4){ toggle(rights);
     } else if(a==5){ toggle(psycho);
     } else if(a==6){ toggle(stenography);
-//    } else if(a==7){ toggle(stamps);
     } else if(a==7){ toggle(tutorial);
     }
 }
@@ -133,7 +152,6 @@ void WindowManager::openW(char a){
     } else if(a==4){ open(rights);
     } else if(a==5){ open(psycho);
     } else if(a==6){ open(stenography);
-//    } else if(a==7){ open(stamps);
     } else if(a==7){ open(tutorial);
     }
 }
@@ -145,7 +163,6 @@ void WindowManager::closeW(char a){
     } else if(a==4){ close(rights);
     } else if(a==5){ close(psycho);
     } else if(a==6){ close(stenography);
-//    } else if(a==7){ close(stamps);
     } else if(a==7){ close(tutorial);
     }
 }
@@ -158,7 +175,6 @@ void WindowManager::closeW(char a){
 
 void WindowManager::open_agreement(){toggleW(2);}
 void WindowManager::open_stenography(){toggleW(6);}
-//void WindowManager::open_stamps(){toggleW(7);}
 void WindowManager::open_tutorial(){toggleW(7);}
 
 

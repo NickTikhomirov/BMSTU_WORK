@@ -10,14 +10,17 @@ public:
     TwinButtons();
     CustomButton *right;
     CustomButton *left;
+    char score;
     void unlock();
     void lock();
 
 public slots:
     void analyze_correct();
     void analyze_incorrect();
+    void score_increase();
+    void ennul();
 signals:
-    void result(int);
+    void result(char);
 };
 
 #endif // TWINBUTTONS_H

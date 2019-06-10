@@ -4,8 +4,9 @@
 using std::to_string;
 
 
-SimpleButton::SimpleButton(short v, QGraphicsItem *parent) : QObject(), QGraphicsPixmapItem (parent)
+SimpleButton::SimpleButton(short n, char v, QGraphicsItem *parent) : QObject(), QGraphicsPixmapItem (parent)
 {
+    val = v;
     QString p = QString::fromStdString("://b//Pictures//buttons//id"+to_string(v)+".png");
     setPixmap(Resizer::m(QPixmap(p),2));
     setEnabled(true);
@@ -14,5 +15,5 @@ SimpleButton::SimpleButton(short v, QGraphicsItem *parent) : QObject(), QGraphic
 
 
 void SimpleButton::mousePressEvent(QGraphicsSceneMouseEvent *event){
-    if(free) emit clicked();
+    if(free) emit clicked(val);
 }
