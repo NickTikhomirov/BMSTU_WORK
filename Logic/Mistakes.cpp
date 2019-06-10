@@ -216,7 +216,7 @@ bool Mistakes::hasCorrectCountry(){
 
 
 bool Mistakes::xHealthy(){
-    return (forX%7==0);
+    return (forX%7!=0);
 }
 
 bool Mistakes::medicineNumberMistakes(){
