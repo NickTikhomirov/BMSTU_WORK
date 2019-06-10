@@ -74,7 +74,7 @@ AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsVie
         case 1:{
             bool comicSans=l->mistakes->isSans('P');
             // 1 - Паспорт
-            setWindowIcon(QIcon(QPixmap(QString::fromStdString("C:\\qtprojects\\ht2\\id4.png"))));
+            setWindowIcon(QIcon(QPixmap(QString::fromStdString("://b//Pictures//buttons//id4.png"))));
 
             SimpleButton *b_stamp = new SimpleButton(5);
             TextButton *title = new TextButton("Паспорт", 36,false,!comicSans);
@@ -93,12 +93,12 @@ AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsVie
         }
         case 2:{
             // 2 - Согласие
-            setWindowIcon(QIcon(QPixmap(QString::fromStdString("C:\\qtprojects\\ht2\\id11.png"))));
+            setWindowIcon(QIcon(QPixmap(QString::fromStdString("://b//Pictures//buttons//id11.png"))));
             break;
         }
         case 3:{
             // 3 - Полис
-            setWindowIcon(QIcon(QPixmap(QString::fromStdString("C:\\qtprojects\\ht2\\id13.png"))));
+            setWindowIcon(QIcon(QPixmap(QString::fromStdString("://b//Pictures//buttons//id13.png"))));
             string n = "0";
             if(l!=0){
                 n = l->insuranceNumber;
@@ -120,12 +120,12 @@ AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsVie
 
             scene->addItem(photo);
 
-            setWindowIcon(QIcon(QPixmap(QString::fromStdString("C:\\qtprojects\\ht2\\id15.png"))));
+            setWindowIcon(QIcon(QPixmap(QString::fromStdString("://b//Pictures//buttons//id15.png"))));
             break;
         }
         case 5:{
             // 5 - Справка от психиатра
-            setWindowIcon(QIcon(QPixmap(QString::fromStdString("C:\\qtprojects\\ht2\\id12.png"))));
+            setWindowIcon(QIcon(QPixmap(QString::fromStdString("://b//Pictures//buttons//id12.png"))));
             string n = "0";
             if(l!=0){
                 if(l->xNumberProblems())
@@ -154,7 +154,7 @@ AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsVie
             time->param*=11;
 
             scene->addItem(time);
-            setWindowIcon(QIcon(QPixmap(QString::fromStdString("C:\\qtprojects\\ht2\\id17.png"))));
+            setWindowIcon(QIcon(QPixmap(QString::fromStdString("://b//Pictures//buttons//id17.png"))));
             break;
         }
         case 7:{
@@ -186,7 +186,7 @@ AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsVie
 
 
 
-            setWindowIcon(QIcon(QPixmap(QString::fromStdString("C:\\qtprojects\\ht2\\id14.png"))));
+            setWindowIcon(QIcon(QPixmap(QString::fromStdString("://b//Pictures//buttons//id14.png"))));
             break;
         }
     }

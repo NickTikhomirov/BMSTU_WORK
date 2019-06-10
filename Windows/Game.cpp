@@ -318,7 +318,7 @@ void Game::mode_finalle(bool first){
     static QPixmap p1("://main//Pictures//backgrounds//fon-2.png");
     static QPixmap p2("://main//Pictures//backgrounds//fon-3.png");
     if(first){
-        sw->krestik->setPixmap(QPixmap("C:\\qtprojects\\ht2\\id23.png"));
+        sw->krestik->setPixmap(QPixmap("://b//Pictures//buttons//id23.png"));
         sw->krestik->id=23;
         mus->init(2,0);
         sw->krestik->setPos(400,200);

@@ -6,7 +6,7 @@ using std::to_string;
 
 SimpleButton::SimpleButton(short v, QGraphicsItem *parent) : QObject(), QGraphicsPixmapItem (parent)
 {
-    QString p = QString::fromStdString("C:\\qtprojects\\ht2\\id"+to_string(v)+".png");
+    QString p = QString::fromStdString("://b//Pictures//buttons//id"+to_string(v)+".png");
     setPixmap(Resizer::m(QPixmap(p),2));
     setEnabled(true);
     free=true;

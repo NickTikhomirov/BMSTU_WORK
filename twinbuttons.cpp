@@ -24,12 +24,12 @@ void TwinButtons::analyze_correct(){
 
 void TwinButtons::lock(){
     right->safe_lock();
-    right->setPixmap(QPixmap(QString("C:\\qtprojects\\ht2\\id0.png")));
+    right->setPixmap(QPixmap(QString("://b//Pictures//buttons//id0.png")));
 }
 
 void TwinButtons::unlock(){
     right->unlock();
-    right->setPixmap(QPixmap(QString("C:\\qtprojects\\ht2\\id3.png")));
+    right->setPixmap(QPixmap(QString("://b//Pictures//buttons//id3.png")));
 }
 
 void TwinButtons::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){}
