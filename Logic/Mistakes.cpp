@@ -22,7 +22,6 @@ Mistakes::Mistakes()
             else {
                 char b;
                 twoMistakes(a,b);
-                if(a==b) throw 1;
                 makeSomebodyHappy(b);
             }
             makeSomebodyHappy(a);
@@ -316,8 +315,8 @@ void Mistakes::twoMistakes(char &a, char &b){
     a = Randomizer::randomForMistakes(0);
     do{
         b=Randomizer::randomForMistakes(0);
-        if(equals(a,b)) continue;
-    }while(false);
+        if(this->equals(a,b)==0) break;
+    }while(true);
 }
 
 

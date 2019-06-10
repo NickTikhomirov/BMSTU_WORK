@@ -17,11 +17,13 @@ void TwinButtons::analyze_incorrect(){
     score++;
     score*=-1;
     emit result(score);
+    ennul();
 }
 
 
 void TwinButtons::analyze_correct(){
     emit result(score);
+    ennul();
 }
 
 

@@ -43,12 +43,12 @@ public:
     void mode_menu();
     void mode_finalle(bool);
     void subwindowSetuper(char);
+    void clear_items();
 signals:
     void button_pressed();
     void addPoint();
     void waveOfChange();
 public slots:
-    void renovation();
     void lock_screen();
     void unlock_screen();
     void show_stamps();

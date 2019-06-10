@@ -37,12 +37,19 @@ void WindowManager::dynamic_documents(){
 }
 
 void WindowManager::clear_dynamics(){
-    delete passport;
-    delete agreement;
-    delete stenography;
-    delete medicine;
-    delete rights;
-    delete psycho;
+    if(passport!=0) delete passport;
+    if(agreement!=0) delete agreement;
+    if(stenography!=0) delete stenography;
+    if(medicine!=0) delete medicine;
+    if(rights!=0)delete rights;
+    if(psycho!=0) delete psycho;
+
+    passport=0;
+    agreement=0;
+    stenography=0;
+    medicine=0;
+    rights=0;
+    psycho=0;
 }
 
 

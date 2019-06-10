@@ -22,9 +22,9 @@ Level::~Level()
 
 
 void Level::regenerate(){
-    delete mistakes;
+    if(mistakes!=0)delete mistakes;
     mistakes = new Mistakes;
-    delete visitor;
+    if(visitor!=0)delete visitor;
     visitor = new Visitor(mistakes->isB());
     insuranceNumber = Randomizer::generateDocumentNumber();
     time=Randomizer::timeGenerator(mistakes->isDinner());
