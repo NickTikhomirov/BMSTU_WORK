@@ -31,8 +31,11 @@ HEADERS += \
         Generators/Randomizer.h \
         Graphics/AdditionalWindow.h \
         Graphics/CustomButton.h \
+        Graphics/SimpleButton.h \
         Graphics/TextButton.h \
         Graphics/TutorialPage.h \
+        Graphics/TwinButtons.h \
+        Graphics/VeryComplicatedButton.h \
         Graphics/VisitorFace.h \
         Logic/ItemLockable.h \
         Logic/Level.h \
@@ -40,10 +43,7 @@ HEADERS += \
         Logic/Visitor.h \
         MyPlayer.h \
         Resizer.h \
-        SimpleButton.h \
         SwitchingButton.h \
-        TwinButtons.h \
-        VeryComplicatedButton.h \
         Windows/AdditionalWindow.h \
         Windows/Game.h \
         Windows/SubWindow.h \
@@ -56,8 +56,12 @@ SOURCES += \
         Generators/NameGenerator.cpp \
         Generators/Randomizer.cpp \
         Graphics/CustomButton.cpp \
+        Graphics/SimpleButton.cpp \
+        Graphics/SwitchingButton.cpp \
         Graphics/TextButton.cpp \
         Graphics/TutorialPage.cpp \
+        Graphics/TwinButtons.cpp \
+        Graphics/VeryComplicatedButton.cpp \
         Graphics/VisitorFace.cpp \
         Logic/ItemLockable.cpp \
         Logic/Level.cpp \
@@ -65,15 +69,11 @@ SOURCES += \
         Logic/Visitor.cpp \
         MyPlayer.cpp \
         Resizer.cpp \
-        SimpleButton.cpp \
-        SwitchingButton.cpp \
-        VeryComplicatedButton.cpp \
         Windows/AdditionalWindow.cpp \
         Windows/Game.cpp \
         Windows/SubWindow.cpp \
         Windows/WindowManager.cpp \
-        main.cpp \
-        twinbuttons.cpp
+        main.cpp
 
 #FORMS += \
 #        mainwindow.ui

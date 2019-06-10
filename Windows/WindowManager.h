@@ -2,8 +2,10 @@
 #define WINDOWMANAGER_H
 
 #include <QObject>
+
 #include "Logic\Level.h"
 #include "AdditionalWindow.h"
+#include "CursorManager.h"
 
 
 class WindowManager : public QObject

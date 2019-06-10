@@ -7,8 +7,10 @@
 #include <QIcon>
 
 #include "Graphics/CustomButton.h"
-#include "SimpleButton.h"
+#include "Graphics/SimpleButton.h"
 #include "Graphics/TextButton.h"
+#include "Graphics/TutorialPage.h"
+
 #include "Resizer.h"
 #include "Generators/Randomizer.h"
 #include "Logic/Level.h"

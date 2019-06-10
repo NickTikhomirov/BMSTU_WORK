@@ -1,5 +1,8 @@
 #pragma once
+
 #include <string>
+
+#include "Generators\Randomizer.h"
 #include "Visitor.h"
 #include "Mistakes.h"
 

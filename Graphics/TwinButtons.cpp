@@ -31,9 +31,3 @@ void TwinButtons::unlock(){
     right->unlock();
     right->setPixmap(QPixmap(QString("://b//Pictures//buttons//id3.png")));
 }
-
-void TwinButtons::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){}
-
-QRectF TwinButtons::boundingRect() const{
-    return QRectF(0,0,0,0);
-}
