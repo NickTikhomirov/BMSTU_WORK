@@ -226,6 +226,17 @@ bool Mistakes::isName2Correct(char a){return (for_(a)%8!=4);}
 bool Mistakes::isSwapped(char a){return (for_(a)%8==0);}
 bool Mistakes::isSans(char a){return (for_(a)%5==0);}
 
+char Mistakes::anyDateMistakes(){
+    if(isB()) return 0;
+    if(forA%3==0) return 'A';
+    if(forH%3==0) return 'H';
+    if(forP%3==0) return 'P';
+    if(forX%3==0) return 'X';
+    if(forM%3==0) return 'M';
+    if(forR%3==0) return 'R';
+    return 0;
+}
+
 
 
 

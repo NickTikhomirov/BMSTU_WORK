@@ -2,6 +2,7 @@
 
 #include <string>
 
+#include "Generators/DateGenerator.h"
 #include "Generators\Randomizer.h"
 #include "Visitor.h"
 #include "Mistakes.h"
@@ -20,6 +21,14 @@ public:
 
     string getNameFor(char);
     string getName2For(char);
+    string dateA;
+    string dateH;
+    string dateT;
+    string dateP;
+    string dateR;
+    string dateX;
+    string dateM;
+
 
 	bool isDinnerLevel();
     bool agreementMistakes();

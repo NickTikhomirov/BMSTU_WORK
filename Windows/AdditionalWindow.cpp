@@ -71,9 +71,8 @@ AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsVie
     QPixmap pp(QString::fromStdString("://main//Pictures//backgrounds//fon"+to_string(short(p))+".png"));
     scene->addPixmap(pp);
     switch(p){
-        case 1:{
+        case 1:{ // 1 - Паспорт
             bool comicSans=l->mistakes->isSans('P');
-            // 1 - Паспорт
             setWindowIcon(QIcon(QPixmap(QString::fromStdString("://b//Pictures//buttons//id4.png"))));
 
             SimpleButton *b_stamp = new SimpleButton('P');
@@ -95,19 +94,25 @@ AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsVie
             TextButton *title = new TextButton("Паспорт", 36,false,!comicSans);
             TextButton *name = new TextButton(l->getNameFor('P'),12);
             TextButton *name2 = new TextButton(l->getName2For('P'),12);
+            TextButton *date = new TextButton(l->dateP,24,false,!comicSans);
             if(l->mistakes->isSwapped('P')) swap(name,name2);
             name->val=2;
             name2->val=4;
             title->val=5;
+            date->val=3;
             name->setPos(250,290);
             name2->setPos(320,290);
             title->setPos(180,80);
+            date->setPos(275,190);
             scene->addItem(name);
             scene->addItem(name2);
             scene->addItem(title);
+            scene->addItem(date);
             connect(name,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
             connect(name2,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
             connect(title,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
+            connect(date,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
+
 
 
             break;
@@ -144,10 +149,10 @@ AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsVie
             setWindowIcon(QIcon(QPixmap(QString::fromStdString("://b//Pictures//buttons//id15.png"))));
             break;
         }
-        case 5:{
-            // 5 - Справка от психиатра
+        case 5:{ // 5 - Справка от психиатра
             setWindowIcon(QIcon(QPixmap(QString::fromStdString("://b//Pictures//buttons//id12.png"))));
             string n = "0";
+
             if(l!=0){
                 if(l->mistakes->medicineNumberMistakes())
                     do n = Randomizer::generateDocumentNumber(); while(n==(l->insuranceNumber));
@@ -162,24 +167,22 @@ AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsVie
 
             num->setPos(160,273);
             res->setPos(155,300);
-
             scene->addItem(num);
             scene->addItem(res);
             break;
         }
-        case 6:{
-            // 6 - Досье
+        case 6:{ // 6 - Досье
+            setWindowIcon(QIcon(QPixmap(QString::fromStdString("://b//Pictures//buttons//id17.png"))));
             TextButton *time = new TextButton("Время визита: "+l->time,12);
 
             time->setPos(120,240);
             time->param*=11;
 
             scene->addItem(time);
-            setWindowIcon(QIcon(QPixmap(QString::fromStdString("://b//Pictures//buttons//id17.png"))));
             break;
         }
-        case 7:{
-            // 7 - Правила
+        case 7:{ // 7 - Правила
+            setWindowIcon(QIcon(QPixmap(QString::fromStdString("://b//Pictures//buttons//id14.png"))));
             CustomButton *arrowLeft = new CustomButton(20,true);
             CustomButton *arrowRight = new CustomButton(21,true);
             TutorialPage *tut = new TutorialPage;
@@ -203,11 +206,6 @@ AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsVie
             scene->addItem(tut->text);
             scene->addItem(tut->guys);
             scene->addItem(tut->captain);
-
-
-
-
-            setWindowIcon(QIcon(QPixmap(QString::fromStdString("://b//Pictures//buttons//id14.png"))));
             break;
         }
     }

@@ -48,6 +48,7 @@ public:
     bool isNameCorrect(char);
     bool isName2Correct(char);
     bool isSwapped(char);
+    char anyDateMistakes();
 
     string toString();
     QString text_form();

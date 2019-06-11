@@ -38,6 +38,7 @@ HEADERS += \
         Graphics/TutorialPage.h \
         Graphics/TwinButtons.h \
         Graphics/VeryComplicatedButton.h \
+        Logic/Date.h \
         Logic/ItemLockable.h \
         Logic/Level.h \
         Logic/Mistakes.h \
@@ -63,6 +64,7 @@ SOURCES += \
         Graphics/TutorialPage.cpp \
         Graphics/TwinButtons.cpp \
         Graphics/VeryComplicatedButton.cpp \
+        Logic/Date.cpp \
         Logic/ItemLockable.cpp \
         Logic/Level.cpp \
         Logic/Mistakes.cpp \

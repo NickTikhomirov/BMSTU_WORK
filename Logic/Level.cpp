@@ -10,6 +10,17 @@ Level::Level()
     visitor = new Visitor(mistakes->isB());
     insuranceNumber = Randomizer::generateDocumentNumber();
     time=Randomizer::timeGenerator(mistakes->isDinner());
+
+    DateGenerator a;
+    a.generate(mistakes->anyDateMistakes());
+
+    dateA = !a.dates[2];
+    dateT = !a.dates[6];
+    dateP = !a.dates[1];
+    dateH = !a.dates[0];
+    dateR = !a.dates[3];
+    dateM = !a.dates[4];
+    dateX = !a.dates[5];
 }
 
 
