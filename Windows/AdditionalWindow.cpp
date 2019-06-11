@@ -75,7 +75,7 @@ AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsVie
             // 1 - Паспорт
             setWindowIcon(QIcon(QPixmap(QString::fromStdString("://b//Pictures//buttons//id4.png"))));
 
-            SimpleButton *b_stamp = new SimpleButton(5,11);
+            SimpleButton *b_stamp = new SimpleButton('P');
             TextButton *title = new TextButton("Паспорт", 36,false,!comicSans);
             TextButton *num = new TextButton(Randomizer::generateDocumentNumber(),24,false,!comicSans);
             TextButton *country = new TextButton(

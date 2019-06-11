@@ -1,4 +1,5 @@
 #include "Resizer.h"
+#include <cmath>
 
 Resizer::Resizer()
 {
@@ -6,8 +7,8 @@ Resizer::Resizer()
 }
 
 
-int Resizer::m(int a, short p){
-    return (p>0)?a*p:a;
+int Resizer::m(int a, double p){
+    return (p>0)?round(a*p):a;
 }
 
 int Resizer::d(int a){
@@ -15,7 +16,7 @@ int Resizer::d(int a){
 }
 
 
-QPixmap Resizer::m(QPixmap q, short p){
+QPixmap Resizer::m(QPixmap q, double p){
     q=q.scaled(m(q.width(),p), m(q.height(),p));
     return q;
 }

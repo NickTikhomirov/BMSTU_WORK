@@ -1,6 +1,6 @@
 #ifndef MYPLAYER_H
 #define MYPLAYER_H
-#include "SwitchingButton.h"
+#include "Graphics/SwitchingButton.h"
 
 
 class MyPlayer:public QObject

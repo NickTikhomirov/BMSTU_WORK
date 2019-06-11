@@ -29,21 +29,21 @@ HEADERS += \
         Generators/DateGenerator.h \
         Generators/NameGenerator.h \
         Generators/Randomizer.h \
+        Generators/StampGenerator.h \
         Graphics/AdditionalWindow.h \
         Graphics/CustomButton.h \
         Graphics/SimpleButton.h \
+        Graphics/SwitchingButton.h \
         Graphics/TextButton.h \
         Graphics/TutorialPage.h \
         Graphics/TwinButtons.h \
         Graphics/VeryComplicatedButton.h \
-        Graphics/VisitorFace.h \
         Logic/ItemLockable.h \
         Logic/Level.h \
         Logic/Mistakes.h \
         Logic/Visitor.h \
         MyPlayer.h \
         Resizer.h \
-        SwitchingButton.h \
         Windows/AdditionalWindow.h \
         Windows/Game.h \
         Windows/SubWindow.h \
@@ -55,6 +55,7 @@ SOURCES += \
         Generators/DateGenerator.cpp \
         Generators/NameGenerator.cpp \
         Generators/Randomizer.cpp \
+        Generators/StampGenerator.cpp \
         Graphics/CustomButton.cpp \
         Graphics/SimpleButton.cpp \
         Graphics/SwitchingButton.cpp \
@@ -62,7 +63,6 @@ SOURCES += \
         Graphics/TutorialPage.cpp \
         Graphics/TwinButtons.cpp \
         Graphics/VeryComplicatedButton.cpp \
-        Graphics/VisitorFace.cpp \
         Logic/ItemLockable.cpp \
         Logic/Level.cpp \
         Logic/Mistakes.cpp \

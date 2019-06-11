@@ -18,7 +18,6 @@
 #include "Graphics/TextButton.h"
 #include "Graphics/VeryComplicatedButton.h"
 #include "Graphics/TwinButtons.h"
-#include "Graphics/VisitorFace.h"
 #include "Logic/ItemLockable.h"
 
 

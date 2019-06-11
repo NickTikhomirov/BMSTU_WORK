@@ -10,8 +10,8 @@ public:
     Resizer();
     static int d(int);
     static QPixmap d(QPixmap);
-    static int m(int, short);
-    static QPixmap m(QPixmap, short);
+    static int m(int, double);
+    static QPixmap m(QPixmap, double);
 };
 
 #endif // RESIZER_H

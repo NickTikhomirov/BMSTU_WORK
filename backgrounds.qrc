@@ -34,5 +34,10 @@
         <file>Pictures/other/egg1.jpg</file>
         <file>Pictures/backgrounds/fon-2.png</file>
         <file>Pictures/backgrounds/fon-3.png</file>
+        <file>Pictures/these_guys/g1.png</file>
+        <file>Pictures/these_guys/g2.png</file>
+        <file>Pictures/these_guys/g3.png</file>
+        <file>Pictures/these_guys/g6.png</file>
+        <file>Pictures/these_guys/g9.png</file>
     </qresource>
 </RCC>

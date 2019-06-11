@@ -37,7 +37,7 @@ void Game::mode_play(){
     contents.resize(15);
     sw = new SubWindow;
 
-    VisitorFace *vis = new VisitorFace(14);
+    SimpleButton *vis = new SimpleButton(2);
     vis->setPos(50,54);
 
     //Чашка
