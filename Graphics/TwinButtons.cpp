@@ -12,6 +12,14 @@ TwinButtons::TwinButtons(){
 
 }
 
+TwinButtons::~TwinButtons(){
+    delete right;
+    delete left;
+    right=0;
+    left=0;
+}
+
+
 
 void TwinButtons::analyze_incorrect(){
     score++;

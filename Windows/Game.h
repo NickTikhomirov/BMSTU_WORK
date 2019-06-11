@@ -27,6 +27,7 @@ class Game : public QGraphicsView
 {
     Q_OBJECT
     vector<ItemLockable*> contents;
+    TwinButtons *b2;
 public:
     explicit Game(QWidget *parent = nullptr);
 
@@ -40,7 +41,6 @@ public:
 
     void mode_play();
     void mode_menu();
-    void mode_finalle(bool);
     void subwindowSetuper(char);
     void clear_items();
 signals:

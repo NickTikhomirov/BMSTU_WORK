@@ -37,7 +37,7 @@ SimpleButton::SimpleButton(short n, QGraphicsItem *parent) : QObject(), QGraphic
 
 void SimpleButton::mousePressEvent(QGraphicsSceneMouseEvent *event){
     if(free)
-        if(val<0) emit clicked(0);
+        if(val<0) emit clicked('H',0);
         else emit clicked(val);
 }
 

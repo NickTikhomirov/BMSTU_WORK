@@ -19,6 +19,28 @@ Level::~Level()
     delete visitor;
 }
 
+string Level::getNameFor(char a){
+    if(mistakes->isNameCorrect(a)) return visitor->name;
+    else if(rand()%2) return NameGenerator::degenerateName(visitor->name);
+    else {
+        string p;
+        do p = NameGenerator::generateName();
+        while(p==(visitor->name));
+        return p;
+    }
+}
+
+string Level::getName2For(char a){
+    if(mistakes->isNameCorrect(a)) return visitor->secondName;
+    else if(rand()%2) return NameGenerator::degenerateName(visitor->secondName);
+    else {
+        string p;
+        do p = NameGenerator::generateName2();
+        while(p==(visitor->secondName));
+        return p;
+    }
+}
+
 
 
 void Level::regenerate(){

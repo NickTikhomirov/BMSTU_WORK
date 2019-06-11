@@ -82,7 +82,7 @@ string NameGenerator::generateBadCountry(){
 
 
 
-void NameGenerator::degenerateName(string &p) {
+string NameGenerator::degenerateName(string p) {
     short r;
     if (p == "Evgeny") {
         r = rand() % 2;
@@ -175,6 +175,8 @@ void NameGenerator::degenerateName(string &p) {
         else p = "Dubikov";
     }
     if (p == "Nikitin") p = "Nikiitin";
+
+    return p;
 }
 
 

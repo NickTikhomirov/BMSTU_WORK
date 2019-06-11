@@ -12,7 +12,7 @@ Mistakes::Mistakes()
     forX=1;
     if(!generateCorrectness()){
         if(maybeFlavor())
-            forA = specialForYou_A(false);
+            forA = Randomizer::randomForMistakes(1);
         else if(maybeFlavor())
             forH = 0;
         else {
@@ -29,10 +29,27 @@ Mistakes::Mistakes()
     }
 }
 
+char Mistakes::for_(char a){
+    switch(a){
+        case 'P':return forP;
+        case 'M':return forM;
+        case 'X':return forX;
+        case 'A':return forA;
+        case 'R':return forR;
+        case 'H':return forH;
+    }
+    return 1;
+}
+
+
+
 
 
 bool Mistakes::isItYours_forH(char a){
-    if(a==0 && forH==0) return true;
+    if(a==0 && forH==0) {
+        forH=1;
+        return true;
+    }
     if(a==5 || a==11 || a==3){
         if(forH%a==0){
             forH/=a;
@@ -171,16 +188,6 @@ string Mistakes::toString(){
     return p;
 }
 
-bool Mistakes::isSans(char a){
-    switch(a){
-        case 'P': return forP%5==0;
-        case 'R': return forR%5==0;
-        case 'M': return forM%5==0;
-        case 'A': return forA%5==0;
-        case 'X': return forX%5==0;
-    }
-    return false;
-}
 
 QString Mistakes::text_form(){
     string p = "Оставшиеся ошибки:\n";
@@ -210,18 +217,14 @@ QString Mistakes::text_form(){
 }
 
 
-bool Mistakes::hasCorrectCountry(){
-    return (forH%11!=0 || forH==0);
-}
+bool Mistakes::hasCorrectCountry(){return (forH%11!=0 || forH==0);}
+bool Mistakes::xHealthy(){return (forX%7!=0);}
+bool Mistakes::medicineNumberMistakes(){return (forX<0);}
 
-
-bool Mistakes::xHealthy(){
-    return (forX%7!=0);
-}
-
-bool Mistakes::medicineNumberMistakes(){
-    return (forX<0);
-}
+bool Mistakes::isNameCorrect(char a){return (for_(a)%8!=2);}
+bool Mistakes::isName2Correct(char a){return (for_(a)%8!=4);}
+bool Mistakes::isSwapped(char a){return (for_(a)%8==0);}
+bool Mistakes::isSans(char a){return (for_(a)%5==0);}
 
 
 
@@ -317,19 +320,6 @@ void Mistakes::twoMistakes(char &a, char &b){
         b=Randomizer::randomForMistakes(0);
         if(this->equals(a,b)==0) break;
     }while(true);
-}
-
-
-char Mistakes::specialForYou_A(bool doubleTrouble){
-    char p = Randomizer::randomForMistakes(1);
-    if(doubleTrouble){
-        char p2=1;
-        do
-            p2=specialForYou_A(false);
-        while(equals(p,p2));
-        p*=p2;
-    }
-    return p;
 }
 
 

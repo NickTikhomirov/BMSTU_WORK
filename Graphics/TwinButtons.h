@@ -8,6 +8,7 @@ class TwinButtons : public QObject
     Q_OBJECT
 public:
     TwinButtons();
+    ~TwinButtons();
     CustomButton *right;
     CustomButton *left;
     char score;

@@ -1,6 +1,7 @@
 #include "AdditionalWindow.h"
 
 using std::to_string;
+using std::swap;
 
 //p:
 
@@ -76,29 +77,37 @@ AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsVie
             setWindowIcon(QIcon(QPixmap(QString::fromStdString("://b//Pictures//buttons//id4.png"))));
 
             SimpleButton *b_stamp = new SimpleButton('P');
-            TextButton *title = new TextButton("Паспорт", 36,false,!comicSans);
             TextButton *num = new TextButton(Randomizer::generateDocumentNumber(),24,false,!comicSans);
             TextButton *country = new TextButton(
                         (l->mistakes->hasCorrectCountry())?
                             NameGenerator::generateCountry():NameGenerator::generateBadCountry()
                             ,24,false,!comicSans);
-
-            title->val=5;
             country->val=12;
-
             b_stamp->setPos(335,365);
-            title->setPos(180,80);
             num->setPos(275,138);
             country->setPos(220,367);
-
             scene->addItem(b_stamp);
-            scene->addItem(title);
             scene->addItem(num);
             scene->addItem(country);
-
             connect(b_stamp,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
-            connect(title,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
             connect(country,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
+
+            TextButton *title = new TextButton("Паспорт", 36,false,!comicSans);
+            TextButton *name = new TextButton(l->getNameFor('P'),12);
+            TextButton *name2 = new TextButton(l->getName2For('P'),12);
+            if(l->mistakes->isSwapped('P')) swap(name,name2);
+            name->val=2;
+            name2->val=4;
+            title->val=5;
+            name->setPos(250,290);
+            name2->setPos(320,290);
+            title->setPos(180,80);
+            scene->addItem(name);
+            scene->addItem(name2);
+            scene->addItem(title);
+            connect(name,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
+            connect(name2,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
+            connect(title,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
 
 
             break;

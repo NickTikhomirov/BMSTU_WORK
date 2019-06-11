@@ -17,6 +17,7 @@ class Mistakes
     char forA;
     char forX;
     char forR;
+    char for_(char);
     void makeSomebodyHappy(char);
     void oneMistake(char&);
     void twoMistakes(char&,char&);
@@ -31,7 +32,6 @@ class Mistakes
     static bool interpret_low(char &,char);
     static bool generateCorrectness();
     static bool maybeFlavor();
-    static char specialForYou_A(bool);
     static bool one_for_true_and_two_for_twrue();
     static bool equals(char,char);
 public:
@@ -45,6 +45,10 @@ public:
     bool hasCorrectCountry();
     bool xHealthy();
     bool medicineNumberMistakes();
+    bool isNameCorrect(char);
+    bool isName2Correct(char);
+    bool isSwapped(char);
+
     string toString();
     QString text_form();
 };

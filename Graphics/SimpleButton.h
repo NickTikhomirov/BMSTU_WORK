@@ -19,6 +19,7 @@ private:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
 signals:
     void clicked(char);
+    void clicked(char,char);
 public slots:
     void regenerate();
 };

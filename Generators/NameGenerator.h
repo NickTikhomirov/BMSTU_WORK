@@ -10,7 +10,7 @@ public:
     static string generateName2();
     static string generateCountry();
     static string generateBadCountry();
-    static void degenerateName(string&);
+    static string degenerateName(string);
 };
 
 #endif // NAMEGENERATOR_H

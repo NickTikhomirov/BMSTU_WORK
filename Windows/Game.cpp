@@ -9,6 +9,7 @@ Game::Game(QWidget *parent) : QGraphicsView(parent)
     score = 0;
     levelsLeft=0;
     level = 0;
+    b2=0;
 
     setFixedSize(517,517);
     scene = new QGraphicsScene;
@@ -76,7 +77,6 @@ void Game::mode_play(){
 
 
     //Парные кнопки и плеер
-    TwinButtons *b2;
     b2 = new TwinButtons;
     mus->init(1 ,1);
     mus->setPos(380,395);
@@ -134,6 +134,8 @@ void Game::mode_play(){
     connect(this,SIGNAL(addPoint()),b2,SLOT(score_increase()));
     connect(wm,SIGNAL(provide(char,char)),this,SLOT(playersGuess(char,char)));
     connect(b,SIGNAL(time_pressed(char,char)),this,SLOT(playersGuess(char,char)));
+    connect(vis,SIGNAL(clicked(char,char)),this,SLOT(playersGuess(char,char)));
+
 
     connect(b2,SIGNAL(result(char)),this,SLOT(level_finalize(char)));
     connect(this,SIGNAL(waveOfChange()),b,SLOT(update_b()));
@@ -326,46 +328,15 @@ void Game::clear_items(){
     //if(wm!=0)delete wm;
     //wm = 0;
 
+    if(b2!=0) delete b2;
+    b2=0;
+
     if(mus->lever!=0)delete mus->lever;
     mus->lever=0;
 
     contents.clear();
 }
 
-
-void Game::mode_finalle(bool first){
-    static QPixmap p1("://main//Pictures//backgrounds//fon-2.png");
-    static QPixmap p2("://main//Pictures//backgrounds//fon-3.png");
-    if(first){
-        sw->krestik->setPixmap(QPixmap("://b//Pictures//buttons//id23.png"));
-        sw->krestik->id=23;
-        mus->init(2,0);
-        sw->krestik->setPos(400,200);
-        mus->lever->setPos(490,10);
-
-        scene->addPixmap(p1);
-        scene->addItem(sw->krestik);
-        sw->krestik->show();
-        scene->addItem(mus->lever);
-
-        connect(sw->krestik,SIGNAL(clicked()),this, SLOT(switch_finalle2()));
-    } else {
-        score=100;
-        sw->krestik->hide();
-        sw->krestik->safe_lock();
-        CustomButton *b1 = new CustomButton(2);
-        CustomButton *b2 = new CustomButton(3);
-        b2->setPos(400,350);
-        b1->setPos(370,350);
-
-        scene->addPixmap(p2);
-        scene->addItem(b1);
-        scene->addItem(b2);
-
-        connect(b1,SIGNAL(clicked()),this,SLOT(switch_menu()));
-        connect(b2,SIGNAL(clicked()),this,SLOT(exit0()));
-    }
-}
 
 void Game::switch_menu(){
     wm->kill();
@@ -379,8 +350,6 @@ void Game::switch_play(){
 void Game::switch_finalle(){
     clear_items();
     scene->clear();
-    //sw = new SubWindow;
-    //mode_finalle(true);
 
     static QPixmap p1("://main//Pictures//backgrounds//fon-2.png");
     CustomButton *hand = new CustomButton(23);
@@ -398,21 +367,20 @@ void Game::switch_finalle(){
 void Game::switch_finalle2(){
     clear_items();
     scene->clear();
-    //mode_finalle(false);
     static QPixmap p2("://main//Pictures//backgrounds//fon-3.png");
 
     CustomButton *b1 = new CustomButton(2);
-    CustomButton *b2 = new CustomButton(3);
+    CustomButton *b3 = new CustomButton(3);
     mus->init(2,0);
     mus->lever->setPos(490,10);
-    b2->setPos(400,350);
+    b3->setPos(400,350);
     b1->setPos(370,350);
 
     scene->addPixmap(p2);
     scene->addItem(b1);
-    scene->addItem(b2);
+    scene->addItem(b3);
     scene->addItem(mus->lever);
 
     connect(b1,SIGNAL(clicked()),this,SLOT(switch_menu()));
-    connect(b2,SIGNAL(clicked()),this,SLOT(exit0()));
+    connect(b3,SIGNAL(clicked()),this,SLOT(exit0()));
 }

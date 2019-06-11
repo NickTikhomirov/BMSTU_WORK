@@ -17,6 +17,10 @@ public:
     Mistakes *mistakes;
     string time;
     string insuranceNumber;
+
+    string getNameFor(char);
+    string getName2For(char);
+
 	bool isDinnerLevel();
     bool agreementMistakes();
     void regenerate();
