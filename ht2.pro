@@ -42,7 +42,6 @@ HEADERS += \
         Logic/ItemLockable.h \
         Logic/Level.h \
         Logic/Mistakes.h \
-        Logic/Visitor.h \
         MyPlayer.h \
         Resizer.h \
         Windows/AdditionalWindow.h \
@@ -68,7 +67,6 @@ SOURCES += \
         Logic/ItemLockable.cpp \
         Logic/Level.cpp \
         Logic/Mistakes.cpp \
-        Logic/Visitor.cpp \
         MyPlayer.cpp \
         Resizer.cpp \
         Windows/AdditionalWindow.cpp \

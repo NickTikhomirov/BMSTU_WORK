@@ -187,7 +187,7 @@ void WindowManager::open_tutorial(){toggleW(7);}
 
 void WindowManager::open_passport(){
     if(level!=0)
-        if(level->agreementMistakes()){
+        if(level->mistakes->isA()){
             emit privacyBreak();
             return;
     }
@@ -195,7 +195,7 @@ void WindowManager::open_passport(){
 }
 void WindowManager::open_medicine(){
     if(level!=0)
-        if(level->agreementMistakes()){
+        if(level->mistakes->isA()){
             emit privacyBreak();
             return;
     }
@@ -203,7 +203,7 @@ void WindowManager::open_medicine(){
 }
 void WindowManager::open_license(){
     if(level!=0)
-        if(level->agreementMistakes()){
+        if(level->mistakes->isA()){
             emit privacyBreak();
             return;
     }
@@ -211,7 +211,7 @@ void WindowManager::open_license(){
 }
 void WindowManager::open_x(){
     if(level!=0)
-        if(level->agreementMistakes()){
+        if(level->mistakes->isA()){
             emit privacyBreak();
             return;
     }

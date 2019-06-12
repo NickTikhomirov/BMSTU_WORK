@@ -3,64 +3,6 @@
 using std::to_string;
 using std::swap;
 
-//p:
-
-/* Паспорт:
- *      Имя
- *      Фамиля
- *      Дата Рождения
- *      Дата Выдачи
- *      Страна рождения
- *      Номер паспорта
- *      Слово "Паспорт"
- *      +Печать
- *      +Фото
- *
- * Полис:
- *      Имя
- *      Фамиля
- *      Дата Выдачи
- *      Номер полиса
- *      Слово "Полис"
- *      +Печать
- *
- *
- * Права:
- *      Имя
- *      Фамиля
- *      Дата Выдачи
- *      Предметы и оценки
- *      Слово "Водительские права"
- *      +Фото
- *      +Печать
- *
- * Справка:
- *      Имя
- *      Фамиля
- *      Дата Выдачи
- *      Вердикт
- *      Номер полиса
- *      Слово "Справка"
- *      +Печать
- *
- * Согласие:
- *      Имя
- *      Фамиля
- *      Дата Подписания
- *      Слово "Согласие на обработку"
- *
- * Правила:
- *      Листать вперёд
- *      Листать назад
- *
- * Досье:
- *   (имя, фамилия, время прихода, данные по уровню)
- *
- *
- */
-
-
-
 
 
 AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsView(par)
@@ -112,9 +54,6 @@ AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsVie
             connect(name2,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
             connect(title,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
             connect(date,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
-
-
-
             break;
         }
         case 2:{

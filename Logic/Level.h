@@ -3,8 +3,8 @@
 #include <string>
 
 #include "Generators/DateGenerator.h"
-#include "Generators\Randomizer.h"
-#include "Visitor.h"
+#include "Generators/Randomizer.h"
+#include "Generators/NameGenerator.h"
 #include "Mistakes.h"
 
 using std::string;
@@ -13,8 +13,11 @@ class Level
 {
 public:
 	Level();
-	~Level();
-    Visitor *visitor;
+    ~Level();
+    string name;
+    string secondName;
+    string birtday;
+    char face;
     Mistakes *mistakes;
     string time;
     string insuranceNumber;
@@ -30,8 +33,7 @@ public:
     string dateM;
 
 
-	bool isDinnerLevel();
-    bool agreementMistakes();
+    void setBlackList();
     void regenerate();
 };
 
