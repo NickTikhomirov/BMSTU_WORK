@@ -29,10 +29,11 @@ HEADERS += \
         Generators/DateGenerator.h \
         Generators/NameGenerator.h \
         Generators/Randomizer.h \
-        Generators/StampGenerator.h \
         Graphics/AdditionalWindow.h \
         Graphics/CustomButton.h \
+        Graphics/Face.h \
         Graphics/SimpleButton.h \
+        Graphics/Stamp.h \
         Graphics/SwitchingButton.h \
         Graphics/TextButton.h \
         Graphics/TutorialPage.h \
@@ -55,9 +56,10 @@ SOURCES += \
         Generators/DateGenerator.cpp \
         Generators/NameGenerator.cpp \
         Generators/Randomizer.cpp \
-        Generators/StampGenerator.cpp \
         Graphics/CustomButton.cpp \
+        Graphics/Face.cpp \
         Graphics/SimpleButton.cpp \
+        Graphics/Stamp.cpp \
         Graphics/SwitchingButton.cpp \
         Graphics/TextButton.cpp \
         Graphics/TutorialPage.cpp \

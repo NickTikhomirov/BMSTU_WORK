@@ -7,7 +7,8 @@
 #include <QIcon>
 
 #include "Graphics/CustomButton.h"
-#include "Graphics/SimpleButton.h"
+#include "Graphics/Face.h"
+#include "Graphics/Stamp.h"
 #include "Graphics/TextButton.h"
 #include "Graphics/TutorialPage.h"
 

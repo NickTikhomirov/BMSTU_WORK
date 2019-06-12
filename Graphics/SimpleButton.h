@@ -9,11 +9,13 @@
 #include <QGraphicsRectItem>
 
 
-class SimpleButton: public QObject, public QGraphicsPixmapItem{
+#include "Logic/ItemLockable.h"
+
+
+class SimpleButton: public QObject, public QGraphicsPixmapItem, public ItemLockable{
     Q_OBJECT
-    bool free;
 public:
-    explicit SimpleButton(short n,QGraphicsItem *parent = nullptr);
+    explicit SimpleButton(QGraphicsItem *parent = nullptr);
     char val;
 private:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
@@ -21,7 +23,7 @@ signals:
     void clicked(char);
     void clicked(char,char);
 public slots:
-    void regenerate();
+    void regenerate(char);
 };
 
 #endif // SIMPLEBUTTON_H

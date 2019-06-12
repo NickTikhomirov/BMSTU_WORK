@@ -35,9 +35,26 @@
         <file>Pictures/backgrounds/fon-2.png</file>
         <file>Pictures/backgrounds/fon-3.png</file>
         <file>Pictures/these_guys/g1.png</file>
+        <file>Pictures/these_guys/g-1.png</file>
         <file>Pictures/these_guys/g2.png</file>
+        <file>Pictures/these_guys/g-2.png</file>
         <file>Pictures/these_guys/g3.png</file>
+        <file>Pictures/these_guys/g-3.png</file>
+        <file>Pictures/these_guys/g4.png</file>
+        <file>Pictures/these_guys/g-4.png</file>
+        <file>Pictures/these_guys/g5.png</file>
+        <file>Pictures/these_guys/g-5.png</file>
         <file>Pictures/these_guys/g6.png</file>
+        <file>Pictures/these_guys/g-6.png</file>
+        <file>Pictures/these_guys/g7.png</file>
+        <file>Pictures/these_guys/g-7.png</file>
+        <file>Pictures/these_guys/g8.png</file>
+        <file>Pictures/these_guys/g-8.png</file>
         <file>Pictures/these_guys/g9.png</file>
+        <file>Pictures/these_guys/g-9.png</file>
+        <file>Pictures/these_guys/g10.png</file>
+        <file>Pictures/these_guys/g-10.png</file>
+        <file>Pictures/these_guys/g11.png</file>
+        <file>Pictures/these_guys/g-11.png</file>
     </qresource>
 </RCC>

@@ -15,13 +15,6 @@ string Randomizer::toString(short a) {
 }
 
 
-bool Randomizer::isDocumentCoding(char a) {
-    return (a=='P'||a=='H'||a=='A'||a=='M'||a=='X'||a=='R');
-}
-
-
-
-
 
 
 char Randomizer::randomForMistakes(char soft){
@@ -105,3 +98,19 @@ string Randomizer::generateDocumentNumber(){
     return p;
 }
 
+
+
+
+char Randomizer::stampDegenerator(char a){
+    if(rand()%2){
+        a=-a;
+        return a;
+    }
+    if(a==5)
+        return ((rand()%3+6)*(-1+rand()%2*2));
+    if(56%a==0)
+        return ((rand()%2+5)*(-1+rand()%2*2));
+    if(a==6){
+        return (a=(-1+rand()%2*2)*(rand()%3+6))-(a==6)+(a==-6);
+    }
+}

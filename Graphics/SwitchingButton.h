@@ -19,7 +19,7 @@ public:
     explicit SwitchingButton(short n, QGraphicsItem *parent = nullptr);
     void reInit(short);
 public slots:
-    virtual void update_b();
+    virtual void update_b(char);
 private:
     void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
     void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);

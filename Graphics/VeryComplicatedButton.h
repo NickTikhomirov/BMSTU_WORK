@@ -15,7 +15,7 @@ public:
 signals:
     void time_pressed(char,char);
 public slots:
-    void update_b();
+    void update_b(char);
     void track_time();
 private:
     void hoverEnterEvent(QGraphicsSceneHoverEvent *event);

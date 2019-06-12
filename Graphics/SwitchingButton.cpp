@@ -62,4 +62,4 @@ void SwitchingButton::reInit(short n){
     setPixmap(QPixmap(p));
 }
 
-void SwitchingButton::update_b(){}
+void SwitchingButton::update_b(char){}

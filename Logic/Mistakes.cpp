@@ -214,6 +214,8 @@ bool Mistakes::isNameCorrect(char a){return (for_(a)%8!=2);}
 bool Mistakes::isName2Correct(char a){return (for_(a)%8!=4);}
 bool Mistakes::isSwapped(char a){return (for_(a)%8==0);}
 bool Mistakes::isSans(char a){return (for_(a)%5==0);}
+bool Mistakes::isFaceCorrect(char a){return for_(a)%7!=0;}
+bool Mistakes::isStampCorrect(char a){return for_(a)%11!=0;}
 
 char Mistakes::anyDateMistakes(){
     if(isB()) return 0;
@@ -225,6 +227,7 @@ char Mistakes::anyDateMistakes(){
     if(forR%3==0) return 'R';
     return 0;
 }
+
 
 
 

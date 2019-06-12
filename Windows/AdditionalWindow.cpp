@@ -17,27 +17,32 @@ AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsVie
             bool comicSans=l->mistakes->isSans('P');
             setWindowIcon(QIcon(QPixmap(QString::fromStdString("://b//Pictures//buttons//id4.png"))));
 
-            SimpleButton *b_stamp = new SimpleButton('P');
+            Stamp *b_stamp = new Stamp('P',2,l->mistakes->isStampCorrect('P'));
             TextButton *num = new TextButton(Randomizer::generateDocumentNumber(),24,false,!comicSans);
             TextButton *country = new TextButton(
                         (l->mistakes->hasCorrectCountry())?
                             NameGenerator::generateCountry():NameGenerator::generateBadCountry()
                             ,24,false,!comicSans);
             TextButton *birt = new TextButton(l->dateH,20,false,!comicSans);
+            Face *face = new Face(l->face,0.375,l->mistakes->isFaceCorrect('P'));
             country->val=12;
             b_stamp->val=11;
             birt->val=6;
+            face->val=7;
             b_stamp->setPos(335,365);
             num->setPos(275,138);
             country->setPos(220,367);
             birt->setPos(240,317);
+            face->setPos(120,290);
             scene->addItem(b_stamp);
             scene->addItem(num);
             scene->addItem(country);
             scene->addItem(birt);
+            scene->addItem(face);
             connect(b_stamp,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
             connect(country,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
             connect(birt,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
+            connect(face,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
 
 
             TextButton *title = new TextButton("Паспорт", 36,false,!comicSans);
@@ -63,8 +68,7 @@ AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsVie
             connect(date,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
             break;
         }
-        case 2:{
-            // 2 - Согласие
+        case 2:{ // 2 - Согласие
             setWindowIcon(QIcon(QPixmap(QString::fromStdString("://b//Pictures//buttons//id11.png"))));
             break;
         }
@@ -102,6 +106,18 @@ AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsVie
         case 4:{ // 4 - Права
             bool comicSans=l->mistakes->isSans('R');
             setWindowIcon(QIcon(QPixmap(QString::fromStdString("://b//Pictures//buttons//id15.png"))));
+
+            Stamp *b_stamp = new Stamp('R',1,l->mistakes->isStampCorrect('R'));
+            Face *face = new Face(l->face,0.25,l->mistakes->isFaceCorrect('R'));
+            face->setPos(300,280);
+            b_stamp->setPos(240,310);
+            face->val=7;
+            b_stamp->val=11;
+            scene->addItem(face);
+            scene->addItem(b_stamp);
+            connect(face,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
+            connect(b_stamp,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
+
 
             TextButton *title = new TextButton("Лицензия на вождение",20,false,!comicSans);
             TextButton *name = new TextButton(l->getNameFor('R'),12);

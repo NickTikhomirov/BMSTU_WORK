@@ -11,8 +11,8 @@ public:
     static string toString(short);
 	static bool generatePerc(short);
     static string generateMistakes();
-    static bool isDocumentCoding(char);
     static string generateDocumentNumber();
     static char randomForMistakes(char);
+    static char stampDegenerator(char);
 };
 

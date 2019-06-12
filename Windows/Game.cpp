@@ -38,7 +38,7 @@ void Game::mode_play(){
     contents.resize(15);
     sw = new SubWindow;
 
-    SimpleButton *vis = new SimpleButton(2);
+    Face *vis = new Face(level->face);
     vis->setPos(50,54);
 
     //Чашка
@@ -115,6 +115,7 @@ void Game::mode_play(){
     contents.push_back(b);
     contents.push_back(b->t);
     contents.push_back(mus->lever);
+    contents.push_back(vis);
 
 
     connect(paper,SIGNAL(clicked()),this,SLOT(show_stamps()));
@@ -138,7 +139,9 @@ void Game::mode_play(){
 
 
     connect(b2,SIGNAL(result(char)),this,SLOT(level_finalize(char)));
-    connect(this,SIGNAL(waveOfChange()),b,SLOT(update_b()));
+    connect(this,SIGNAL(waveOfChange(char)),b,SLOT(update_b(char)));
+    connect(this,SIGNAL(waveOfChange(char)),vis,SLOT(regenerate(char)));
+
 
 
     b->setCursor(CursorManager::cloud());
@@ -302,7 +305,7 @@ void Game::level_finalize(char a){
     if(levelsLeft!=0) {
         level->regenerate();
         wm->dynamic_documents();
-        emit waveOfChange();
+        emit waveOfChange(level->face);
     }
 }
 

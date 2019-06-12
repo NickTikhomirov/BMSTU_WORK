@@ -46,7 +46,7 @@ public:
 signals:
     void button_pressed();
     void addPoint();
-    void waveOfChange();
+    void waveOfChange(char);
 public slots:
     void lock_screen();
     void unlock_screen();

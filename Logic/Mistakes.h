@@ -50,6 +50,8 @@ public:
     bool isName2Correct(char);
     bool isSwapped(char);
     char anyDateMistakes();
+    bool isFaceCorrect(char);
+    bool isStampCorrect(char);
 
     string toString();
     QString text_form();

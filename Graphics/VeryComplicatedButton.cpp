@@ -10,7 +10,7 @@ VeryComplicatedButton::VeryComplicatedButton(Level *l1, short n, QGraphicsItem *
 }
 
 
-void VeryComplicatedButton::update_b(){
+void VeryComplicatedButton::update_b(char){
     if(param%3==0) {
         QString p = QString::fromStdString("://main//Pictures//switches//SwB"+to_string(id)+".png");
         setPixmap(QPixmap(p));
