@@ -59,15 +59,19 @@ void Date::operator-(){
 }
 
 bool operator<(const Date &l, const Date &r){
-    if(l.year<r.year) return true;
-    if(l.month<r.month) return true;
-    return (l.day<r.day);
+    if(l.year==r.year){
+        if(l.month==r.month){
+            return (l.day<r.day);
+        } else return (l.month<r.month);
+    } else return (l.year<r.year);
 }
 
 bool operator>(const Date &l, const Date &r){
-    if(l.year>r.year) return true;
-    if(l.month>r.month) return true;
-    return (l.day>r.day);
+    if(l.year==r.year){
+        if(l.month==r.month){
+            return (l.day>r.day);
+        } else return (l.month>r.month);
+    } else return (l.year>r.year);
 }
 
 

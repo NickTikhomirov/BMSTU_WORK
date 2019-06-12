@@ -68,31 +68,63 @@ AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsVie
             setWindowIcon(QIcon(QPixmap(QString::fromStdString("://b//Pictures//buttons//id11.png"))));
             break;
         }
-        case 3:{
-            // 3 - Полис
+        case 3:{ // 3 - Полис
+            bool comicSans=l->mistakes->isSans('P');
             setWindowIcon(QIcon(QPixmap(QString::fromStdString("://b//Pictures//buttons//id13.png"))));
-            string n = "0";
-            if(l!=0){
-                n = l->insuranceNumber;
-            }
 
-            TextButton *num = new TextButton(n,12);
-
+            TextButton *num = new TextButton(l->insuranceNumber,12);
             num->setPos(180,273);
-
             scene->addItem(num);
+
+            TextButton *title = new TextButton("Страховой полис",18,false,!comicSans);
+            TextButton *name = new TextButton(l->getNameFor('M'),12);
+            TextButton *name2 = new TextButton(l->getName2For('M'),12);
+            TextButton *date = new TextButton(l->dateM,12,false,!comicSans);
+            if(l->mistakes->isSwapped('M')) swap(name,name2);
+            name->val=2;
+            name2->val=4;
+            title->val=5;
+            date->val=3;
+            name->setPos(180,110);
+            name2->setPos(250,110);
+            title->setPos(180,70);
+            date->setPos(170,303);
+            scene->addItem(name);
+            scene->addItem(name2);
+            scene->addItem(title);
+            scene->addItem(date);
+            connect(name,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
+            connect(name2,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
+            connect(title,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
+            connect(date,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
             break;
         }
-        case 4:{
-            // 4 - Права
-            CustomButton *photo = new CustomButton(18);
-            photo->setPos(390,350);
-
-            connect(photo,SIGNAL(clicked()),photo,SLOT(lock()));
-
-            scene->addItem(photo);
-
+        case 4:{ // 4 - Права
+            bool comicSans=l->mistakes->isSans('R');
             setWindowIcon(QIcon(QPixmap(QString::fromStdString("://b//Pictures//buttons//id15.png"))));
+
+            TextButton *title = new TextButton("Лицензия на вождение",20,false,!comicSans);
+            TextButton *name = new TextButton(l->getNameFor('R'),12);
+            TextButton *name2 = new TextButton(l->getName2For('R'),12);
+            TextButton *date = new TextButton(l->dateR,12,false,!comicSans);
+            if(l->mistakes->isSwapped('R')) swap(name,name2);
+            name->val=2;
+            name2->val=4;
+            title->val=5;
+            date->val=3;
+            name->setPos(145,257);
+            name2->setPos(215,257);
+            title->setPos(150,215);
+            date->setPos(150,305);
+            scene->addItem(name);
+            scene->addItem(name2);
+            scene->addItem(title);
+            scene->addItem(date);
+            connect(name,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
+            connect(name2,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
+            connect(title,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
+            connect(date,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
+
             break;
         }
         case 5:{ // 5 - Справка от психиатра
