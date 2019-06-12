@@ -34,6 +34,13 @@ void WindowManager::dynamic_documents(){
     rights->setCursor(CursorManager::pencil());
     psycho->setCursor(CursorManager::pencil());
     stenography->setCursor(CursorManager::greenArrow());
+
+    connect(passport,SIGNAL(provide(char)),this,SLOT(provide_passport(char)));
+    connect(rights,SIGNAL(provide(char)),this,SLOT(provide_license(char)));
+    connect(psycho,SIGNAL(provide(char)),this,SLOT(provide_x(char)));
+    connect(medicine,SIGNAL(provide(char)),this,SLOT(provide_medicine(char)));
+    connect(agreement,SIGNAL(provide(char)),this,SLOT(provide_agreement(char)));
+
 }
 
 void WindowManager::clear_dynamics(){

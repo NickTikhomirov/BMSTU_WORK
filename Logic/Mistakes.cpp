@@ -60,13 +60,8 @@ bool Mistakes::isItYours_forH(char a){
 
 bool Mistakes::isItYours_forA(char a){
     if(a==-1 || a==11 || a==7) return false;
-    if(a==2 || a==4){
-        if(forA%8==a){
-            forA/=a;
-            return true;
-        }
-        return false;
-    }
+    if(a==2 || a==4)
+        return isItYour_Mistake_With_Name(forA,a);
     if(forA%a==0) {
         forA/=a;
         return true;
@@ -76,13 +71,8 @@ bool Mistakes::isItYours_forA(char a){
 
 bool Mistakes::isItYours_forP(char a){
     if(a==-1) return false;
-    if(a==2 || a==4){
-        if(forP%8==a){
-            forP/=a;
-            return true;
-        }
-        return false;
-    }
+    if(a==2 || a==4)
+        return isItYour_Mistake_With_Name(forP,a);
     if(forP%a==0) {
         forP/=a;
         return true;
@@ -91,13 +81,8 @@ bool Mistakes::isItYours_forP(char a){
 }
 bool Mistakes::isItYours_forM(char a){
     if(a==7 || a==-1) return false;
-    if(a==2 || a==4){
-        if(forM%8==a){
-            forM/=a;
-            return true;
-        }
-        return false;
-    }
+    if(a==2 || a==4)
+        return isItYour_Mistake_With_Name(forM,a);
     if(forM%a==0) {
         forM/=a;
         return true;
@@ -106,13 +91,8 @@ bool Mistakes::isItYours_forM(char a){
 }
 bool Mistakes::isItYours_forR(char a){
     if(a==-1) return false;
-    if(a==2 || a==4){
-        if(forR%8==a){
-            forR/=a;
-            return true;
-        }
-        return false;
-    }
+    if(a==2 || a==4)
+        return isItYour_Mistake_With_Name(forH,a);
     if(forR%a==0) {
         forR/=a;
         return true;
@@ -121,16 +101,11 @@ bool Mistakes::isItYours_forR(char a){
 
 bool Mistakes::isItYours_forX(char a){
     if(a==-1 && forX<0) {
-        a*=-1;
+        forX*=-1;
         return true;
     }
-    if(a==2 || a==4){
-        if(forX%8==a){
-            forX/=a;
-            return true;
-        }
-        return false;
-    }
+    if(a==2 || a==4)
+        return isItYour_Mistake_With_Name(forX,a);
     if(forX%a==0) {
         forX/=a;
         return true;
@@ -139,6 +114,20 @@ bool Mistakes::isItYours_forX(char a){
 }
 
 
+
+bool Mistakes::isItYour_Mistake_With_Name(char &f, char v){
+    if(f==0 || v==0) return false;
+    if(f%2!=0) return false;
+    if(f%8==0){
+        f/=8;
+        return true;
+    }
+    if(f%8==v){
+        f/=v;
+        return true;
+    }
+    return false;
+}
 
 
 

@@ -25,10 +25,10 @@ void DateGenerator::generate(char p){
     if(rand()%2) p*=-1;
     dates[0]=(18<<=dates[6]);
     ++(dates[0]);
-    Date _14 =dates[0]>>=14;
+    Date _14 =(dates[0]>>=14);
 
     if(p==-'P'){
-        dates[1]=dates[0]<<_14;
+        dates[1]=(dates[0]<<_14);
     } else {
         dates[1] =_14;
         dates[1]++;

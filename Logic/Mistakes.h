@@ -27,6 +27,7 @@ class Mistakes
     bool isItYours_forM(char);
     bool isItYours_forR(char);
     bool isItYours_forX(char);
+    bool isItYour_Mistake_With_Name(char&,char);
 
     static string interpret_high(char,char);
     static bool interpret_low(char &,char);
