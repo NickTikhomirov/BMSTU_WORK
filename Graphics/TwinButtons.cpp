@@ -35,6 +35,11 @@ void TwinButtons::analyze_correct(){
 }
 
 
+void TwinButtons::forceFinish(){
+    emit result(100);
+    ennul();
+}
+
 void TwinButtons::score_increase(){
     unlock();
     score++;

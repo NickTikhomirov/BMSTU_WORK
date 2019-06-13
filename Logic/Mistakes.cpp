@@ -27,6 +27,7 @@ Mistakes::Mistakes()
             makeSomebodyHappy(a);
         }
     }
+    if(forA!=1) forX=0;
 }
 
 char Mistakes::for_(char a){
@@ -92,12 +93,13 @@ bool Mistakes::isItYours_forM(char a){
 bool Mistakes::isItYours_forR(char a){
     if(a==-1) return false;
     if(a==2 || a==4)
-        return isItYour_Mistake_With_Name(forH,a);
+        return isItYour_Mistake_With_Name(forR,a);
     if(forR%a==0) {
         forR/=a;
         return true;
     }
-    return false;}
+    return false;
+}
 
 bool Mistakes::isItYours_forX(char a){
     if(a==-1 && forX<0) {
@@ -137,7 +139,7 @@ bool Mistakes::isItYour_Mistake_With_Name(char &f, char v){
 
 
 bool Mistakes::isA(){
-    return forA>1;
+    return forX==0;
 }
 
 bool Mistakes::isB(){
@@ -179,6 +181,7 @@ string Mistakes::toString(){
 
 
 QString Mistakes::text_form(){
+    if(forX==0) return " ";
     string p = "Оставшиеся ошибки:\n";
     if(isCorrect()) p+="<Отсутствуют>";
     else if(isB()) p+="Посетитель в чёрном списке";

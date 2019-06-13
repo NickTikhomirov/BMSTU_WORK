@@ -131,11 +131,11 @@ void Game::mode_play(){
         connect(tutorial, SIGNAL(clicked()),wm, SLOT(open_tutorial()));
     }
 
-
     connect(this,SIGNAL(addPoint()),b2,SLOT(score_increase()));
     connect(wm,SIGNAL(provide(char,char)),this,SLOT(playersGuess(char,char)));
     connect(b,SIGNAL(time_pressed(char,char)),this,SLOT(playersGuess(char,char)));
     connect(vis,SIGNAL(clicked(char,char)),this,SLOT(playersGuess(char,char)));
+    connect(wm,SIGNAL(privacyBreak()),b2,SLOT(forceFinish()));
 
 
     connect(b2,SIGNAL(result(char)),this,SLOT(level_finalize(char)));
@@ -265,7 +265,10 @@ void Game::subwindowSetuper(char a){
     }
     if(a==1){
         if(level==0) sw->t->setPlainText(QString::fromStdString(sw->credits));
-        else sw->t->setPlainText(level->mistakes->text_form());
+        else if(sw->t->val==100){
+            sw->t->val=0;
+            sw->t->setPlainText("УРОВЕНЬ ПРОВАЛЕН.\nНЕДЕЙСТВИТЕЛЬНОЕ СОГЛАСИЕ\nЧИТАЙТЕ МЕТОДИЧКУ.\n"+level->mistakes->text_form());
+        } else sw->t->setPlainText(level->mistakes->text_form());
         sw->darkness->show();
         sw->box->show();
         sw->krestik->show();
@@ -298,6 +301,7 @@ void Game::level_finalize(char a){
         if(level_complete) score+=4;
         else score+=3;
     }
+    if(a==100) sw->t->val=100;
 
     wm->clear_dynamics();
     levelsLeft--;

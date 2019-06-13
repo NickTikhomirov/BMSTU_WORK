@@ -2,6 +2,7 @@
 
 Stamp::Stamp(char n,double k,bool corr,QGraphicsItem *parent): SimpleButton(parent)
 {
+    if(n=='X') n='M';
     char p;
     if(n=='P') p=5;
     if(n=='M') {

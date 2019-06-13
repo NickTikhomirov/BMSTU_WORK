@@ -40,7 +40,7 @@ void DateGenerator::generate(char p){
     } else {
         dates[3] =_14;
         dates[3]++;
-        if(p=='R') --dates[1];
+        if(p=='R') --dates[3];
     }
 
     if(p==-'X'){
@@ -54,7 +54,7 @@ void DateGenerator::generate(char p){
         dates[4]=dates[0]<<_14;
     } else {
         dates[4]=_14<<dates[5];
-        if(p=='M') --dates[1];
+        if(p=='M') --dates[4];
     }
 
     if(p==-'A'){
