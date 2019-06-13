@@ -39,7 +39,7 @@ void Game::mode_play(){
     sw = new SubWindow;
 
     Face *vis = new Face(level->face);
-    vis->setPos(50,54);
+    vis->setPos(100,54);
 
     //Чашка
     VeryComplicatedButton *b = new VeryComplicatedButton(level,2);
@@ -57,17 +57,17 @@ void Game::mode_play(){
 
     //Документы
     CustomButton *passport = new CustomButton(4);
-    passport->setPos(56,315);
+    passport->setPos(156,315);
     CustomButton *agreement = new CustomButton(11);
-    agreement->setPos(90,316);
+    agreement->setPos(190,316);
     CustomButton *xPaper = new CustomButton(12);
-    xPaper->setPos(150,316);
+    xPaper->setPos(250,316);
     CustomButton *medicine = new CustomButton(13);
-    medicine->setPos(130,316);
+    medicine->setPos(230,316);
     CustomButton *tutorial = new CustomButton(14);
     tutorial->setPos(90,410);
     CustomButton *license = new CustomButton(15);
-    license->setPos(56,334);
+    license->setPos(156,334);
 
     //Прочая интерфейсня
     CustomButton *faks = new CustomButton(17);

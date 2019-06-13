@@ -69,11 +69,50 @@ AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsVie
             break;
         }
         case 2:{ // 2 - Согласие
+            bool comicSans=l->mistakes->isSans('A');
             setWindowIcon(QIcon(QPixmap(QString::fromStdString("://b//Pictures//buttons//id11.png"))));
+            string text = string("Я, ______________________\n")+
+                                 "    (имя)     (фамилия)\n\n"+
+                                 "даю вашей конторе своё со-\n"+
+                                 "гласие на обработку, храние\n"+
+                                 "и продажу моих персональных\n"+
+                                 "данных. В случае кражи или\n"+
+                                 "утери вами моих данных либо\n"+
+                                 "документов обязуюсь выпла-\n"+
+                                 "тить вам штраф в размере\n"+
+                                 "пяти тысяч танцев.\n\n\n Дата:_________________";
+            TextButton *txt = new TextButton(text,14,false,!comicSans);
+
+            txt->param*=11;
+            txt->setPos(145,95);
+            scene->addItem(txt);
+
+            TextButton *title = new TextButton("Согласие",20,false,!comicSans);
+            TextButton *name = new TextButton(l->getNameFor('A'),12);
+            TextButton *name2 = new TextButton(l->getName2For('A'),12);
+            TextButton *date = new TextButton(l->dateA,12,false,!comicSans);
+            if(l->mistakes->isSwapped('A')) swap(name,name2);
+            name->val=2;
+            name2->val=4;
+            title->val=5;
+            date->val=3;
+            name->setPos(170,97);
+            name2->setPos(240,97);
+            title->setPos(190,57);
+            date->setPos(190,302);
+            scene->addItem(name);
+            scene->addItem(name2);
+            scene->addItem(title);
+            scene->addItem(date);
+            connect(name,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
+            connect(name2,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
+            connect(title,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
+            connect(date,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
+
             break;
         }
         case 3:{ // 3 - Полис
-            bool comicSans=l->mistakes->isSans('P');
+            bool comicSans=l->mistakes->isSans('M');
             setWindowIcon(QIcon(QPixmap(QString::fromStdString("://b//Pictures//buttons//id13.png"))));
 
             TextButton *num = new TextButton(l->insuranceNumber,12);
@@ -195,11 +234,19 @@ AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsVie
         case 6:{ // 6 - Досье
             setWindowIcon(QIcon(QPixmap(QString::fromStdString("://b//Pictures//buttons//id17.png"))));
             TextButton *time = new TextButton("Время визита: "+l->time,12);
+            TextButton *name = new TextButton("Имя: "+l->name,22);
+            TextButton *sName = new TextButton("Фамилия: "+l->secondName,22);
 
             time->setPos(120,240);
+            name->setPos(215,170);
+            sName->setPos(215,195);
             time->param*=11;
+            name->param*=11;
+            sName->param*=11;
 
             scene->addItem(time);
+            scene->addItem(name);
+            scene->addItem(sName);
             break;
         }
         case 7:{ // 7 - Правила
