@@ -41,3 +41,8 @@ void MyPlayer::init(short song, short icon){
     QObject::connect(lever,SIGNAL(enable()),this,SLOT(play_change()));
     QObject::connect(lever,SIGNAL(disable()),this,SLOT(play_change()));
 }
+
+char MyPlayer::getPlaying(){
+    if(isPlaying) return songNumber+1;
+    return 0;
+}

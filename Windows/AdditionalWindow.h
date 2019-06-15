@@ -11,6 +11,7 @@
 #include "Graphics/Stamp.h"
 #include "Graphics/TextButton.h"
 #include "Graphics/TutorialPage.h"
+#include "Graphics/SwitchingButton.h"
 
 #include "Resizer.h"
 #include "Generators/Randomizer.h"
@@ -20,7 +21,6 @@ class AdditionalWindow : public QGraphicsView
 {
     Q_OBJECT
 public:
-    char w_type;
     explicit AdditionalWindow(char p, Level *l=0, QWidget *par=0);
     QGraphicsScene *scene;
 private:
@@ -28,8 +28,11 @@ private:
 signals:
     void closed();
     void provide(char);
+private slots:
+    void flavor_input();
 public slots:
     void provide_input(char);
+    void simpleCloser();
 };
 
 #endif // ADDITIONALWINDOW_H

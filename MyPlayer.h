@@ -16,6 +16,7 @@ public:
     void setPos(int,int);
     void init(short,short);
     explicit MyPlayer(short n, QGraphicsItem *parent = nullptr);
+    char getPlaying();
 public slots:
     void play_change();
 };

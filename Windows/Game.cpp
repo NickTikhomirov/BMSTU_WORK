@@ -43,7 +43,7 @@ void Game::mode_play(){
 
     //Чашка
     VeryComplicatedButton *b = new VeryComplicatedButton(level,2);
-    b->setPos(450,300);
+    b->setPos(400,295);
     b->t->setPos(435,400);
     if(level!=0) b->t->setPlainText(QString::fromStdString(level->time));
 
@@ -153,6 +153,18 @@ void Game::mode_play(){
     license->setCursor(CursorManager::glass());
     faks->setCursor(CursorManager::glass());
     paper->setCursor(CursorManager::cloud());
+
+    if(mus->getPlaying()){
+        CustomButton *what = new CustomButton(24);
+        what->setPos(480,320);
+        scene->addItem(what);
+        contents.push_back(what);
+        AdditionalWindow *isThat = new AdditionalWindow(78,mus->getPlaying()==4?level:0);
+        connect(what,SIGNAL(clicked()),isThat, SLOT(simpleCloser()));
+
+        what->setCursor(CursorManager::glass());
+        isThat->setCursor(CursorManager::greenArrow());
+    }
 }
 
 

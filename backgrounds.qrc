@@ -56,5 +56,10 @@
         <file>Pictures/these_guys/g10.png</file>
         <file>Pictures/these_guys/g-10.png</file>
         <file>Pictures/these_guys/g-11.png</file>
+        <file>Pictures/backgrounds/fon78.png</file>
+        <file>Pictures/switches/SwB18.png</file>
+        <file>Pictures/switches/SwB18'.png</file>
+        <file>Pictures/switches/SwB-18.png</file>
+        <file>Pictures/switches/SwB-18'.png</file>
     </qresource>
 </RCC>

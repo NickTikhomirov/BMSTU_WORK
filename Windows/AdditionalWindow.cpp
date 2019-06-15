@@ -7,7 +7,6 @@ using std::swap;
 
 AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsView(par)
 {
-    w_type = p;
     scene = new QGraphicsScene;
     setScene(scene);
     QPixmap pp(QString::fromStdString("://main//Pictures//backgrounds//fon"+to_string(short(p))+".png"));
@@ -286,6 +285,15 @@ AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsVie
             scene->addItem(tut->captain);
             break;
         }
+
+        case 78:{
+            SwitchingButton *de_thing = new SwitchingButton(18,l!=0);
+            de_thing->setPos(100,50);
+            scene->addItem(de_thing);
+            connect(de_thing, SIGNAL(enable()), this, SLOT(flavor_input()));
+            connect(de_thing, SIGNAL(disable()), this, SLOT(flavor_input()));
+            break;
+        }
     }
 }
 
@@ -297,4 +305,13 @@ void AdditionalWindow::closeEvent(QCloseEvent *event){
 
 void AdditionalWindow::provide_input(char r){
     if(r*r!=r) emit provide(r);
+}
+
+void AdditionalWindow::flavor_input(){
+    emit provide(113);
+}
+
+void AdditionalWindow::simpleCloser(){
+    if(isVisible()) hide();
+    else show();
 }
