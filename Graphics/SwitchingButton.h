@@ -16,8 +16,8 @@ class SwitchingButton: public QObject, public QGraphicsPixmapItem, public ItemLo
      Q_OBJECT
 public:
     short id;
-    explicit SwitchingButton(short n, QGraphicsItem *parent = nullptr);
-    void reInit(short);
+    explicit SwitchingButton(short n, bool k=false, QGraphicsItem *parent = nullptr);
+    void setState(char, bool force=false);
 public slots:
     virtual void update_b(char);
 private:

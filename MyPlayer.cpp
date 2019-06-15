@@ -30,13 +30,14 @@ void MyPlayer::setPos(int a, int b){
 }
 
 void MyPlayer::init(short song, short icon){
-    if(song!=songNumber){
-        songNumber=song;
+    player->pause();
+    if((song!=songNumber)!=(songNumber==3)){
+      songNumber=song-2*(songNumber==3);
       playlist->clear();
-      playlist->addMedia(QUrl(QString::fromStdString("qrc:/mus/Mus/Track"+to_string(song)+".mp3")));
+      playlist->addMedia(QUrl(QString::fromStdString("qrc:/mus/Mus/Track"+to_string(songNumber)+".mp3")));
     }
-    isPlaying=false;
-    lever = new SwitchingButton(icon,par);
+    if(isPlaying) player->play();
+    lever = new SwitchingButton(icon, isPlaying);
     QObject::connect(lever,SIGNAL(enable()),this,SLOT(play_change()));
     QObject::connect(lever,SIGNAL(disable()),this,SLOT(play_change()));
 }

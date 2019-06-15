@@ -48,7 +48,7 @@ string NameGenerator::generateName2() {
 string NameGenerator::generateCountry(){
     switch(rand()%10){
     case 0: return "Россия";
-    case 1: return "Великобритания";
+    case 1: return "Бразилия";
     case 2: return "Гондурас";
     case 3: return "Италия";
     case 4: return "Словения";
@@ -83,98 +83,80 @@ string NameGenerator::generateBadCountry(){
 
 
 string NameGenerator::degenerateName(string p) {
-    short r;
     if (p == "Evgeny") {
-        r = rand() % 2;
-        if (r == 0) p = "Evgeni";
-        else p = "Evgeniy";
+        if (rand()%2) return "Evgeni";
+        return "Evgeniy";
     }
     if (p == "Fedor") {
-        r = rand() % 2;
-        if (r == 0) p = "Febor";
-        else p = "Feedor";
+        if (rand()%2) return "Febor";
+        return "Feedor";
     }
     if (p == "John") {
-        r = rand() % 2;
-        if (r == 0) p = "Jonn";
-        else p = "Iohn";
+        if (rand()%2) return "Jonn";
+        return "Iohn";
     }
     if (p == "Sergey") {
-        r = rand() % 2;
-        if (r == 0) p = "Sergei";
-        else p = "Sergeiy";
+        if (rand()%2) return "Sergei";
+        return "Sergeiy";
     }
-    if (p == "Konstantin") p = "Kontatin";
+    if (p == "Konstantin") return "Kontatin";
     if (p == "Dmitri") {
-        r = rand() % 3;
-        if (r == 0) p = "Dmitrii";
-        else if(r==1) p = "Nikita";
-        else if (r == 2) p = "Dmitriy";
+        if (rand()%3==0) return "Dmitrii";
+        else if(rand()%2) return "Nikita";
+        return "Dmitriy";
     }
     if (p == "Bill") {
-        r = rand() % 2;
-        if (r == 0) p = "BiII";
-        else p = "Bi1l";
+        if (rand()%2) return "BiII";
+        return "Bi1l";
     }
     if (p == "Shirma") {
-        r = rand() % 2;
-        if (r == 0) p = "Shirna";
-        else p = "Snirma";
+        if (rand()%2) return "Shirna";
+        return "Snirma";
     }
     if (p == "Nikolai") {
-        r = rand() % 2;
-        if (r == 0) p = "Nikolay";
-        else p = "Hikolai";
+        if (rand()%2) return "Nikolay";
+        return "Hikolai";
     }
-    if (p == "Boris") p = "Borys";
+    if (p == "Boris") return "Borys";
 
 
     if (p == "Lisevsky") {
-        r = rand() % 2;
-        if (r == 0) p = "Lisevski";
-        else p = "Licevsky";
+        if (rand()%2) return "Lisevski";
+        return "Licevsky";
     }
     if (p == "Jurianov") {
-        r = rand() % 2;
-        if (r == 0) p = "Juryanov";
-        else p = "Jurianow";
+        if (rand()%2) return "Juryanov";
+        return "Jurianow";
     }
     if (p == "Bushuev") {
-        r = rand() % 2;
-        if (r == 0) p = "Bushuew";
-        else p = "Buchuev";
+        if (rand()%2) return "Bushuew";
+        return "Buchuev";
     }
     if (p == "Krivenya") {
-        r = rand() % 2;
-        if (r == 0) p = "Kryvenia";
-        else p = "Krivenia";
+        if (rand()%2) return "Kryvenia";
+        return "Krivenia";
     }
     if (p == "Selivanov") {
-        r = rand() % 2;
-        if (r == 0) p = "Silivanov";
-        else p = "Seliwanov";
+        if (rand()%2) return "Silivanov";
+        return "Seliwanov";
     }
     if (p == "Burdashev") {
-        r = rand() % 2;
-        if (r == 0) p = "Burdachev";
-        else p = "Burdachew";
+        if (rand()%2) return "Burdachev";
+        return "Burdachew";
     }
     if (p == "Kravchenko") {
-        r = rand() % 2;
-        if (r == 0) p = "Kravchenkov";
-        else p = "Krachenko";
+        if (rand()%2) return "Kravchenkov";
+        return "Krachenko";
     }
     if (p == "Dvinyatin") {
-        r = rand() % 2;
-        if (r == 0) p = "Dvinyatyn";
-        else p = "Dvinya1in";
+        if (rand()%2) return "Dvinyatyn";
+        return "Dvinya1in";
     }
     if (p == "Dudikov") {
-        r = rand() % 2;
-        if (r == 0) p = "Dudykov";
-        else p = "Dubikov";
+        if (rand()%2) return "Dudykov";
+        return "Dubikov";
     }
-    if (p == "Nikitin") p = "Nikiitin";
+    if (p == "Nikitin") return "Nikiitin";
 
     return p;
 }

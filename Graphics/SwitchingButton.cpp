@@ -3,10 +3,11 @@
 #include <QTextStream>
 
 using std::to_string;
-SwitchingButton::SwitchingButton(short n, QGraphicsItem *parent)
+SwitchingButton::SwitchingButton(short n, bool k, QGraphicsItem *parent): QGraphicsPixmapItem(parent)
 {
     ItemLockable();
-    reInit(n);
+    id=n;
+    setState(2*k,true);
     setAcceptHoverEvents(true);
     setEnabled(true);
     //3 for pressed
@@ -17,14 +18,10 @@ SwitchingButton::SwitchingButton(short n, QGraphicsItem *parent)
 void SwitchingButton::mousePressEvent(QGraphicsSceneMouseEvent *event){
     if(isFree()){
         if(param%3==0) {
-            QString p = QString::fromStdString("://main//Pictures//switches//SwB"+to_string(id)+"'.png");
-            setPixmap(QPixmap(p));
-            param/=3;
+            setState(1,true);
             emit disable();
         } else {
-            QString p = QString::fromStdString("://main//Pictures//switches//SwB-"+to_string(id)+"'.png");
-            setPixmap(QPixmap(p));
-            param*=3;
+            setState(3,true);
             emit enable();
         }
     }
@@ -32,33 +29,33 @@ void SwitchingButton::mousePressEvent(QGraphicsSceneMouseEvent *event){
 
 void SwitchingButton::hoverEnterEvent(QGraphicsSceneHoverEvent *event){
     if(isFree()){
-        if(param%3==0){
-            QString p = QString::fromStdString("://main//Pictures//switches//SwB-"+to_string(id)+"'.png");
-            setPixmap(QPixmap(p));
-        } else {
-            QString p = QString::fromStdString("://main//Pictures//switches//SwB"+to_string(id)+"'.png");
-            setPixmap(QPixmap(p));
-        }
+        if(param%3==0) setState(3);
+        else setState(1);
     }
 }
 
 void SwitchingButton::hoverLeaveEvent(QGraphicsSceneHoverEvent *event){
     if(isFree()){
-        if(param%3==0){
-            QString p = QString::fromStdString("://main//Pictures//switches//SwB-"+to_string(id)+".png");
-            setPixmap(QPixmap(p));
-        } else {
-            QString p = QString::fromStdString("://main//Pictures//switches//SwB"+to_string(id)+".png");
-            setPixmap(QPixmap(p));
-        }
+        if(param%3==0) setState(2);
+        else setState(0);
     }
 }
 
 
-void SwitchingButton::reInit(short n){
-    QGraphicsPixmapItem();
-    id=n;
-    QString p = QString::fromStdString("://main//Pictures//switches//SwB"+to_string(n)+".png");
+
+void SwitchingButton::setState(char a, bool force){
+    QString p;
+    if(a>1){
+        if(force)
+            if(param%3!=0) param*=3;
+        if(a==2) p=QString::fromStdString("://main//Pictures//switches//SwB-"+to_string(id)+".png");
+        else p=QString::fromStdString("://main//Pictures//switches//SwB-"+to_string(id)+"'.png");
+    } else {
+        if(force)
+            if(param%3==0) param/=3;
+        if(a==0) p=QString::fromStdString("://main//Pictures//switches//SwB"+to_string(id)+".png");
+        else p=QString::fromStdString("://main//Pictures//switches//SwB"+to_string(id)+"'.png");
+    }
     setPixmap(QPixmap(p));
 }
 
