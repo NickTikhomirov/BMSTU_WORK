@@ -1,6 +1,5 @@
-#include "Graphics\TextButton.h"
+#include "Graphics/TextButton.h"
 #include <QFont>
-#include <QFontDatabase>
 
 
 TextButton::TextButton(string t, char s, bool col ,bool style, char commentary)
@@ -18,7 +17,7 @@ TextButton::TextButton(string t, char s, bool col ,bool style, char commentary)
         param *= 3;
         setFont(o);
     } else {
-        QFont o("Comic Sans");
+        QFont o("Comic Sans MS");
         o.setPixelSize(s);
         setFont(o);
     }

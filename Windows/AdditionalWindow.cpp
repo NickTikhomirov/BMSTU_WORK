@@ -29,7 +29,7 @@ AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsVie
             birt->val=6;
             face->val=7;
             b_stamp->setPos(335,365);
-            num->setPos(275,138);
+            num->setPos(255,138);
             country->setPos(220,367);
             birt->setPos(240,317);
             face->setPos(120,290);
@@ -56,7 +56,7 @@ AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsVie
             name->setPos(250,290);
             name2->setPos(320,290);
             title->setPos(180,80);
-            date->setPos(275,190);
+            date->setPos(255,190);
             scene->addItem(name);
             scene->addItem(name2);
             scene->addItem(title);
@@ -115,7 +115,7 @@ AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsVie
             setWindowIcon(QIcon(QPixmap(QString::fromStdString("://b//Pictures//buttons//id13.png"))));
 
             Stamp *b_stamp = new Stamp('M',2,l->mistakes->isStampCorrect('M'));
-            TextButton *num = new TextButton(l->insuranceNumber,12);
+            TextButton *num = new TextButton(l->insuranceNumber,12,false,!comicSans);
             b_stamp->val=11;
             num->setPos(180,273);
             scene->addItem(num);
@@ -197,12 +197,12 @@ AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsVie
                     do n = Randomizer::generateDocumentNumber(); while(n==(l->insuranceNumber));
                 else n = l->insuranceNumber;
             }
-            TextButton *num = new TextButton(n,12);
+            TextButton *num = new TextButton(n,12,false, !comicSans);
             n = "здоров";
             if(l!=0)
                 if(l->mistakes->xHealthy()==0)
                     n = "болен";
-            TextButton *res = new TextButton(n,16);
+            TextButton *res = new TextButton(n,16,false,!comicSans);
 
             num->val=-1;
             res->val=7;

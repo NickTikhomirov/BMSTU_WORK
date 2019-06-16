@@ -8,6 +8,7 @@ Face::Face(char n,double k,bool corr,QGraphicsItem *parent): SimpleButton(parent
         while(r==n);
         n=r;
     }
+    val=0;
     if(k<1) n=-n;
     QPixmap p = QPixmap(QString::fromStdString("://main//Pictures//these_guys//g"+to_string(n)+".png"));
     setPixmap(Resizer::m(p,k));
