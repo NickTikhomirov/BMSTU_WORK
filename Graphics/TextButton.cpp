@@ -3,11 +3,12 @@
 #include <QFontDatabase>
 
 
-TextButton::TextButton(string t, char s, bool col ,bool style)
+TextButton::TextButton(string t, char s, bool col ,bool style, char commentary)
 {
     text=t;
     val=0;
     size=s;
+    cloud=commentary;
     ItemLockable();
 
     setPlainText(QString::fromStdString(text));
@@ -44,6 +45,10 @@ void TextButton::hoverLeaveEvent(QGraphicsSceneHoverEvent *event){
     if(param%11!=0)
         if(param%5==0) setDefaultTextColor(Qt::darkGreen);
         else setDefaultTextColor(Qt::black);
+}
+
+void TextButton::hoverMoveEvent(QGraphicsSceneHoverEvent *event){
+    if(cloud>0 && isFree()) emit sendCloud(x()-10,y()+3,cloud);
 }
 
 void TextButton::lock(){

@@ -45,7 +45,7 @@ void Level::regenerate(){
     mistakes = new Mistakes;
     if(mistakes->isB()) setBlackList();
     else {
-        face = (short)Randomizer::randInPool(1, 11);
+        face = (short)Randomizer::randInPool(1, 17);
         name = NameGenerator::generateName();
         secondName = NameGenerator::generateName2();
     }

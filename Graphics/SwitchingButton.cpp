@@ -3,10 +3,11 @@
 #include <QTextStream>
 
 using std::to_string;
-SwitchingButton::SwitchingButton(short n, bool k, QGraphicsItem *parent): QGraphicsPixmapItem(parent)
+SwitchingButton::SwitchingButton(short n, bool k, char commentary, QGraphicsItem *parent): QGraphicsPixmapItem(parent)
 {
     ItemLockable();
     id=n;
+    cloud=commentary;
     setState(2*k,true);
     setAcceptHoverEvents(true);
     setEnabled(true);
@@ -41,6 +42,9 @@ void SwitchingButton::hoverLeaveEvent(QGraphicsSceneHoverEvent *event){
     }
 }
 
+void SwitchingButton::hoverMoveEvent(QGraphicsSceneHoverEvent *event){
+    if(cloud>0 && isFree()) emit sendCloud(x()+event->pos().toPoint().x(),y()+event->lastPos().toPoint().y(),cloud);
+}
 
 
 void SwitchingButton::setState(char a, bool force){

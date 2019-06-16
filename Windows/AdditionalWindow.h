@@ -28,8 +28,6 @@ private:
 signals:
     void closed();
     void provide(char);
-private slots:
-    void flavor_input();
 public slots:
     void provide_input(char);
     void simpleCloser();

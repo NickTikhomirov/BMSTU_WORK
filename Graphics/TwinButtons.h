@@ -11,6 +11,7 @@ public:
     ~TwinButtons();
     CustomButton *right;
     CustomButton *left;
+    CustomButton *tech;
     char score;
     void unlock();
     void lock();

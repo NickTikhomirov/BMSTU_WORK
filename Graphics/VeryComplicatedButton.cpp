@@ -5,7 +5,7 @@ using std::to_string;
 VeryComplicatedButton::VeryComplicatedButton(Level *l1, short n, QGraphicsItem *parent): SwitchingButton(n,parent)
 {
    l=l1;
-   if(l!=0) t = new TextButton(l->time,12,true);
+   if(l!=0) t = new TextButton(l->time,12,true,true,10);
    else t=new TextButton("0",12,true);
 }
 

@@ -4,7 +4,7 @@ Face::Face(char n,double k,bool corr,QGraphicsItem *parent): SimpleButton(parent
 {
     if(!corr){
         char r;
-        do r=Randomizer::randInPool(1,11);
+        do r=Randomizer::randInPool(1,17);
         while(r==n);
         n=r;
     }

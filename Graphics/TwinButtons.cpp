@@ -1,11 +1,14 @@
 #include "TwinButtons.h"
 
 TwinButtons::TwinButtons(){
-    left = new CustomButton(2, true);
-    left->setPos(427,366);
+    left = new CustomButton(2, true, 6);
+    left->setPos(420,366);
 
-    right = new CustomButton(3);
-    right->setPos(461,366);
+    right = new CustomButton(3,true,8);
+    right->setPos(440,366);
+
+    tech = new CustomButton(0,false,7);
+    tech->setPos(440,366);
     ennul();
     connect(right,SIGNAL(clicked()), this, SLOT(analyze_incorrect()));
     connect(left,SIGNAL(clicked()), this, SLOT(analyze_correct()));
@@ -15,8 +18,10 @@ TwinButtons::TwinButtons(){
 TwinButtons::~TwinButtons(){
     delete right;
     delete left;
+    delete tech;
     right=0;
     left=0;
+    tech=0;
 }
 
 
@@ -48,12 +53,16 @@ void TwinButtons::score_increase(){
 
 void TwinButtons::lock(){
     right->safe_lock();
-    right->setPixmap(QPixmap(QString("://b//Pictures//buttons//id0.png")));
+    tech->unlock();
+    right->hide();
+    tech->show();
 }
 
 void TwinButtons::unlock(){
     right->unlock();
-    right->setPixmap(QPixmap(QString("://b//Pictures//buttons//id3.png")));
+    tech->safe_lock();
+    tech->hide();
+    right->show();
 }
 
 void TwinButtons::ennul(){

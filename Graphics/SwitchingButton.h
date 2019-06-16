@@ -16,7 +16,8 @@ class SwitchingButton: public QObject, public QGraphicsPixmapItem, public ItemLo
      Q_OBJECT
 public:
     short id;
-    explicit SwitchingButton(short n, bool k=false, QGraphicsItem *parent = nullptr);
+    char cloud;
+    explicit SwitchingButton(short n, bool k=false, char commentary=-1, QGraphicsItem *parent = nullptr);
     void setState(char, bool force=false);
 public slots:
     virtual void update_b(char);
@@ -24,9 +25,11 @@ private:
     void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
     void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
+    void hoverMoveEvent(QGraphicsSceneHoverEvent *event);
 signals:
     void enable();
     void disable();
+    void sendCloud(int,int,char);
 };
 
 #endif // SWITCHINGBUTTON_H

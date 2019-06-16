@@ -12,7 +12,7 @@
 class CustomButton : public QObject, public QGraphicsPixmapItem, public ItemLockable{
     Q_OBJECT
 public:
-    explicit CustomButton(short n, bool self_offing=false,QGraphicsItem *parent = nullptr);
+    explicit CustomButton(short n, bool self_offing=false, char commentary=-1, QGraphicsItem *parent = nullptr);
     short id;
     char cloud;
 private:
@@ -26,7 +26,6 @@ public slots:
 signals:
     void clicked();
     void sendCloud(int,int,char);
-    void hideCloud();
 };
 
 #endif // CUSTOMBUTTON_H

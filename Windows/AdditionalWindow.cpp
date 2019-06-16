@@ -307,10 +307,6 @@ void AdditionalWindow::provide_input(char r){
     if(r*r!=r) emit provide(r);
 }
 
-void AdditionalWindow::flavor_input(){
-    emit provide(113);
-}
-
 void AdditionalWindow::simpleCloser(){
     if(isVisible()) hide();
     else show();

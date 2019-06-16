@@ -35,8 +35,6 @@
         <file>Pictures/buttons/id-16.png</file>
         <file>Pictures/buttons/id17.png</file>
         <file>Pictures/buttons/id-17.png</file>
-        <file>Pictures/buttons/id18.png</file>
-        <file>Pictures/buttons/id-18.png</file>
         <file>Pictures/buttons/id19.png</file>
         <file>Pictures/buttons/id-19.png</file>
         <file>Pictures/buttons/id20.png</file>
@@ -49,5 +47,6 @@
         <file>Pictures/buttons/id-23.png</file>
         <file>Pictures/buttons/id24.png</file>
         <file>Pictures/buttons/id-24.png</file>
+        <file>Pictures/buttons/id-0.png</file>
     </qresource>
 </RCC>

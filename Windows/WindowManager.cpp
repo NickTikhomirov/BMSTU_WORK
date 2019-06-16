@@ -44,6 +44,7 @@ void WindowManager::dynamic_documents(){
 }
 
 void WindowManager::clear_dynamics(){
+    kill();
     if(passport!=0) delete passport;
     if(agreement!=0) delete agreement;
     if(stenography!=0) delete stenography;

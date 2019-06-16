@@ -40,6 +40,7 @@ void Game::mode_play(){
     sw = new SubWindow;
 
     Follower *r = new Follower;
+    Background *back = new Background();
 
     Face *vis = new Face(level->face);
     vis->setPos(100,54);
@@ -55,7 +56,7 @@ void Game::mode_play(){
     d0->setPixmap(QPixmap(QString::fromStdString("://main//Pictures//other//door0.png")));
     d0->setPos(50,61);
     CustomButton *door;
-    door = new CustomButton(1);
+    door = new CustomButton(1,false,2);
     door->setPos(56,65);
 
     //Документы
@@ -67,16 +68,18 @@ void Game::mode_play(){
     xPaper->setPos(250,316);
     CustomButton *medicine = new CustomButton(13);
     medicine->setPos(230,316);
-    CustomButton *tutorial = new CustomButton(14);
+    CustomButton *tutorial = new CustomButton(14,false,11);
     tutorial->setPos(90,410);
     CustomButton *license = new CustomButton(15);
     license->setPos(156,334);
 
     //Прочая интерфейсня
-    CustomButton *faks = new CustomButton(17);
+    CustomButton *faks = new CustomButton(17,false,9);
     CustomButton *paper = new CustomButton(16,true);
+    SwitchingButton *help = new SwitchingButton(3,false,5);
     faks->setPos(385,370);
     paper->setPos(40,370);
+    help->setPos(461,366);
 
 
     //Парные кнопки и плеер
@@ -84,10 +87,12 @@ void Game::mode_play(){
     mus->init(1 ,1);
     mus->setPos(380,395);
 
-    QPixmap pp("://main//Pictures//backgrounds//fon0.png");
-    scene->addPixmap(pp);
+    //QPixmap pp("://main//Pictures//backgrounds//fon0.png");
+    //scene->addPixmap(pp);
+    scene->addItem(back);
     scene->addItem(b2->left);
     scene->addItem(b2->right);
+    scene->addItem(b2->tech);
     scene->addItem(mus->lever);
     scene->addItem(d0);
     scene->addItem(door);
@@ -102,11 +107,13 @@ void Game::mode_play(){
     scene->addItem(faks);
     scene->addItem(paper);
     scene->addItem(vis);
+    scene->addItem(help);
     scene->addItem(r);
 
 
     contents.push_back(b2->left);
     contents.push_back(b2->right);
+    contents.push_back(b2->tech);
     contents.push_back(door);
     contents.push_back(passport);
     contents.push_back(agreement);
@@ -120,6 +127,7 @@ void Game::mode_play(){
     contents.push_back(b->t);
     contents.push_back(mus->lever);
     contents.push_back(vis);
+    contents.push_back(help);
 
 
     connect(paper,SIGNAL(clicked()),this,SLOT(show_stamps()));
@@ -135,7 +143,7 @@ void Game::mode_play(){
         connect(tutorial, SIGNAL(clicked()),wm, SLOT(open_tutorial()));
     }
 
-    connect(this,SIGNAL(addPoint()),b2,SLOT(score_increase()));
+    connect(this,SIGNAL(addPoint()),b2,SLOT(score_increase()));\
     connect(wm,SIGNAL(provide(char,char)),this,SLOT(playersGuess(char,char)));
     connect(b,SIGNAL(time_pressed(char,char)),this,SLOT(playersGuess(char,char)));
     connect(vis,SIGNAL(clicked(char,char)),this,SLOT(playersGuess(char,char)));
@@ -146,9 +154,19 @@ void Game::mode_play(){
     connect(this,SIGNAL(waveOfChange(char)),b,SLOT(update_b(char)));
     connect(this,SIGNAL(waveOfChange(char)),vis,SLOT(regenerate(char)));
 
-    connect(door,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
-    connect(door,SIGNAL(hideCloud()),r,SLOT(hider()));
 
+    connect(door,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
+    connect(b2->left,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
+    connect(b2->right,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
+    connect(b2->tech,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
+    connect(tutorial,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
+    connect(b->t,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
+    connect(help,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
+    connect(mus->lever,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
+    connect(faks,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
+    connect(back,SIGNAL(tingle()),r,SLOT(hider()));
+    connect(help, SIGNAL(enable()),r,SLOT(f_lock()));
+    connect(help, SIGNAL(disable()),r,SLOT(f_unlock()));
 
     b->setCursor(CursorManager::cloud());
     passport->setCursor(CursorManager::glass());
@@ -165,7 +183,7 @@ void Game::mode_play(){
         what->setPos(480,320);
         scene->addItem(what);
         contents.push_back(what);
-        AdditionalWindow *isThat = new AdditionalWindow(78,mus->getPlaying()==4?level:0);
+        AdditionalWindow *isThat = new AdditionalWindow(78);
         connect(what,SIGNAL(clicked()),isThat, SLOT(simpleCloser()));
 
         what->setCursor(CursorManager::glass());
@@ -334,7 +352,6 @@ void Game::level_finalize(char a){
 
 
 void Game::playersGuess(char a, char b){
-    if(b==11) throw 1;
     if(level->mistakes->isItYours(a,b))
         emit addPoint();
 }
@@ -390,20 +407,39 @@ void Game::switch_finalle(){
 void Game::switch_finalle2(){
     clear_items();
     scene->clear();
-    static QPixmap p2("://main//Pictures//backgrounds//fon-3.png");
+    Background *back = new Background(-3);
 
-    CustomButton *b1 = new CustomButton(2);
-    CustomButton *b3 = new CustomButton(3);
+    Follower *r = new Follower;
+
+    CustomButton *b1 = new CustomButton(2,false,2);
+    CustomButton *b3 = new CustomButton(3,false,1);
+    SwitchingButton *help = new SwitchingButton(3,false,5);
+    TextButton *sco_re = new TextButton(to_string(score),12,true,true,3);
+
     mus->init(2,0);
     mus->lever->setPos(490,10);
-    b3->setPos(400,350);
+    b3->setPos(390,350);
     b1->setPos(370,350);
+    help->setPos(410,350);
+    sco_re->setPos(95,340);
 
-    scene->addPixmap(p2);
+    scene->addItem(back);
     scene->addItem(b1);
     scene->addItem(b3);
+    scene->addItem(sco_re);
+    scene->addItem(help);
     scene->addItem(mus->lever);
+    scene->addItem(r);
 
     connect(b1,SIGNAL(clicked()),this,SLOT(switch_menu()));
     connect(b3,SIGNAL(clicked()),this,SLOT(exit0()));
+
+    connect(b1,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
+    connect(b3,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
+    connect(help,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
+    connect(sco_re,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
+    connect(mus->lever,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
+    connect(back,SIGNAL(tingle()),r,SLOT(hider()));
+    connect(help, SIGNAL(enable()),r,SLOT(f_lock()));
+    connect(help, SIGNAL(disable()),r,SLOT(f_unlock()));
 }

@@ -147,7 +147,7 @@ bool Mistakes::isB(){
 }
 
 bool Mistakes::isCorrect(){
-    return forP==1 && forH==1 && forA==1 && forM==1 && forR==1 && forX==1;
+    return forP==1 && forH==1 && forA==1 && forM==1 && forR==1 && (forX==1||forX==0);
 }
 
 bool Mistakes::isDinner(){
@@ -181,7 +181,6 @@ string Mistakes::toString(){
 
 
 QString Mistakes::text_form(){
-    if(forA==1 && forX==0) return " ";
     string p = "Оставшиеся ошибки:\n";
     if(isCorrect()) p+="<Отсутствуют>";
     else if(isB()) p+="Посетитель в чёрном списке";

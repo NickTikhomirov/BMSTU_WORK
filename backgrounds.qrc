@@ -50,9 +50,6 @@
         <file>Pictures/these_guys/g11.png</file>
         <file>Pictures/these_guys/g4.png</file>
         <file>Pictures/these_guys/g-4.png</file>
-        <file>Pictures/these_guys/g7.png</file>
-        <file>Pictures/these_guys/g-7.png</file>
-        <file>Pictures/these_guys/g-8.png</file>
         <file>Pictures/these_guys/g10.png</file>
         <file>Pictures/these_guys/g-10.png</file>
         <file>Pictures/these_guys/g-11.png</file>
@@ -61,6 +58,35 @@
         <file>Pictures/switches/SwB18'.png</file>
         <file>Pictures/switches/SwB-18.png</file>
         <file>Pictures/switches/SwB-18'.png</file>
+        <file>Pictures/these_guys/g7.png</file>
+        <file>Pictures/these_guys/g-7.png</file>
+        <file>Pictures/these_guys/g-8.png</file>
+        <file>Pictures/these_guys/g12.png</file>
+        <file>Pictures/these_guys/g-12.png</file>
+        <file>Pictures/these_guys/g13.png</file>
+        <file>Pictures/these_guys/g-13.png</file>
+        <file>Pictures/these_guys/g14.png</file>
+        <file>Pictures/these_guys/g-14.png</file>
+        <file>Pictures/these_guys/g15.png</file>
+        <file>Pictures/these_guys/g-15.png</file>
+        <file>Pictures/these_guys/g16.png</file>
+        <file>Pictures/these_guys/g-16.png</file>
+        <file>Pictures/these_guys/g17.png</file>
+        <file>Pictures/these_guys/g-17.png</file>
+        <file>Pictures/other/cloud2.png</file>
+        <file>Pictures/other/cloud3.png</file>
+        <file>Pictures/other/cloud4.png</file>
+        <file>Pictures/other/cloud5.png</file>
+        <file>Pictures/other/cloud6.png</file>
+        <file>Pictures/other/cloud7.png</file>
+        <file>Pictures/other/cloud8.png</file>
+        <file>Pictures/other/cloud9.png</file>
+        <file>Pictures/other/cloud10.png</file>
+        <file>Pictures/other/cloud11.png</file>
         <file>Pictures/other/cloud1.png</file>
+        <file>Pictures/switches/SwB3.png</file>
+        <file>Pictures/switches/SwB3'.png</file>
+        <file>Pictures/switches/SwB-3.png</file>
+        <file>Pictures/switches/SwB-3'.png</file>
     </qresource>
 </RCC>

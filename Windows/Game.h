@@ -14,6 +14,7 @@
 #include "MyPlayer.h"
 #include "CursorManager.h"
 
+#include "Graphics/Background.h"
 #include "Graphics/CustomButton.h"
 #include "Graphics/TextButton.h"
 #include "Graphics/VeryComplicatedButton.h"

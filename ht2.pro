@@ -30,6 +30,7 @@ HEADERS += \
         Generators/NameGenerator.h \
         Generators/Randomizer.h \
         Graphics/AdditionalWindow.h \
+        Graphics/Background.h \
         Graphics/CustomButton.h \
         Graphics/Face.h \
         Graphics/Follower.h \
@@ -57,6 +58,7 @@ SOURCES += \
         Generators/DateGenerator.cpp \
         Generators/NameGenerator.cpp \
         Generators/Randomizer.cpp \
+        Graphics/Background.cpp \
         Graphics/CustomButton.cpp \
         Graphics/Face.cpp \
         Graphics/Follower.cpp \
