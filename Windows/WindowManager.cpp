@@ -81,9 +81,6 @@ void WindowManager::provide_medicine(char r){
 void WindowManager::provide_agreement(char r){
     emit provide('A',r);
 }
-void WindowManager::s_kill(){
-    kill();
-}
 
 void WindowManager::kill(){
     close1();
@@ -94,6 +91,7 @@ void WindowManager::kill(){
 
 void WindowManager::close1(){
     if(first!=0){
+        disconnect(first, SIGNAL(closed()), this, SLOT(close1()));
         if(first->isVisible()) first->close();
         first=0;
     }
@@ -101,6 +99,7 @@ void WindowManager::close1(){
 
 void WindowManager::close2(){
     if(second!=0){
+        disconnect(second, SIGNAL(closed()), this, SLOT(close2()));
         if(second->isVisible()) second->close();
         second=0;
     }
@@ -134,7 +133,7 @@ void WindowManager::close(AdditionalWindow *pr){
     if(pr==first){
         first->close();
         first=0;
-    }
+    } else
     if(pr==second){
         second->close();
         second=0;
@@ -158,29 +157,6 @@ void WindowManager::toggleW(char a){
     } else if(a==7){ toggle(tutorial);
     }
 }
-
-void WindowManager::openW(char a){
-    if(a==1){ open(passport);
-    } else if(a==2){ open(agreement);
-    } else if(a==3){ open(medicine);
-    } else if(a==4){ open(rights);
-    } else if(a==5){ open(psycho);
-    } else if(a==6){ open(stenography);
-    } else if(a==7){ open(tutorial);
-    }
-}
-
-void WindowManager::closeW(char a){
-    if(a==1){ close(passport);
-    } else if(a==2){ close(agreement);
-    } else if(a==3){ close(medicine);
-    } else if(a==4){ close(rights);
-    } else if(a==5){ close(psycho);
-    } else if(a==6){ close(stenography);
-    } else if(a==7){ close(tutorial);
-    }
-}
-
 
 
 

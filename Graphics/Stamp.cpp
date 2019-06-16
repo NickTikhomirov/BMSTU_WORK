@@ -12,6 +12,7 @@ Stamp::Stamp(char n,double k,bool corr,QGraphicsItem *parent): SimpleButton(pare
     if(n=='R') p=6;
     if(!corr)
         p=Randomizer::stampDegenerator(p);
+    setShapeMode(ShapeMode::BoundingRectShape);
     QPixmap p1 = QPixmap(QString::fromStdString("://b//Pictures//buttons//id"+to_string(p)+".png"));
     setPixmap(Resizer::m(p1,k));
 }

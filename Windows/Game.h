@@ -20,7 +20,6 @@
 #include "Graphics/TwinButtons.h"
 #include "Logic/ItemLockable.h"
 
-
 using std::vector;
 
 class Game : public QGraphicsView
@@ -35,7 +34,7 @@ public:
     MyPlayer *mus;
     WindowManager *wm;
     SubWindow *sw;
-    Level *level;
+    Level *level;\
     short score;
     char levelsLeft;
 

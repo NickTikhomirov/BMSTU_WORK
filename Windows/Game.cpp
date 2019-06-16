@@ -1,18 +1,19 @@
 #include "Game.h"
 
-
+#include "Graphics/Follower.h"
 Game::Game(QWidget *parent) : QGraphicsView(parent)
 {
     mus = new MyPlayer(0,0);
     wm = new WindowManager;
-    sw = new SubWindow;
-    score = 0;
+    sw=0;
+    score=0;
     levelsLeft=0;
-    level = 0;
+    level=0;
     b2=0;
 
     setFixedSize(517,517);
     scene = new QGraphicsScene;
+    setMouseTracking(true);
     setScene(scene);
     setCursor(CursorManager::greenArrow());
     setWindowIcon(QIcon(QPixmap(QString::fromStdString("://main//Pictures//other//icon.png"))));
@@ -27,16 +28,18 @@ void Game::exit0(){
 
 
 void Game::mode_play(){
-    score = 0;
-    levelsLeft=3;
-
     clear_items();
     scene->clear();
+
+    score = 0;
+    levelsLeft=3;
     level = new Level;
     wm->level=level;
     wm->dynamic_documents();
     contents.resize(15);
     sw = new SubWindow;
+
+    Follower *r = new Follower;
 
     Face *vis = new Face(level->face);
     vis->setPos(100,54);
@@ -99,6 +102,7 @@ void Game::mode_play(){
     scene->addItem(faks);
     scene->addItem(paper);
     scene->addItem(vis);
+    scene->addItem(r);
 
 
     contents.push_back(b2->left);
@@ -142,6 +146,8 @@ void Game::mode_play(){
     connect(this,SIGNAL(waveOfChange(char)),b,SLOT(update_b(char)));
     connect(this,SIGNAL(waveOfChange(char)),vis,SLOT(regenerate(char)));
 
+    connect(door,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
+    connect(door,SIGNAL(hideCloud()),r,SLOT(hider()));
 
 
     b->setCursor(CursorManager::cloud());
@@ -328,6 +334,7 @@ void Game::level_finalize(char a){
 
 
 void Game::playersGuess(char a, char b){
+    if(b==11) throw 1;
     if(level->mistakes->isItYours(a,b))
         emit addPoint();
 }
@@ -344,8 +351,6 @@ void Game::clear_items(){
 
     if(wm!=0)wm->kill();
     if(wm!=0)wm->clear_dynamics();
-    //if(wm!=0)delete wm;
-    //wm = 0;
 
     if(b2!=0) delete b2;
     b2=0;
@@ -355,7 +360,6 @@ void Game::clear_items(){
 
     contents.clear();
 }
-
 
 void Game::switch_menu(){
     wm->kill();

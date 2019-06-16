@@ -181,7 +181,7 @@ string Mistakes::toString(){
 
 
 QString Mistakes::text_form(){
-    if(forX==0) return " ";
+    if(forA==1 && forX==0) return " ";
     string p = "Оставшиеся ошибки:\n";
     if(isCorrect()) p+="<Отсутствуют>";
     else if(isB()) p+="Посетитель в чёрном списке";

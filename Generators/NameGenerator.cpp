@@ -106,7 +106,7 @@ string NameGenerator::degenerateName(string p) {
         return "Dmitriy";
     }
     if (p == "Bill") {
-        if (rand()%2) return "BiII";
+        if (rand()%2) return "BiП";
         return "Bi1l";
     }
     if (p == "Shirma") {

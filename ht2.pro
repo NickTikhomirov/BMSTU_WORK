@@ -32,6 +32,7 @@ HEADERS += \
         Graphics/AdditionalWindow.h \
         Graphics/CustomButton.h \
         Graphics/Face.h \
+        Graphics/Follower.h \
         Graphics/SimpleButton.h \
         Graphics/Stamp.h \
         Graphics/SwitchingButton.h \
@@ -58,6 +59,7 @@ SOURCES += \
         Generators/Randomizer.cpp \
         Graphics/CustomButton.cpp \
         Graphics/Face.cpp \
+        Graphics/Follower.cpp \
         Graphics/SimpleButton.cpp \
         Graphics/Stamp.cpp \
         Graphics/SwitchingButton.cpp \

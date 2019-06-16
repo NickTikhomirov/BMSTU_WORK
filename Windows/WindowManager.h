@@ -24,11 +24,8 @@ public:
 
     AdditionalWindow *first;
     AdditionalWindow *second;
-    void closeW(char);
-    void openW(char);
     void toggleW(char);
     AdditionalWindow *getSpace();
-    void kill();
     void dynamic_documents();
     void clear_dynamics();
 private:
@@ -42,7 +39,7 @@ signals:
     void privacyBreak();
     void provide(char,char);
 public slots:
-    void s_kill();
+    void kill();
     void close1();
     void close2();
     void open_passport();
