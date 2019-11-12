@@ -1,5 +1,4 @@
 #include "Game.h"
-
 #include "Graphics/Follower.h"
 Game::Game(QWidget *parent) : QGraphicsView(parent)
 {

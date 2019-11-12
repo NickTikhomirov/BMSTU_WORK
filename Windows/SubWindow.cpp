@@ -3,11 +3,11 @@
 SubWindow::SubWindow()
 {
     credits =
-       string("Автор: Тихомиров Никита, студент ИУ8-23\n\n")+
+       string("Автор: Тихомиров Никита, студент ИУ8-33\n\n")+
        "Посвящаю эту игру своим друзьям, кото-\nрые "+
        "поддерживали меня в процессе \nразработки:\n"+
        "Горбачёву Алексею\nЕвула Анджэю\nКильдишеву Жене\nТитову Анатолию\n"+
-       "\n\n 2019 год, жаркий июнь";
+       "\n\n 2019 год, осень";
 
     darkness = new QGraphicsPixmapItem(QPixmap("://main//Pictures//backgrounds//darkness.png"));
     box = new QGraphicsPixmapItem(QPixmap("://main//Pictures//backgrounds//box.png"));

@@ -18,7 +18,7 @@ Level::~Level()
 
 string Level::getNameFor(char a){
     if(mistakes->isNameCorrect(a)) return name;
-    else if(rand()%2) return NameGenerator::degenerateName(name);
+    else if(rand()%2) return (NameGenerator::degenerateName(name));
     else {
         string p;
         do p = NameGenerator::generateName();
@@ -29,7 +29,7 @@ string Level::getNameFor(char a){
 
 string Level::getName2For(char a){
     if(mistakes->isName2Correct(a)) return secondName;
-    else if(rand()%2) return NameGenerator::degenerateName(secondName);
+    else if(rand()%2) return (NameGenerator::degenerateName(secondName));
     else {
         string p;
         do p = NameGenerator::generateName2();

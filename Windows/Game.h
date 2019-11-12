@@ -35,7 +35,7 @@ public:
     MyPlayer *mus;
     WindowManager *wm;
     SubWindow *sw;
-    Level *level;\
+    Level *level;
     short score;
     char levelsLeft;
 

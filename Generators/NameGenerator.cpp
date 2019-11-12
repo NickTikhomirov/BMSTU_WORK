@@ -8,7 +8,6 @@ using std::unordered_set;
 using std::unordered_map;
 
 
-
 string NameGenerator::generateName() {
     short a = (short)Randomizer::randInPool(1, 10);
     static const unordered_map<short, string> values = {
@@ -46,34 +45,35 @@ string NameGenerator::generateName2() {
 
 
 string NameGenerator::generateCountry(){
-    switch(rand()%10){
-    case 0: return "Россия";
-    case 1: return "Бразилия";
-    case 2: return "Гондурас";
-    case 3: return "Италия";
-    case 4: return "Словения";
-    case 5: return "Германия";
-    case 6: return "США";
-    case 7: return "Китай";
-    case 8: return "Австрия";
-    case 9: return "Венгрия";
-    }
-    return "Зимбабве";
+    static const unordered_map<short, string> generates {
+        {0,"Россия"},
+        {1,"Бразилия"},
+        {2,"Гондурас"},
+        {3,"Италия"},
+        {4,"Словения"},
+        {5,"Германия"},
+        {6,"США"},
+        {7,"Китай"},
+        {8,"Австрия"},
+        {9,"Венгрия"}
+    };
+    return generates.find(rand()%10)->second;
 }
 
 string NameGenerator::generateBadCountry(){
-    switch(rand()%10){
-    case 0: return "Югославия";
-    case 1: return "СССР";
-    case 2: return "Чехословакия";
-    case 3: return "Пандария";
-    case 4: return "Нарния";
-    case 5: return "Сатурн";
-    case 6: return "Биробиджан";
-    case 7: return "Татарстан";
-    case 8: return "Атлантида";
-    case 9: return "Ералаш";
-    }
+    static const unordered_map<short, string> generates {
+        {0,"Югославия"},
+        {1,"СССР"},
+        {2,"Чехословакия"},
+        {3,"Пандария"},
+        {4,"Нарния"},
+        {5,"Сатурн"},
+        {6,"Биробиджан"},
+        {7,"Татарстан"},
+        {8,"Атлантида"},
+        {9,"Ералаш"}
+    };
+    return generates.find(rand()%10)->second;
 }
 
 
@@ -83,82 +83,52 @@ string NameGenerator::generateBadCountry(){
 
 
 string NameGenerator::degenerateName(string p) {
-    if (p == "Evgeny") {
-        if (rand()%2) return "Evgeni";
-        return "Evgeniy";
-    }
-    if (p == "Fedor") {
-        if (rand()%2) return "Febor";
-        return "Feedor";
-    }
-    if (p == "John") {
-        if (rand()%2) return "Jonn";
-        return "Iohn";
-    }
-    if (p == "Sergey") {
-        if (rand()%2) return "Sergei";
-        return "Sergeiy";
-    }
-    if (p == "Konstantin") return "Kontatin";
-    if (p == "Dmitri") {
-        if (rand()%3==0) return "Dmitrii";
-        else if(rand()%2) return "Nikita";
-        return "Dmitriy";
-    }
-    if (p == "Bill") {
-        if (rand()%2) return "BiП";
-        return "Bi1l";
-    }
-    if (p == "Shirma") {
-        if (rand()%2) return "Shirna";
-        return "Snirma";
-    }
-    if (p == "Nikolai") {
-        if (rand()%2) return "Nikolay";
-        return "Hikolai";
-    }
-    if (p == "Boris") return "Borys";
+    static const unordered_map<string,unordered_set<string>> degenerates{
+        {"Evgeny",
+            {"Evgeni","Evgeniy"}},
+        {"Fedor",
+            {"Febor","Feedor"}},
+        {"John",
+            {"Jonn","Iohn"}},
+        {"Sergey",
+            {"Sergei","Sergeiy"}},
+        {"Konstantin",
+            {"Kontatin"}},
+        {"Dmitri",
+            {"Dmitrii","Nikita","Dmitriy"}},
+        {"Bill",
+            {"BiП","Bi1l"}},
+        {"Shirma",
+            {"Shirna","Snirma"}},
+        {"Nikolai",
+            {"Nikolay","Hikolai"}},
+        {"Boris",
+            {"Borys"}},
 
-
-    if (p == "Lisevsky") {
-        if (rand()%2) return "Lisevski";
-        return "Licevsky";
-    }
-    if (p == "Jurianov") {
-        if (rand()%2) return "Juryanov";
-        return "Jurianow";
-    }
-    if (p == "Bushuev") {
-        if (rand()%2) return "Bushuew";
-        return "Buchuev";
-    }
-    if (p == "Krivenya") {
-        if (rand()%2) return "Kryvenia";
-        return "Krivenia";
-    }
-    if (p == "Selivanov") {
-        if (rand()%2) return "Silivanov";
-        return "Seliwanov";
-    }
-    if (p == "Burdashev") {
-        if (rand()%2) return "Burdachev";
-        return "Burdachew";
-    }
-    if (p == "Kravchenko") {
-        if (rand()%2) return "Kravchenkov";
-        return "Krachenko";
-    }
-    if (p == "Dvinyatin") {
-        if (rand()%2) return "Dvinyatyn";
-        return "Dvinya1in";
-    }
-    if (p == "Dudikov") {
-        if (rand()%2) return "Dudykov";
-        return "Dubikov";
-    }
-    if (p == "Nikitin") return "Nikiitin";
-
-    return p;
+        {"Lisevsky",
+            {"Lisevski","Licevsky"}},
+        {"Jurianov",
+            {"Juryanov","Jurianow"}},
+        {"Bushuev",
+            {"Bushuew","Buchuev"}},
+        {"Krivenya",
+            {"Kryvenia","Krivenia"}},
+        {"Selivanov",
+            {"Silivanov","Seliwanov"}},
+        {"Burdashev",
+            {"Burdachev","Burdachew"}},
+        {"Kravchenko",
+            {"Kravchenkov","Krachenko"}},
+        {"Dvinyatin",
+            {"Dvinyatyn","Dvinya1in"}},
+        {"Dudikov",
+            {"Dudykov","Dubikov"}},
+        {"Nikitin",{"Nikiitin"}}
+    };
+    if(degenerates.find(p)==degenerates.end()) return p;
+    unordered_set<string> result = degenerates.find(p)->second;
+    auto random_it = std::next(std::begin(result),rand()%result.size());
+    return *random_it;
 }
 
 
