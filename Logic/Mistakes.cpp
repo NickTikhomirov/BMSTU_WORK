@@ -1,20 +1,23 @@
 #include "Mistakes.h"
 
 using std::to_string;
+using std::unordered_map;
 
 Mistakes::Mistakes()
 {
-    forA=1;
-    forH=1;
-    forM=1;
-    forP=1;
-    forR=1;
-    forX=1;
+    mistakes = unordered_map<char,char>{
+        {'A',1},
+        {'P',1},
+        {'R',1},
+        {'M',1},
+        {'X',1},
+        {'H',1},
+    };
     if(!generateCorrectness()){
         if(maybeFlavor())
-            forA = Randomizer::randomForMistakes(1);
+            mistakes['A'] = Randomizer::randomForMistakes(1);
         else if(maybeFlavor())
-            forH = 0;
+            mistakes['H'] = 0;
         else {
             char a;
             if(one_for_true_and_two_for_twrue())
@@ -27,19 +30,11 @@ Mistakes::Mistakes()
             makeSomebodyHappy(a);
         }
     }
-    if(forA!=1) forX=0;
+    if(mistakes['A']!=1) mistakes['X']=0;
 }
 
 char Mistakes::for_(char a){
-    switch(a){
-        case 'P':return forP;
-        case 'M':return forM;
-        case 'X':return forX;
-        case 'A':return forA;
-        case 'R':return forR;
-        case 'H':return forH;
-    }
-    return 1;
+    return mistakes[a];
 }
 
 
@@ -47,13 +42,13 @@ char Mistakes::for_(char a){
 
 
 bool Mistakes::isItYours_forH(char a){
-    if(a==0 && forH==0) {
-        forH=1;
+    if(a==0 && mistakes['H']==0) {
+        mistakes['H']=1;
         return true;
     }
     if(a==5 || a==11 || a==3){
-        if(forH%a==0){
-            forH/=a;
+        if(mistakes['H']%a==0){
+            mistakes['H']/=a;
             return true;
         } else return false;
     } else return false;
@@ -62,9 +57,9 @@ bool Mistakes::isItYours_forH(char a){
 bool Mistakes::isItYours_forA(char a){
     if(a==-1 || a==11 || a==7) return false;
     if(a==2 || a==4)
-        return isItYour_Mistake_With_Name(forA,a);
-    if(forA%a==0) {
-        forA/=a;
+        return isItYour_Mistake_With_Name(mistakes['A'],a);
+    if(mistakes['A']%a==0) {
+        mistakes['A']/=a;
         return true;
     }
     return false;
@@ -73,9 +68,9 @@ bool Mistakes::isItYours_forA(char a){
 bool Mistakes::isItYours_forP(char a){
     if(a==-1) return false;
     if(a==2 || a==4)
-        return isItYour_Mistake_With_Name(forP,a);
-    if(forP%a==0) {
-        forP/=a;
+        return isItYour_Mistake_With_Name(mistakes['P'],a);
+    if(mistakes['P']%a==0) {
+        mistakes['P']/=a;
         return true;
     }
     return false;
@@ -83,9 +78,9 @@ bool Mistakes::isItYours_forP(char a){
 bool Mistakes::isItYours_forM(char a){
     if(a==7 || a==-1) return false;
     if(a==2 || a==4)
-        return isItYour_Mistake_With_Name(forM,a);
-    if(forM%a==0) {
-        forM/=a;
+        return isItYour_Mistake_With_Name(mistakes['M'],a);
+    if(mistakes['M']%a==0) {
+        mistakes['M']/=a;
         return true;
     }
     return false;
@@ -93,23 +88,23 @@ bool Mistakes::isItYours_forM(char a){
 bool Mistakes::isItYours_forR(char a){
     if(a==-1) return false;
     if(a==2 || a==4)
-        return isItYour_Mistake_With_Name(forR,a);
-    if(forR%a==0) {
-        forR/=a;
+        return isItYour_Mistake_With_Name(mistakes['R'],a);
+    if(mistakes['R']%a==0) {
+        mistakes['R']/=a;
         return true;
     }
     return false;
 }
 
 bool Mistakes::isItYours_forX(char a){
-    if(a==-1 && forX<0) {
-        forX*=-1;
+    if(a==-1 && mistakes['X']<0) {
+        mistakes['X']*=-1;
         return true;
     }
     if(a==2 || a==4)
-        return isItYour_Mistake_With_Name(forX,a);
-    if(forX%a==0) {
-        forX/=a;
+        return isItYour_Mistake_With_Name(mistakes['X'],a);
+    if(mistakes['X']%a==0) {
+        mistakes['X']/=a;
         return true;
     }
     return false;
@@ -139,19 +134,23 @@ bool Mistakes::isItYour_Mistake_With_Name(char &f, char v){
 
 
 bool Mistakes::isA(){
-    return forX==0;
+    return (mistakes['X']==0);
 }
 
 bool Mistakes::isB(){
-    return forH==0;
+    return mistakes['H']==0;
 }
 
 bool Mistakes::isCorrect(){
-    return forP==1 && forH==1 && forA==1 && forM==1 && forR==1 && (forX==1||forX==0);
+    for(std::pair a: mistakes){
+        if(a.second!=1 && a.first!='X' && a.second!=0)
+            return false;
+    }
+    return true;
 }
 
 bool Mistakes::isDinner(){
-    return forH%5==0 && !isB();
+    return mistakes['H']%5==0 && !isB();
 }
 
 bool Mistakes::isItYours(char id, char val){
@@ -170,12 +169,11 @@ string Mistakes::toString(){
     string p;
     if(isB()) return "B";
     if(isCorrect()) return "0";
-    if(forA!=1) p+="A"+to_string(forA);
-    if(forH!=1) p+="H"+to_string(forH);
-    if(forP!=1) p+="P"+to_string(forP);
-    if(forM!=1) p+="M"+to_string(forM);
-    if(forX!=1) p+="X"+to_string(forX);
-    if(forR!=1) p+="R"+to_string(forR);
+    for(std::pair a: mistakes){
+        if(a.second!=1){
+            p+=char(a.first)+to_string(a.second);
+        }
+    }
     return p;
 }
 
@@ -184,33 +182,33 @@ QString Mistakes::text_form(){
     string p = "Оставшиеся ошибки:\n";
     if(isCorrect()) p+="<Отсутствуют>";
     else if(isB()) p+="Посетитель в чёрном списке";
-    else if(forA>1) p+="Согласие на обработку:\n"+interpret_high(forA,'A');
+    else if(mistakes['A']>1) p+="Согласие на обработку:\n"+interpret_high(mistakes['A'],'A');
     else {
 
-        if(forP>1||forH>1) p+="Паспорт:\n";
-        if(forP>1) p+=interpret_high(forP,'P')+"\n";
-        if(forH>1) p+=interpret_high(forH,'H')+"\n";
+        if(mistakes['P']>1||mistakes['H']>1) p+="Паспорт:\n";
+        if(mistakes['P']>1) p+=interpret_high(mistakes['P'],'P')+"\n";
+        if(mistakes['H']>1) p+=interpret_high(mistakes['H'],'H')+"\n";
 
-        if(forM>1) p+="Полис:\n"+interpret_high(forM,'M')+"\n";
-        if(forR>1) p+="Права:\n"+interpret_high(forR,'R')+"\n";
+        if(mistakes['M']>1) p+="Полис:\n"+interpret_high(mistakes['M'],'M')+"\n";
+        if(mistakes['R']>1) p+="Права:\n"+interpret_high(mistakes['R'],'R')+"\n";
 
-        if(forX!=1) {
+        if(mistakes['X']!=1) {
             p+="Справка:\n";
-            if(forX<0){
-                forX*=-1;
+            if(mistakes['X']<0){
+                mistakes['X']*=-1;
                 p+=" - Номер полиса";
                 p+="\n";
             }
-            if(forX>1)p+=interpret_high(forX,'X')+"\n";
+            if(mistakes['X']>1)p+=interpret_high(mistakes['X'],'X')+"\n";
         }
     }
     return QString::fromStdString(p);
 }
 
 
-bool Mistakes::hasCorrectCountry(){return (forH%11!=0 || forH==0);}
-bool Mistakes::xHealthy(){return (forX%7!=0);}
-bool Mistakes::medicineNumberMistakes(){return (forX<0);}
+bool Mistakes::hasCorrectCountry(){return (mistakes['H']%11!=0 || mistakes['H']==0);}
+bool Mistakes::xHealthy(){return (mistakes['X']%7!=0);}
+bool Mistakes::medicineNumberMistakes(){return (mistakes['X']<0);}
 
 bool Mistakes::isNameCorrect(char a){return (for_(a)%8!=2);}
 bool Mistakes::isName2Correct(char a){return (for_(a)%8!=4);}
@@ -221,12 +219,10 @@ bool Mistakes::isStampCorrect(char a){return for_(a)%11!=0;}
 
 char Mistakes::anyDateMistakes(){
     if(isB()) return 0;
-    if(forA%3==0) return 'A';
-    if(forH%3==0) return 'H';
-    if(forP%3==0) return 'P';
-    if(forX%3==0) return 'X';
-    if(forM%3==0) return 'M';
-    if(forR%3==0) return 'R';
+    for(auto a: mistakes){
+        if(a.second%3==0)
+            return a.first;
+    }
     return 0;
 }
 
@@ -281,30 +277,30 @@ bool Mistakes::interpret_low(char &val, char eq){
 
 void Mistakes::makeSomebodyHappy(char a){
     if(a==-1){
-        forX*=a;
+        mistakes['X']*=a;
         return;
     }
     switch(
-           (a==7)+rand()%(3+(a!=7)+(a==3 || a==5 || a==11))
+           (a==7)+rand()%(3+(a!=7)+(a==3 || a==11))
           ){
         case 0:{
-            forM*=a;
+            mistakes['M']*=a;
             break;
         }
         case 1:{
-            forP*=a;
+            mistakes['P']*=a;
             break;
         }
         case 2:{
-            forX*=a;
+            mistakes['X']*=a;
             break;
         }
         case 3:{
-            forR*=a;
+            mistakes['R']*=a;
             break;
         }
         case 4:{
-            forH*=a;
+            mistakes['H']*=a;
             break;
         }
     }

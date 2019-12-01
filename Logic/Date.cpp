@@ -12,10 +12,6 @@ Date::Date(int a, int b, int c){
 }
 
 
-string Date::toString(){
-    return Randomizer::toString(day)+'.'+Randomizer::toString(month)+'.'+to_string(year);
-}
-
 bool Date::longMonth(int p){
     if(p==1||p==3||p==5||p==7||p==8||p==10||p==12) return true;
     return false;
@@ -169,6 +165,6 @@ Date operator|=(const Date &l, const Date &r){
     return l<<b;
 }
 
-string operator!(Date p){
-    return p.toString();
+Date::operator string(){
+    return Randomizer::toString(day)+'.'+Randomizer::toString(month)+'.'+to_string(year);
 }

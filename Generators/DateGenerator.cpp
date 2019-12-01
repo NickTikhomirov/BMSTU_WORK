@@ -2,8 +2,6 @@
 #include "Generators\Randomizer.h"
 #include <string>
 
-using std::to_string;
-
 
 
 // 0 - День рождения
@@ -18,7 +16,7 @@ using std::to_string;
 DateGenerator::DateGenerator()
 {
     dates.resize(7);
-    dates[6] = *(new Date(31,5,2019));
+    dates[6] = Date(31,5,2019);
 }
 
 void DateGenerator::generate(char p){

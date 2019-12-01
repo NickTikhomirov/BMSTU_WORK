@@ -2,21 +2,24 @@
 #define MISTAKES_H
 
 #include <string>
+#include <unordered_map>
 
 #include <QString>
 
 #include "Generators/Randomizer.h"
 
 using std::string;
+using std::unordered_map;
 
 class Mistakes
 {
-    char forH;
-    char forP;
-    char forM;
-    char forA;
-    char forX;
-    char forR;
+    //char forH;
+    //char forP;
+    //char forM;
+    //char forA;
+    //char forX;
+    //char forR;
+    unordered_map<char,char> mistakes;
     char for_(char);
     void makeSomebodyHappy(char);
     void oneMistake(char&);

@@ -17,8 +17,6 @@ public:
     int day;
     int month;
     int year;
-    string toString();
-
     friend bool operator<(const Date &l, const Date &r);
     friend bool operator>(const Date &l, const Date &r);
     friend void operator^(Date &l,bool r);
@@ -27,7 +25,7 @@ public:
     friend Date operator<<(Date l, Date r);
     friend Date operator~(Date);
     friend Date operator|=(const Date &l, const Date &r);
-    friend string operator!(Date);
+    operator string();
 
     void operator+();
     void operator-();
