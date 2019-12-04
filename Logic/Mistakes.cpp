@@ -71,10 +71,6 @@ bool Mistakes::isCorrect(){
     return true;
 }
 
-bool Mistakes::isDinner(){
-    return false;
-}
-
 bool Mistakes::isItYours(char id, unsigned char val){
     if(mistakes[id]==0){
         if(val==0){
@@ -126,24 +122,40 @@ QString Mistakes::text_form(){
 
 
 bool Mistakes::hasCorrectCountry(){return mistakes['A']%11!=0;}
-bool Mistakes::xHealthy(){return (mistakes['X']%7!=0);}
+bool Mistakes::xHealthy(){
+    return mistakes['X']%7!=0 || mistakes['X']==0;
+}
 bool Mistakes::medicineNumberMistakes(){return mistakes['M']%7==0;}
 
 bool Mistakes::isNameCorrect(char a){
-    return (mistakes[a]%2!=0 || mistakes[a]%4==0);
+    unsigned char r = mistakes[a];
+    return (r%2!=0 || r%4==0);
 }
 bool Mistakes::isName2Correct(char a){
-    return (mistakes[a]%4!=0 || mistakes[a]%8==0);
+    unsigned char r = mistakes[a];
+    return r%4!=0 || r%8==0;
 }
-bool Mistakes::isSwapped(char a){return mistakes[a]%8==0;}
-bool Mistakes::isSans(char a){return mistakes[a]%5==0;}
-bool Mistakes::isFaceCorrect(char a){return mistakes[a]%7!=0;}
-bool Mistakes::isStampCorrect(char a){return mistakes[a]%11!=0;}
+bool Mistakes::isSwapped(char a){
+    unsigned char r = mistakes[a];
+    return r%8==0 && r!=0;
+}
+bool Mistakes::isSans(char a){
+    unsigned char r = mistakes[a];
+    return r%5==0 && r!=0;
+}
+bool Mistakes::isFaceCorrect(char a){
+    unsigned char r = mistakes[a];
+    return r%7!=0 || r==0;
+}
+bool Mistakes::isStampCorrect(char a){
+    unsigned char r = mistakes[a];
+    return r%11!=0 || r==0;
+}
 
 char Mistakes::anyDateMistakes(){
     if(isB()) return 0;
     for(auto a: mistakes){
-        if(a.second%3==0)
+        if(a.second%3==0 && a.second!=0)
             return a.first;
     }
     if(mistakes['A']%7==0) return 'H';
@@ -183,6 +195,7 @@ string Mistakes::interpret_high(unsigned char a, char doc){
 
     if(interpret_low(a,7)) {
         if(doc=='X') p+=" - Диагноз";
+        else if(doc=='M') p+=" - Номера полиса в самом полисе и справке";
         else p+=" - Фото";
         if(a!=1) p+="\n";
     }
@@ -252,7 +265,7 @@ void Mistakes::twoMistakes(unsigned char &a, unsigned char &b){
 
 
 
-bool Mistakes::equals(char a, char b){
+bool Mistakes::equals(unsigned char a, unsigned char b){
     return (a==b || ((a%2==0) && (b%2==0)));
 }
 
@@ -268,28 +281,3 @@ bool Mistakes::generateCorrectness(){
     return Randomizer::generatePerc(30);
     //return false;
 }
-
-
-/*
- * A:
- * 2 - Имя
- * 3 - Дата
- * 4 - Фамилия
- * 5 - Комик Санс))))
- * 8 - Перепутаны местами
- *
- * P, X, M, R, H:
- *-1 - Номер полиса
- * 2 - Имя
- * 3 - Дата
- * 4 - Фамилия
- * 8 - Перепутаны
- * 5 - Комик Санс/прибытие в обед
- * 7 - Фото/вердикт
- * 11 - Печать/страна
- *
- * 3,5,11
- * 2,4,7,8
- * -1
- *
-*/

@@ -6,7 +6,7 @@ using std::to_string;
 
 Level::Level()
 {
-    mistakes = 0;
+    mistakes = nullptr;
     regenerate();
 }
 
@@ -41,7 +41,7 @@ string Level::getName2For(char a){
 
 
 void Level::regenerate(){
-    if(mistakes!=0) delete mistakes;
+    delete mistakes;
     mistakes = new Mistakes;
     if(mistakes->isB()) setBlackList();
     else {
@@ -50,7 +50,7 @@ void Level::regenerate(){
         secondName = NameGenerator::generateName2();
     }
     insuranceNumber = Randomizer::generateDocumentNumber();
-    time=Randomizer::timeGenerator(mistakes->isDinner());
+    time=Randomizer::timeGenerator(false);
 
     dates = DateGenerator();
     dates.generate(mistakes->anyDateMistakes());

@@ -14,7 +14,6 @@ using std::unordered_map;
 class Mistakes
 {
     unordered_map<char,unsigned char> mistakes;
-    char for_(unsigned char);
     void makeSomebodyHappy(unsigned char);
     void oneMistake(unsigned char&);
     void twoMistakes(unsigned char&, unsigned char&);
@@ -25,13 +24,12 @@ class Mistakes
     static bool generateCorrectness();
     static bool maybeFlavor();
     static bool one_for_true_and_two_for_twrue();
-    static bool equals(char,char);
+    static bool equals(unsigned char,unsigned char);
 public:
     Mistakes();
     bool isA();
     bool isB();
     bool isCorrect();
-    bool isDinner();
     bool isItYours(char,unsigned char);
     bool isSans(char);
     bool hasCorrectCountry();
