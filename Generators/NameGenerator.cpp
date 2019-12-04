@@ -77,11 +77,6 @@ string NameGenerator::generateBadCountry(){
 }
 
 
-
-
-
-
-
 string NameGenerator::degenerateName(string p) {
     static const unordered_map<string,unordered_set<string>> degenerates{
         {"Evgeny",
@@ -125,10 +120,9 @@ string NameGenerator::degenerateName(string p) {
             {"Dudykov","Dubikov"}},
         {"Nikitin",{"Nikiitin"}}
     };
-    if(degenerates.find(p)==degenerates.end()) return p;
-    unordered_set<string> result = degenerates.find(p)->second;
-    auto random_it = std::next(std::begin(result),rand()%result.size());
-    return *random_it;
+    auto f = degenerates.find(p);
+    if(f==degenerates.end()) return p;
+    return Randomizer::randOfSet<string>(f->second);
 }
 
 

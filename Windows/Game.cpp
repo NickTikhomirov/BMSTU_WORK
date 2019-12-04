@@ -359,20 +359,18 @@ void Game::playersGuess(char a, char b){
 
 
 void Game::clear_items(){
-    if(level!=0) delete level;
-    level=0;
-
-    if(sw!=0) delete sw;
-    sw=0;
+    delete level;
+    level=nullptr;
+    delete sw;
+    sw=nullptr;
 
     if(wm!=0)wm->kill();
     if(wm!=0)wm->clear_dynamics();
 
-    if(b2!=0) delete b2;
-    b2=0;
-
-    if(mus->lever!=0)delete mus->lever;
-    mus->lever=0;
+    delete b2;
+    b2=nullptr;
+    delete mus->lever;
+    mus->lever=nullptr;
 
     contents.clear();
 }

@@ -22,7 +22,7 @@ AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsVie
                         (l->mistakes->hasCorrectCountry())?
                             NameGenerator::generateCountry():NameGenerator::generateBadCountry()
                             ,24,false,!comicSans);
-            TextButton *birt = new TextButton(l->dateH,20,false,!comicSans);
+            TextButton *birt = new TextButton(l->dates['H'],20,false,!comicSans);
             Face *face = new Face(l->face,0.375,l->mistakes->isFaceCorrect('P'));
             country->val=12;
             b_stamp->val=11;
@@ -47,7 +47,7 @@ AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsVie
             TextButton *title = new TextButton("Паспорт", 36,false,!comicSans);
             TextButton *name = new TextButton(l->getNameFor('P'),12,false,!comicSans);
             TextButton *name2 = new TextButton(l->getName2For('P'),12,false,!comicSans);
-            TextButton *date = new TextButton(l->dateP,24,false,!comicSans);
+            TextButton *date = new TextButton(l->dates['P'],24,false,!comicSans);
             if(l->mistakes->isSwapped('P')) swap(name,name2);
             name->val=2;
             name2->val=4;
@@ -89,7 +89,7 @@ AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsVie
             TextButton *title = new TextButton("Согласие",20,false,!comicSans);
             TextButton *name = new TextButton(l->getNameFor('A'),12,false,!comicSans);
             TextButton *name2 = new TextButton(l->getName2For('A'),12,false,!comicSans);
-            TextButton *date = new TextButton(l->dateA,12,false,!comicSans);
+            TextButton *date = new TextButton(l->dates['A'],12,false,!comicSans);
             if(l->mistakes->isSwapped('A')) swap(name,name2);
             name->val=2;
             name2->val=4;
@@ -116,34 +116,36 @@ AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsVie
 
             Stamp *b_stamp = new Stamp('M',2,l->mistakes->isStampCorrect('M'));
             TextButton *num = new TextButton(l->insuranceNumber,12,false,!comicSans);
-            b_stamp->val=11;
-            num->setPos(180,273);
-            scene->addItem(num);
-            connect(b_stamp,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
-
             TextButton *title = new TextButton("Страховой полис",18,false,!comicSans);
             TextButton *name = new TextButton(l->getNameFor('M'),12,false,!comicSans);
             TextButton *name2 = new TextButton(l->getName2For('M'),12,false,!comicSans);
-            TextButton *date = new TextButton(l->dateM,12,false,!comicSans);
+            TextButton *date = new TextButton(l->dates['M'],12,false,!comicSans);
             if(l->mistakes->isSwapped('M')) swap(name,name2);
             name->val=2;
             name2->val=4;
             title->val=5;
             date->val=3;
+            b_stamp->val=11;
+            num->val=7;
             name->setPos(180,110);
             name2->setPos(250,110);
             title->setPos(180,70);
             date->setPos(170,303);
             b_stamp->setPos(265,320);
+            num->setPos(180,273);
             scene->addItem(name);
             scene->addItem(name2);
             scene->addItem(title);
             scene->addItem(date);
             scene->addItem(b_stamp);
+            scene->addItem(num);
             connect(name,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
             connect(name2,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
             connect(title,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
             connect(date,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
+            connect(b_stamp,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
+            connect(num,SIGNAL(clicked(char)),this,SLOT(provide_input(char)));
+
             break;
         }
         case 4:{ // 4 - Права
@@ -165,7 +167,7 @@ AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsVie
             TextButton *title = new TextButton("Лицензия на вождение",20,false,!comicSans);
             TextButton *name = new TextButton(l->getNameFor('R'),12,false,!comicSans);
             TextButton *name2 = new TextButton(l->getName2For('R'),12,false,!comicSans);
-            TextButton *date = new TextButton(l->dateR,12,false,!comicSans);
+            TextButton *date = new TextButton(l->dates['R'],12,false,!comicSans);
             if(l->mistakes->isSwapped('R')) swap(name,name2);
             name->val=2;
             name2->val=4;
@@ -204,7 +206,7 @@ AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsVie
                     n = "болен";
             TextButton *res = new TextButton(n,16,false,!comicSans);
 
-            num->val=-1;
+            num->val=6;
             res->val=7;
             b_stamp->val=11;
             num->setPos(160,273);
@@ -220,7 +222,7 @@ AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsVie
             TextButton *title = new TextButton("Заключение", 20,false,!comicSans);
             TextButton *name = new TextButton(l->getNameFor('X'),12,false,!comicSans);
             TextButton *name2 = new TextButton(l->getName2For('X'),12,false,!comicSans);
-            TextButton *date = new TextButton(l->dateX,12,false,!comicSans);
+            TextButton *date = new TextButton(l->dates['X'],12,false,!comicSans);
             if(l->mistakes->isSwapped('X')) swap(name,name2);
             name->val=2;
             name2->val=4;

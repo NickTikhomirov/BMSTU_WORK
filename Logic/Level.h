@@ -12,6 +12,7 @@ using std::string;
 class Level
 {
 public:
+    DateGenerator dates;
 	Level();
     ~Level();
     string name;
@@ -24,14 +25,6 @@ public:
 
     string getNameFor(char);
     string getName2For(char);
-    string dateA;
-    string dateH;
-    string dateT;
-    string dateP;
-    string dateR;
-    string dateX;
-    string dateM;
-
 
     void setBlackList();
     void regenerate();

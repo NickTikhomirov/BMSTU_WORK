@@ -5,114 +5,36 @@ using std::unordered_map;
 
 Mistakes::Mistakes()
 {
-    mistakes = unordered_map<char,char>{
+    mistakes = unordered_map<char,unsigned char>{
         {'A',1},
         {'P',1},
         {'R',1},
         {'M',1},
-        {'X',1},
-        {'H',1},
+        {'X',1}
     };
     if(!generateCorrectness()){
         if(maybeFlavor())
             mistakes['A'] = Randomizer::randomForMistakes(1);
         else if(maybeFlavor())
-            mistakes['H'] = 0;
+            mistakes['P'] = 0;
         else {
-            char a;
-            if(one_for_true_and_two_for_twrue())
-                oneMistake(a);
-            else {
-                char b;
-                twoMistakes(a,b);
-                makeSomebodyHappy(b);
-            }
+            unsigned char a,b;
+            twoMistakes(a,b);
             makeSomebodyHappy(a);
+            makeSomebodyHappy(b);
         }
     }
-    if(mistakes['A']!=1) mistakes['X']=0;
-}
-
-char Mistakes::for_(char a){
-    return mistakes[a];
-}
-
-
-
-
-
-bool Mistakes::isItYours_forH(char a){
-    if(a==0 && mistakes['H']==0) {
-        mistakes['H']=1;
-        return true;
+    if(mistakes['A']!=1){
+        if(77%mistakes['A']!=0)
+            mistakes['X']=0;
     }
-    if(a==5 || a==11 || a==3){
-        if(mistakes['H']%a==0){
-            mistakes['H']/=a;
-            return true;
-        } else return false;
-    } else return false;
-}
-
-bool Mistakes::isItYours_forA(char a){
-    if(a==-1 || a==11 || a==7) return false;
-    if(a==2 || a==4)
-        return isItYour_Mistake_With_Name(mistakes['A'],a);
-    if(mistakes['A']%a==0) {
-        mistakes['A']/=a;
-        return true;
-    }
-    return false;
-}
-
-bool Mistakes::isItYours_forP(char a){
-    if(a==-1) return false;
-    if(a==2 || a==4)
-        return isItYour_Mistake_With_Name(mistakes['P'],a);
-    if(mistakes['P']%a==0) {
-        mistakes['P']/=a;
-        return true;
-    }
-    return false;
-}
-bool Mistakes::isItYours_forM(char a){
-    if(a==7 || a==-1) return false;
-    if(a==2 || a==4)
-        return isItYour_Mistake_With_Name(mistakes['M'],a);
-    if(mistakes['M']%a==0) {
-        mistakes['M']/=a;
-        return true;
-    }
-    return false;
-}
-bool Mistakes::isItYours_forR(char a){
-    if(a==-1) return false;
-    if(a==2 || a==4)
-        return isItYour_Mistake_With_Name(mistakes['R'],a);
-    if(mistakes['R']%a==0) {
-        mistakes['R']/=a;
-        return true;
-    }
-    return false;
-}
-
-bool Mistakes::isItYours_forX(char a){
-    if(a==-1 && mistakes['X']<0) {
-        mistakes['X']*=-1;
-        return true;
-    }
-    if(a==2 || a==4)
-        return isItYour_Mistake_With_Name(mistakes['X'],a);
-    if(mistakes['X']%a==0) {
-        mistakes['X']/=a;
-        return true;
-    }
-    return false;
 }
 
 
 
-bool Mistakes::isItYour_Mistake_With_Name(char &f, char v){
+
+
+bool Mistakes::isItYour_Mistake_With_Name(unsigned char &f, unsigned char v){
     if(f==0 || v==0) return false;
     if(f%2!=0) return false;
     if(f%8==0){
@@ -134,11 +56,11 @@ bool Mistakes::isItYour_Mistake_With_Name(char &f, char v){
 
 
 bool Mistakes::isA(){
-    return (mistakes['X']==0);
+    return mistakes['X']==0;
 }
 
 bool Mistakes::isB(){
-    return mistakes['H']==0;
+    return mistakes['P']==0;
 }
 
 bool Mistakes::isCorrect(){
@@ -150,17 +72,23 @@ bool Mistakes::isCorrect(){
 }
 
 bool Mistakes::isDinner(){
-    return mistakes['H']%5==0 && !isB();
+    return false;
 }
 
-bool Mistakes::isItYours(char id, char val){
-    switch(id){
-        case 'H': return isItYours_forH(val);
-        case 'A': return isItYours_forA(val);
-        case 'P': return isItYours_forP(val);
-        case 'M': return isItYours_forM(val);
-        case 'R': return isItYours_forR(val);
-        case 'X': return isItYours_forX(val);
+bool Mistakes::isItYours(char id, unsigned char val){
+    if(mistakes[id]==0){
+        if(val==0){
+            mistakes[id] = 1;
+            return true;
+        }
+        return false;
+    }
+    if(val%2==0){
+        return isItYour_Mistake_With_Name(mistakes[id],val);
+    }
+    if(mistakes[id]%val==0){
+        mistakes[id]/=val;
+        return true;
     }
     return false;
 }
@@ -185,37 +113,32 @@ QString Mistakes::text_form(){
     else if(mistakes['A']>1) p+="Согласие на обработку:\n"+interpret_high(mistakes['A'],'A');
     else {
 
-        if(mistakes['P']>1||mistakes['H']>1) p+="Паспорт:\n";
+        if(mistakes['P']>1||(mistakes['A']>1&&mistakes['X']!=0)) p+="Паспорт:\n";
         if(mistakes['P']>1) p+=interpret_high(mistakes['P'],'P')+"\n";
-        if(mistakes['H']>1) p+=interpret_high(mistakes['H'],'H')+"\n";
+        if(mistakes['A']>1) p+=interpret_high(mistakes['A'],'H')+"\n";
 
         if(mistakes['M']>1) p+="Полис:\n"+interpret_high(mistakes['M'],'M')+"\n";
         if(mistakes['R']>1) p+="Права:\n"+interpret_high(mistakes['R'],'R')+"\n";
-
-        if(mistakes['X']!=1) {
-            p+="Справка:\n";
-            if(mistakes['X']<0){
-                mistakes['X']*=-1;
-                p+=" - Номер полиса";
-                p+="\n";
-            }
-            if(mistakes['X']>1)p+=interpret_high(mistakes['X'],'X')+"\n";
-        }
+        if(mistakes['X']>1) p+="Справка:\n"+interpret_high(mistakes['X'],'X')+"\n";
     }
     return QString::fromStdString(p);
 }
 
 
-bool Mistakes::hasCorrectCountry(){return (mistakes['H']%11!=0 || mistakes['H']==0);}
+bool Mistakes::hasCorrectCountry(){return mistakes['A']%11!=0;}
 bool Mistakes::xHealthy(){return (mistakes['X']%7!=0);}
-bool Mistakes::medicineNumberMistakes(){return (mistakes['X']<0);}
+bool Mistakes::medicineNumberMistakes(){return mistakes['M']%7==0;}
 
-bool Mistakes::isNameCorrect(char a){return (for_(a)%8!=2);}
-bool Mistakes::isName2Correct(char a){return (for_(a)%8!=4);}
-bool Mistakes::isSwapped(char a){return (for_(a)%8==0);}
-bool Mistakes::isSans(char a){return (for_(a)%5==0);}
-bool Mistakes::isFaceCorrect(char a){return for_(a)%7!=0;}
-bool Mistakes::isStampCorrect(char a){return for_(a)%11!=0;}
+bool Mistakes::isNameCorrect(char a){
+    return (mistakes[a]%2!=0 || mistakes[a]%4==0);
+}
+bool Mistakes::isName2Correct(char a){
+    return (mistakes[a]%4!=0 || mistakes[a]%8==0);
+}
+bool Mistakes::isSwapped(char a){return mistakes[a]%8==0;}
+bool Mistakes::isSans(char a){return mistakes[a]%5==0;}
+bool Mistakes::isFaceCorrect(char a){return mistakes[a]%7!=0;}
+bool Mistakes::isStampCorrect(char a){return mistakes[a]%11!=0;}
 
 char Mistakes::anyDateMistakes(){
     if(isB()) return 0;
@@ -223,6 +146,7 @@ char Mistakes::anyDateMistakes(){
         if(a.second%3==0)
             return a.first;
     }
+    if(mistakes['A']%7==0) return 'H';
     return 0;
 }
 
@@ -231,8 +155,16 @@ char Mistakes::anyDateMistakes(){
 
 
 
-string Mistakes::interpret_high(char a, char doc){
+string Mistakes::interpret_high(unsigned char a, char doc){
     string p=" ";
+    if(doc=='H') {
+        if(interpret_low(a,3))
+            p+=" - Дата рождения\n";
+        if(interpret_low(a,11))
+            p+=" - Страна рождения";
+        return p.substr(1,p.length()-1);
+    }
+
     if(a==1 || a==0) return ".";
     if(interpret_low(a,8)) p+=" - Порядок имя-фамилия";
     if(interpret_low(a,4)) p+=" - Фамилия";
@@ -240,14 +172,12 @@ string Mistakes::interpret_high(char a, char doc){
     if(a!=1 && p.length()>1) p+="\n";
 
     if(interpret_low(a,5)) {
-        if(doc=='H') p+=" - Обеденное время";
-        else p+=" - Шрифт";
+        p+=" - Шрифт";
         if(a!=1) p+="\n";
     }
 
     if(interpret_low(a,3)) {
-        if(doc=='H') p+=" - Дата рождения";
-        else p+=" - Дата выдачи";
+        p+=" - Дата выдачи";
         if(a!=1) p+="\n";
     }
 
@@ -258,13 +188,12 @@ string Mistakes::interpret_high(char a, char doc){
     }
 
     if(interpret_low(a,11)) {
-        if(doc=='H') p+=" - Страна рождения";
-        else p+=" - Печать";
+        p+=" - Печать";
     }
     return p.substr(1,p.length()-1);
 }
 
-bool Mistakes::interpret_low(char &val, char eq){
+bool Mistakes::interpret_low(unsigned char &val, unsigned char eq){
     if(val==0 || val==1) return eq==val;
     if(val%eq==0){
         val/=eq;
@@ -275,13 +204,9 @@ bool Mistakes::interpret_low(char &val, char eq){
 
 
 
-void Mistakes::makeSomebodyHappy(char a){
-    if(a==-1){
-        mistakes['X']*=a;
-        return;
-    }
+void Mistakes::makeSomebodyHappy(unsigned char a){
     switch(
-           (a==7)+rand()%(3+(a!=7)+(a==3 || a==11))
+           rand()%(4+(a==7 || a==11))
           ){
         case 0:{
             mistakes['M']*=a;
@@ -300,7 +225,7 @@ void Mistakes::makeSomebodyHappy(char a){
             break;
         }
         case 4:{
-            mistakes['H']*=a;
+            mistakes['A']*=a;
             break;
         }
     }
@@ -311,11 +236,11 @@ void Mistakes::makeSomebodyHappy(char a){
 
 
 
-void Mistakes::oneMistake(char &a){
+void Mistakes::oneMistake(unsigned char &a){
     a = Randomizer::randomForMistakes(0);
 }
 
-void Mistakes::twoMistakes(char &a, char &b){
+void Mistakes::twoMistakes(unsigned char &a, unsigned char &b){
     a = Randomizer::randomForMistakes(0);
     do{
         b=Randomizer::randomForMistakes(0);
@@ -340,8 +265,8 @@ bool Mistakes::one_for_true_and_two_for_twrue(){
 }
 
 bool Mistakes::generateCorrectness(){
-    //return Randomizer::generatePerc(30);
-    return false;
+    return Randomizer::generatePerc(30);
+    //return false;
 }
 
 

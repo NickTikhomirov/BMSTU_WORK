@@ -13,6 +13,7 @@ public:
     vector<Date> dates;
     DateGenerator();
     void generate(char p=0);
+    string operator[](char);
 };
 
 #endif // DATEGENERATOR_H

@@ -14,7 +14,6 @@ using std::unordered_map;
 class Mistakes
 {
     unordered_map<char,unsigned char> mistakes;
-    char for_(unsigned char);
     void makeSomebodyHappy(unsigned char);
     void oneMistake(unsigned char&);
     void twoMistakes(unsigned char&, unsigned char&);

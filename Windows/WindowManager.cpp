@@ -3,19 +3,17 @@
 
 WindowManager::WindowManager(QObject *parent) : QObject(parent)
 {
-    level=0;
-    first=0;
-    second=0;
-    passport = 0;
-    agreement = 0;
-    medicine = 0;
-    rights = 0;
-    psycho = 0;
-    stenography = 0;
+    level=nullptr;
+    first=nullptr;
+    second=nullptr;
+    passport = nullptr;
+    agreement = nullptr;
+    medicine = nullptr;
+    rights = nullptr;
+    psycho = nullptr;
+    stenography = nullptr;
     tutorial = new AdditionalWindow(7);
-
     tutorial->setCursor(CursorManager::greenArrow());
-
 }
 
 
@@ -40,35 +38,34 @@ void WindowManager::dynamic_documents(){
     connect(psycho,SIGNAL(provide(char)),this,SLOT(provide_x(char)));
     connect(medicine,SIGNAL(provide(char)),this,SLOT(provide_medicine(char)));
     connect(agreement,SIGNAL(provide(char)),this,SLOT(provide_agreement(char)));
-
 }
 
 void WindowManager::clear_dynamics(){
     kill();
-    if(passport!=0) delete passport;
-    if(agreement!=0) delete agreement;
-    if(stenography!=0) delete stenography;
-    if(medicine!=0) delete medicine;
-    if(rights!=0)delete rights;
-    if(psycho!=0) delete psycho;
-
-    passport=0;
-    agreement=0;
-    stenography=0;
-    medicine=0;
-    rights=0;
-    psycho=0;
+    delete passport;
+    delete agreement;
+    delete stenography;
+    delete medicine;
+    delete rights;
+    delete psycho;
+    passport=nullptr;
+    agreement=nullptr;
+    stenography=nullptr;
+    medicine=nullptr;
+    rights=nullptr;
+    psycho=nullptr;
 }
 
 
 void WindowManager::provide_passport(char r){
-    if(r==6) emit provide('H',3);
-    else if(r==12) emit provide('H',11);
+    if(r==6) emit provide('A',7);
+    else if(r==12) emit provide('A',11);
     else emit provide('P',r);
 }
 
 void WindowManager::provide_x(char r){
-    emit provide('X',r);
+    if(r==6) emit provide('M',7);
+    else emit provide('X',r);
 }
 
 void WindowManager::provide_license(char r){

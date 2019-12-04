@@ -44,7 +44,7 @@ void DateGenerator::generate(char p){
     if(p==-'X'){
         dates[5]=(_14|=dates[6]);
     } else {
-        if(p=='X') dates[5]=*(new Date(31,04,2019));
+        if(p=='X') dates[5]=Date(31,04,2019);
         else dates[5]=~dates[6];
     }
 
@@ -58,10 +58,21 @@ void DateGenerator::generate(char p){
     if(p==-'A'){
         dates[2]=(_14|=dates[6]);
     } else {
-        if(p=='A') dates[2]=*(new Date(31,04,2019));
+        if(p=='A') dates[2]=Date(31,04,2019);
         else dates[2]=~dates[6];
     }
 
     if(p=='H' || p==-'H')
         --dates[0];
+}
+
+
+string DateGenerator::operator[](char r){
+    if(r=='A') return dates[2];
+    if(r=='P') return dates[1];
+    if(r=='R') return dates[3];
+    if(r=='M') return dates[4];
+    if(r=='X') return dates[5];
+    if(r=='H') return dates[0];
+    return dates[6];
 }
