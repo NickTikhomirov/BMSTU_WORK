@@ -244,18 +244,18 @@ AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsVie
         }
         case 6:{ // 6 - Досье
             setWindowIcon(QIcon(QPixmap(QString::fromStdString("://b//Pictures//buttons//id17.png"))));
-            TextButton *time = new TextButton("Время визита: "+l->time,12);
+            //TextButton *time = new TextButton("Время визита: "+l->time,12);
             TextButton *name = new TextButton("Имя: "+l->name,22);
             TextButton *sName = new TextButton("Фамилия: "+l->secondName,22);
 
-            time->setPos(120,240);
+            //time->setPos(120,240);
             name->setPos(215,170);
             sName->setPos(215,195);
-            time->param*=11;
+            //time->param*=11;
             name->param*=11;
             sName->param*=11;
 
-            scene->addItem(time);
+            //scene->addItem(time);
             scene->addItem(name);
             scene->addItem(sName);
             break;

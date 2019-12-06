@@ -2,13 +2,12 @@
 #include "Graphics/Follower.h"
 Game::Game(QWidget *parent) : QGraphicsView(parent)
 {
-    mus = new MyPlayer(0,0);
+    mus = new MyPlayer(0,nullptr);
     wm = new WindowManager;
-    sw=0;
+    sw=nullptr;
     score=0;
-    levelsLeft=0;
-    level=0;
-    b2=0;
+    level=nullptr;
+    mech = nullptr;
 
     setFixedSize(517,517);
     scene = new QGraphicsScene;
@@ -31,7 +30,6 @@ void Game::mode_play(){
     scene->clear();
 
     score = 0;
-    levelsLeft=3;
     level = new Level;
     wm->level=level;
     wm->dynamic_documents();
@@ -43,12 +41,6 @@ void Game::mode_play(){
 
     Face *vis = new Face(level->face);
     vis->setPos(100,54);
-
-    //Чашка
-    VeryComplicatedButton *b = new VeryComplicatedButton(level,2);
-    b->setPos(400,295);
-    b->t->setPos(435,400);
-    if(level!=0) b->t->setPlainText(QString::fromStdString(level->time));
 
     //Дверь
     QGraphicsPixmapItem *d0 = new QGraphicsPixmapItem;
@@ -82,16 +74,16 @@ void Game::mode_play(){
 
 
     //Парные кнопки и плеер
-    b2 = new TwinButtons;
+    mech = new Mekanism(level);
     mus->init(1 ,1);
     mus->setPos(380,395);
 
     //QPixmap pp("://main//Pictures//backgrounds//fon0.png");
     //scene->addPixmap(pp);
     scene->addItem(back);
-    scene->addItem(b2->left);
-    scene->addItem(b2->right);
-    scene->addItem(b2->tech);
+    scene->addItem(mech->tick);
+    scene->addItem(mech->cross);
+    scene->addItem(mech->placeHolder);
     scene->addItem(mus->lever);
     scene->addItem(d0);
     scene->addItem(door);
@@ -101,8 +93,9 @@ void Game::mode_play(){
     scene->addItem(medicine);
     scene->addItem(tutorial);
     scene->addItem(license);
-    scene->addItem(b->t);
-    scene->addItem(b);
+    scene->addItem(mech->counter);
+    scene->addItem(mech->cup);
+    scene->addItem(mech->pause);
     scene->addItem(faks);
     scene->addItem(paper);
     scene->addItem(vis);
@@ -110,9 +103,9 @@ void Game::mode_play(){
     scene->addItem(r);
 
 
-    contents.push_back(b2->left);
-    contents.push_back(b2->right);
-    contents.push_back(b2->tech);
+    contents.push_back(mech->tick);
+    contents.push_back(mech->cross);
+    contents.push_back(mech->placeHolder);
     contents.push_back(door);
     contents.push_back(passport);
     contents.push_back(agreement);
@@ -122,9 +115,10 @@ void Game::mode_play(){
     contents.push_back(faks);
     contents.push_back(tutorial);
     contents.push_back(paper);
-    contents.push_back(b);
-    contents.push_back(b->t);
+    contents.push_back(mech->cup);
+    contents.push_back(mech->counter);
     contents.push_back(mus->lever);
+    contents.push_back(mech->pause);
     contents.push_back(vis);
     contents.push_back(help);
 
@@ -132,7 +126,7 @@ void Game::mode_play(){
     connect(paper,SIGNAL(clicked()),this,SLOT(show_stamps()));
     connect(paper,SIGNAL(clicked()),this,SLOT(lock_screen()));
     connect(door, SIGNAL(clicked()), this, SLOT(switch_menu()));
-    if(wm!=0){
+    if(wm!=nullptr){
         connect(passport,SIGNAL(clicked()),wm,SLOT(open_passport()));
         connect(medicine,SIGNAL(clicked()),wm,SLOT(open_medicine()));
         connect(license,SIGNAL(clicked()),wm,SLOT(open_license()));
@@ -142,24 +136,24 @@ void Game::mode_play(){
         connect(tutorial, SIGNAL(clicked()),wm, SLOT(open_tutorial()));
     }
 
-    connect(this,SIGNAL(addPoint()),b2,SLOT(score_increase()));\
+    connect(this,SIGNAL(addPoint()),mech,SLOT(scoreUpdate()));
     connect(wm,SIGNAL(provide(char,char)),this,SLOT(playersGuess(char,char)));
-    connect(b,SIGNAL(time_pressed(char,char)),this,SLOT(playersGuess(char,char)));
     connect(vis,SIGNAL(clicked(char,char)),this,SLOT(playersGuess(char,char)));
-    connect(wm,SIGNAL(privacyBreak()),b2,SLOT(forceFinish()));
+    connect(wm,SIGNAL(privacyBreak()),mech,SLOT(finishLevel_force()));
+    connect(mech->pause,SIGNAL(clicked()),wm, SLOT(pausePressed()));
 
 
-    connect(b2,SIGNAL(result(char)),this,SLOT(level_finalize(char)));
-    connect(this,SIGNAL(waveOfChange(char)),b,SLOT(update_b(char)));
+    connect(mech,SIGNAL(result(char)),this,SLOT(level_finalize(char)));
+    connect(this,SIGNAL(waveOfChange(char)),mech,SLOT(levelUpdate(char)));
     connect(this,SIGNAL(waveOfChange(char)),vis,SLOT(regenerate(char)));
 
 
     connect(door,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
-    connect(b2->left,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
-    connect(b2->right,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
-    connect(b2->tech,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
+    connect(mech->tick,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
+    connect(mech->cross,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
+    connect(mech->placeHolder,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
     connect(tutorial,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
-    connect(b->t,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
+    connect(mech->counter,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
     connect(help,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
     connect(mus->lever,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
     connect(faks,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
@@ -167,7 +161,7 @@ void Game::mode_play(){
     connect(help, SIGNAL(enable()),r,SLOT(f_lock()));
     connect(help, SIGNAL(disable()),r,SLOT(f_unlock()));
 
-    b->setCursor(CursorManager::cloud());
+    mech->cup->setCursor(CursorManager::cloud());
     passport->setCursor(CursorManager::glass());
     agreement->setCursor(CursorManager::glass());
     xPaper->setCursor(CursorManager::glass());
@@ -197,7 +191,6 @@ void Game::mode_menu(){
     scene->clear();
     contents.resize(5);
     sw = new SubWindow;
-    levelsLeft=3;
 
 
     QPixmap pp("://main//Pictures//backgrounds//fon-1.png");
@@ -236,21 +229,21 @@ void Game::mode_menu(){
 
 void Game::lock_screen(){
     for(auto &a: contents){
-        if(a!=0) a->unsafe_lock();
+        if(a!=nullptr) a->unsafe_lock();
     }
     subwindowSetuper(1);
 }
 
 void Game::unlock_screen(){
     for(auto &a: contents){
-        if(a!=0) a->unlock();
+        if(a!=nullptr) a->unlock();
     }
     subwindowSetuper(0);
 }
 
 void Game::show_stamps(){
-    if(sw!=0)
-        if(sw->t!=0)
+    if(sw!=nullptr)
+        if(sw->t!=nullptr)
             sw->t->val=-1;
 }
 
@@ -315,7 +308,7 @@ void Game::subwindowSetuper(char a){
         sw->krestik->hide();
         sw->t->hide();
         sw->krestik->safe_lock();
-        if(levelsLeft==0) switch_finalle();
+        if(timeLeft()<=0) switch_finalle();
     }
 }
 
@@ -324,24 +317,11 @@ void Game::subwindowSetuper(char a){
 
 
 void Game::level_finalize(char a){
-    bool greenPressed = (a>=0);
-    bool level_complete = level->mistakes->isCorrect();
-    if(!greenPressed){
-        a++;
-        a*=-1;
-    }
-    if(greenPressed && a==0 && level_complete){
-        score+=5;
-    } else if(!greenPressed){
-        if(level_complete) score+=4;
-        else score+=3;
-    }
-    if(a==100) sw->t->val=100;
+    score+=a;
 
     wm->clear_dynamics();
-    levelsLeft--;
     lock_screen();
-    if(levelsLeft!=0) {
+    if(timeLeft()>0) {
         level->regenerate();
         wm->dynamic_documents();
         emit waveOfChange(level->face);
@@ -367,8 +347,8 @@ void Game::clear_items(){
     if(wm!=0)wm->kill();
     if(wm!=0)wm->clear_dynamics();
 
-    delete b2;
-    b2=nullptr;
+    delete mech;
+    mech=nullptr;
     delete mus->lever;
     mus->lever=nullptr;
 
@@ -439,4 +419,10 @@ void Game::switch_finalle2(){
     connect(back,SIGNAL(tingle()),r,SLOT(hider()));
     connect(help, SIGNAL(enable()),r,SLOT(f_lock()));
     connect(help, SIGNAL(disable()),r,SLOT(f_unlock()));
+}
+
+
+int Game::timeLeft(){
+    if(mech==nullptr) return -1;
+    return mech->timeleft;
 }

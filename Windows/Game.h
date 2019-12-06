@@ -17,9 +17,9 @@
 #include "Graphics/Background.h"
 #include "Graphics/CustomButton.h"
 #include "Graphics/TextButton.h"
-#include "Graphics/VeryComplicatedButton.h"
-#include "Graphics/TwinButtons.h"
+#include "Graphics/Mekanism.h"
 #include "Logic/ItemLockable.h"
+#include <QTimer>
 
 using std::vector;
 
@@ -27,7 +27,7 @@ class Game : public QGraphicsView
 {
     Q_OBJECT
     vector<ItemLockable*> contents;
-    TwinButtons *b2;
+    //TwinButtons *b2;
 public:
     explicit Game(QWidget *parent = nullptr);
 
@@ -37,8 +37,9 @@ public:
     SubWindow *sw;
     Level *level;
     short score;
-    char levelsLeft;
+    Mekanism* mech;
 
+    int timeLeft();
     void mode_play();
     void mode_menu();
     void subwindowSetuper(char);

@@ -159,42 +159,57 @@ void WindowManager::toggleW(char a){
 
 
 
-
-
-void WindowManager::open_agreement(){toggleW(2);}
-void WindowManager::open_stenography(){toggleW(6);}
 void WindowManager::open_tutorial(){toggleW(7);}
 
 
+void WindowManager::open_agreement(){
+    if(level->paused) return;
+    toggleW(2);
+}
+void WindowManager::open_stenography(){
+    if(level->paused) return;
+    toggleW(6);
+}
+
 void WindowManager::open_passport(){
-    if(level!=0)
-        if(level->mistakes->isA()){
-            emit privacyBreak();
-            return;
+    if(level->paused) return;
+    if(level->mistakes->isA()){
+        emit privacyBreak();
+        return;
     }
     toggleW(1);
 }
 void WindowManager::open_medicine(){
-    if(level!=0)
-        if(level->mistakes->isA()){
-            emit privacyBreak();
-            return;
+    if(level->paused) return;
+    if(level->mistakes->isA()){
+        emit privacyBreak();
+        return;
     }
     toggleW(3);
 }
 void WindowManager::open_license(){
-    if(level!=0)
-        if(level->mistakes->isA()){
-            emit privacyBreak();
-            return;
+    if(level->paused) return;
+    if(level->mistakes->isA()){
+        emit privacyBreak();
+        return;
     }
     toggleW(4);
 }
 void WindowManager::open_x(){
-    if(level!=0)
-        if(level->mistakes->isA()){
-            emit privacyBreak();
-            return;
+    if(level->paused) return;
+    if(level->mistakes->isA()){
+        emit privacyBreak();
+        return;
     }
     toggleW(5);
+}
+
+
+void WindowManager::pausePressed(){
+    close(passport);
+    close(psycho);
+    close(medicine);
+    close(rights);
+    close(agreement);
+    close(stenography);
 }

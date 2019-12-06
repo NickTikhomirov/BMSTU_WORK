@@ -50,7 +50,6 @@ void Level::regenerate(){
         secondName = NameGenerator::generateName2();
     }
     insuranceNumber = Randomizer::generateDocumentNumber();
-    time=Randomizer::timeGenerator(false);
 
     dates = DateGenerator();
     dates.generate(mistakes->anyDateMistakes());

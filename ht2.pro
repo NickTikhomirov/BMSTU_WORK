@@ -34,13 +34,12 @@ HEADERS += \
         Graphics/CustomButton.h \
         Graphics/Face.h \
         Graphics/Follower.h \
+        Graphics/Mekanism.h \
         Graphics/SimpleButton.h \
         Graphics/Stamp.h \
         Graphics/SwitchingButton.h \
         Graphics/TextButton.h \
         Graphics/TutorialPage.h \
-        Graphics/TwinButtons.h \
-        Graphics/VeryComplicatedButton.h \
         Logic/Date.h \
         Logic/ItemLockable.h \
         Logic/Level.h \
@@ -62,13 +61,12 @@ SOURCES += \
         Graphics/CustomButton.cpp \
         Graphics/Face.cpp \
         Graphics/Follower.cpp \
+        Graphics/Mekanism.cpp \
         Graphics/SimpleButton.cpp \
         Graphics/Stamp.cpp \
         Graphics/SwitchingButton.cpp \
         Graphics/TextButton.cpp \
         Graphics/TutorialPage.cpp \
-        Graphics/TwinButtons.cpp \
-        Graphics/VeryComplicatedButton.cpp \
         Logic/Date.cpp \
         Logic/ItemLockable.cpp \
         Logic/Level.cpp \

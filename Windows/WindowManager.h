@@ -39,6 +39,7 @@ signals:
     void privacyBreak();
     void provide(char,char);
 public slots:
+    void pausePressed();
     void kill();
     void close1();
     void close2();

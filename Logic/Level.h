@@ -20,7 +20,7 @@ public:
     string birtday;
     char face;
     Mistakes *mistakes;
-    string time;
+    bool paused = false;
     string insuranceNumber;
 
     string getNameFor(char);
