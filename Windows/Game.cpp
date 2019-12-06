@@ -78,8 +78,6 @@ void Game::mode_play(){
     mus->init(1 ,1);
     mus->setPos(380,395);
 
-    //QPixmap pp("://main//Pictures//backgrounds//fon0.png");
-    //scene->addPixmap(pp);
     scene->addItem(back);
     scene->addItem(mech->tick);
     scene->addItem(mech->cross);
@@ -308,7 +306,7 @@ void Game::subwindowSetuper(char a){
         sw->krestik->hide();
         sw->t->hide();
         sw->krestik->safe_lock();
-        if(timeLeft()<=0) switch_finalle();
+        if(timeLeft()<=0 && level!=nullptr) switch_finalle();
     }
 }
 
@@ -317,7 +315,9 @@ void Game::subwindowSetuper(char a){
 
 
 void Game::level_finalize(char a){
-    score+=a;
+    if(a==100) sw->t->val = 100;
+    else score+=a;
+
 
     wm->clear_dynamics();
     lock_screen();

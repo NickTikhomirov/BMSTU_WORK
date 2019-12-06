@@ -6,7 +6,7 @@ class ItemLockable
 {
 public:
     ItemLockable();
-    char param;
+    char param=1;
     bool isFree();
     void unsafe_lock();
     void safe_lock();

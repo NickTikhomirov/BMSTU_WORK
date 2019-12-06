@@ -11,15 +11,14 @@ Mekanism::Mekanism(Level *l)
     cross = new CustomButton(3,true,8);
     placeHolder = new CustomButton(0,false,7);
     counter = new TextButton(timeString(),12,true,true,10);
-    cup = new SwitchingButton(2,level);
+    cup = new SwitchingButton(2);
     pause = new CustomButton(2,true,6);
     timer = new QTimer;
-    //timer->setInterval(1000);
     timer->start(1000);
 
     tick->setPos(420,366);
     cross->setPos(440,366);
-    pause->setPos(480,366);
+    pause->setPos(485,366);
     placeHolder->setPos(440,366);
     cup->setPos(400,295);
     counter->setPos(435,400);
@@ -68,7 +67,7 @@ void Mekanism::finishLevel_r(){
 }
 
 void Mekanism::finishLevel_force(){
-    char fin_score = 0;
+    char fin_score = 100;
     buttonReset();
     emit result(fin_score);
 }
@@ -82,16 +81,16 @@ void Mekanism::unsetDebug(){
 }
 
 void Mekanism::levelUpdate(char){
-//    if(cup->param%3==0) {
-//        QString p = QString::fromStdString("://main//Pictures//switches//SwB"+to_string(cup->id)+".png");
-//        cup->setPixmap(QPixmap(p));
-//        cup->param/=3;
-//    }
+    if(cup->param%3==0) {
+        QString p = QString::fromStdString("://main//Pictures//switches//SwB"+to_string(cup->id)+".png");
+        cup->setPixmap(QPixmap(p));
+        cup->param/=3;
+    }
 }
 
 void Mekanism::time_flow(){
     if(timeleft>0) --timeleft;
-    if(cup->param%3==0){
+    if((cup->param)%3!=0){
         counter->setPlainText(QString::fromStdString(timeString()));
     }
 }

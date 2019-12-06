@@ -35,7 +35,7 @@ void Follower::recount(int &x1, int &y1, char s1){
     int w = getWidth(s1);
     y1-=h;
     if(y1<3) y1+=h+7;
-    if(x1+w>509) x1-=w-7;
+    if(x1+w>509) x1-=w;
 }
 
 
