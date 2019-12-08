@@ -65,7 +65,7 @@ bool Mistakes::isB(){
 }
 
 bool Mistakes::isCorrect(){
-    for(std::pair a: mistakes){
+    for(auto a: mistakes){
         if(a.second!=1 && a.first!='X' && a.second!=0)
             return false;
     }
