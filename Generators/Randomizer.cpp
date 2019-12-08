@@ -7,6 +7,11 @@ using std::to_string;
 using std::pair;
 using std::unordered_set;
 
+
+/*!
+    Преобразует число в его строковое представление. Числа 1-9 представляет в виде 01-09.
+    \param a Само число.
+*/
 string Randomizer::toString(short a) {
     string p;
     if (a == a % 10) p = "0" + to_string(a);
@@ -16,10 +21,14 @@ string Randomizer::toString(short a) {
 
 
 
-
-unsigned char Randomizer::randomForMistakes(char soft){
+/*!
+    Генерирует одно число из множества {2, 3, 4, 5, 7, 8, 11}
+    Используется генератором ошибок
+    \param a Характеристика числа: при a=0 классическое (2,3,4,5,8), при a=1 расширенное (2,3,4,5,7,8,11).
+*/
+unsigned char Randomizer::randomForMistakes(char a){
     char c;
-    if(soft==1){
+    if(a==1){
         c=rand()%5;
         if(c==1) c = 8;
         if(c==0) c = 5;
@@ -32,6 +41,12 @@ unsigned char Randomizer::randomForMistakes(char soft){
     return c;
 }
 
+
+/*!
+    Генерирует целое число в диапазоне [b;e]
+    \param b Начало отрезка
+    \param e Конец отрезка
+*/
 int Randomizer::randInPool(int b, int e) {
     if (e < b) return 0;
     if (e == b) return b;
@@ -39,6 +54,10 @@ int Randomizer::randInPool(int b, int e) {
 }
 
 
+/*!
+    Возвращает истину с вероятностью a%
+    \param a Шанс получения истины в процентах
+*/
 bool Randomizer::generatePerc(short a) {
 	if (a > 99) return true;
 	if (a < 1) return false;
@@ -46,21 +65,10 @@ bool Randomizer::generatePerc(short a) {
 }
 
 
-
-
-string Randomizer::timeGenerator(bool dinner) {
-    short m = randInPool(0, 59);
-    short h;
-    if (dinner) h = 14;
-    else do h = randInPool(9, 18);
-    while (h == 14);
-    string p = toString(h);
-    p += ':';
-    p += toString(m);
-    return p;
-}
-
-
+/*!
+    Генерирует число с десятичной записью длиной в 11 символов (может начинаться с нуля).
+    Используется для получения номеров документов (полис, паспорт, справка).
+*/
 string Randomizer::generateDocumentNumber(){
     string p = to_string(rand()%10);
     for(int i=0;i<9;i++)
@@ -70,7 +78,11 @@ string Randomizer::generateDocumentNumber(){
 
 
 
-
+/*!
+    Получает на вход число из множества {5,6,7,8} и возвращает число из множества {-8, -7, -6, -5, 5, 6, 7, 8},
+используя генерацию случайных чисел и некоторые правила. Этот метод нужен для получения неправильной печати в документе.
+    \param a Число из множества {5,6,7,8}
+*/
 char Randomizer::stampDegenerator(char a){
     if(rand()%4)
         return -a;

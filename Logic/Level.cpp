@@ -16,6 +16,13 @@ Level::~Level()
     delete mistakes;
 }
 
+
+/*!
+    Получение имени человека для документа.
+    Сразу же производит перегенерацию имени, если объект класса ошибок диктует, что должна быть ошибка.
+    Проще говоря, документ по своему индексу получает значение поля и использует (если нет необходимости предварительно поменять местами имя и фамилию).
+    \param a Индекс документа (Варианты: P, A, R, M, X)
+*/
 string Level::getNameFor(char a){
     if(mistakes->isNameCorrect(a)) return name;
     else if(rand()%2) return (NameGenerator::degenerateName(name));
@@ -27,6 +34,12 @@ string Level::getNameFor(char a){
     }
 }
 
+/*!
+    Получение фамилии человека для документа.
+    Сразу же производит перегенерацию фамилии, если объект класса ошибок диктует, что должна быть ошибка.
+    Проще говоря, документ по своему индексу получает значение поля и использует (если нет необходимости предварительно поменять местами имя и фамилию).
+    \param a Индекс документа (Варианты: P, A, R, M, X)
+*/
 string Level::getName2For(char a){
     if(mistakes->isName2Correct(a)) return secondName;
     else if(rand()%2) return (NameGenerator::degenerateName(secondName));
@@ -39,7 +52,10 @@ string Level::getName2For(char a){
 }
 
 
-
+/*!
+    Метод, который необходимо вызывать при смене уровня.
+    Обновляет данные ошибок, дат, полей для имени, фамилии, полиса и лица
+*/
 void Level::regenerate(){
     delete mistakes;
     mistakes = new Mistakes;
@@ -55,6 +71,10 @@ void Level::regenerate(){
     dates.generate(mistakes->anyDateMistakes());
 }
 
+
+/*!
+    Хардкод-инициализация полей данными чёрного списка. Используется методом regenerate(), и этого достаточно.
+*/
 void Level::setBlackList(){
     face=1;
     name = "Evgeny";
