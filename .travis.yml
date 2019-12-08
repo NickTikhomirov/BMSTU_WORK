@@ -13,6 +13,7 @@ include:
           - gcc-8
           - g++-8
           - qtmultimedia5-dev
+          - qtmobility-dev
           - qtdeclarative5-dev
           - qtbase5-dev
 

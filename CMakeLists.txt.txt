@@ -1,0 +1,40 @@
+cmake_minimum_required(VERSION 3.4)
+project(qt_curse)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+find_package(
+        Qt5
+        HINTS "$ENV{QTDIR}"
+        REQUIRED COMPONENTS
+        Core
+        Network
+        Multimedia
+)
+
+add_library(game STATIC ${CMAKE_CURRENT_SOURCE_DIR}/Windows/Game.cpp)
+add_library(sub STATIC ${CMAKE_CURRENT_SOURCE_DIR}/Windows/SubWindow.cpp)
+add_library(manager STATIC ${CMAKE_CURRENT_SOURCE_DIR}/Windows/WindowManager.cpp)
+add_library(addw STATIC ${CMAKE_CURRENT_SOURCE_DIR}/Windows/AdditionalWindow.cpp)
+
+
+add_executable(
+        ${PROJECT_NAME}
+        main.cpp
+        ${PROJECT_CORE_HEADER}
+        ${PROJECT_CORE_SOURCE}
+        ${PROJECT_CHAT_SOURCE}
+        ${PROJECT_CHAT_HEADER}
+        ${PROJECT_STATIC}
+)
+
+set_target_properties(${PROJECT_NAME} PROPERTIES AUTOMOC TRUE)
+set_target_properties(${PROJECT_NAME} PROPERTIES AUTORCC TRUE)
+
+target_link_libraries(
+        ${PROJECT_NAME}
+        PUBLIC
+        Qt5::Core
+        Qt5::Network
+        Qt5::WebSockets
+)
