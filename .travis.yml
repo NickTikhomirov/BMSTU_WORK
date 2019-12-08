@@ -24,9 +24,8 @@ before_install:
   - sudo apt-get update
 
 install:
-  - sudo apt-get install qt58base qt58svg qt58charts-no-lgpl qt58xmlpatterns
+  - sudo apt-get install qt58base qt58svg qt58charts-no-lgpl qt58xmlpatterns qt58multimedia
   - source /opt/qt58/bin/qt58-env.sh
-  - sudo apt install qt59multimedia
 
 
 script:
