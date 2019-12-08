@@ -11,7 +11,11 @@
 
 #include "Logic/ItemLockable.h"
 
+/*!
+    \brief Простейшая кнопка
 
+    Простейшая кнопка, которая умеет чувствовать нажатие курсором мыши. Нужна только для того, чтобы более удобно реализовывать классы Face и Stamp.
+*/
 class SimpleButton: public QObject, public QGraphicsPixmapItem, public ItemLockable{
     Q_OBJECT
 public:

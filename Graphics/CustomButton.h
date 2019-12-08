@@ -9,6 +9,14 @@
 
 #include "Logic/ItemLockable.h"
 
+
+
+/*!
+    \brief Кнопка
+
+    Кнопка - это объект, который может удобным для данной игры образом может замечать наведение курсора, нажатие мыши,
+    на основании этих событий менять внешний вид и отправлять сигналы, а также который может быть заблокирован с помощью методов интерфейса ItemLockable.
+*/
 class CustomButton : public QObject, public QGraphicsPixmapItem, public ItemLockable{
     Q_OBJECT
 public:

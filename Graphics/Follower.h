@@ -6,6 +6,12 @@
 
 #include "Logic/ItemLockable.h"
 
+
+/*!
+    \brief Всплывающее облачко над курсором.
+
+    Данный класс обеспечивает корректную отрисовку облачка с подсказкой, когда наводишь курсор мыши на предмет окружения.
+*/
 class Follower : public QObject, public QGraphicsPixmapItem, public ItemLockable
 {
     Q_OBJECT

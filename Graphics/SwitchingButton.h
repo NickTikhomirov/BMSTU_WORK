@@ -11,6 +11,12 @@
 
 #include "Logic/ItemLockable.h"
 
+/*!
+    \brief Переключатель - кнопка, которая остаётся включённой.
+
+    Эта кнопка идентична CustomButton за исключением того, что может быть в двух состояниях - включённая и выключенная. На события включения/выключения
+    у этой кнопки привязаны разные сигналы, а также она использует больше спрайтов для своего внешнего вида.
+*/
 class SwitchingButton: public QObject, public QGraphicsPixmapItem, public ItemLockable
 {
      Q_OBJECT

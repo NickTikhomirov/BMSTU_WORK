@@ -8,6 +8,12 @@
 
 using std::string;
 
+
+/*!
+    \brief Текстовая кнопка
+
+    Строка текста, на которую можно нажать. Поддерживает два разных шрифта, умеет подсвечиваться, когда на неё наводится курсор.
+*/
 class TextButton: public QGraphicsTextItem, public ItemLockable
 {
     Q_OBJECT

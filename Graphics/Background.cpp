@@ -2,6 +2,10 @@
 
 using std::to_string;
 
+/*!
+    Конструктор изображения.
+    \param n Номер изображения в пространстве фонов.
+*/
 Background::Background(char n,QGraphicsItem *parent) : QGraphicsPixmapItem(parent)
 {
     setAcceptHoverEvents(true);
@@ -10,7 +14,9 @@ Background::Background(char n,QGraphicsItem *parent) : QGraphicsPixmapItem(paren
 }
 
 
-void Background::hoverMoveEvent(QGraphicsSceneHoverEvent *event){
+/*!
+    Событие наведения. Фон оповещает, когда игрок наводит на него курсор, переводя его с кнопки.
+*/void Background::hoverMoveEvent(QGraphicsSceneHoverEvent *event){
     emit tingle();
     QGraphicsPixmapItem::hoverMoveEvent(event);
 }

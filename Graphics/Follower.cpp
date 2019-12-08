@@ -7,6 +7,14 @@ Follower::Follower(QGraphicsItem *par): QGraphicsPixmapItem(par)
 
 using std::to_string;
 
+
+/*!
+  Рисует облако-подсказку, предварительно пересчитывая координаты с учётом размера окна.
+  Считается, что сдвиг с кончика курсора на будущее место отрисовки облака (чуть выше оного) произведен вне функции.
+  \param xm X-координата отрисовки
+  \param ym Y-координата отрисовки
+  \param s Номер спрайта облака в пространстве облаков
+*/
 void Follower::drawAt(int xm, int ym, char s){
     if(!isFree()) return;
     setPixmap(QPixmap(QString::fromStdString("://main//Pictures//other//cloud"+to_string(s)+".png")));
@@ -16,15 +24,31 @@ void Follower::drawAt(int xm, int ym, char s){
 }
 
 
+
+/*!
+  Получение X-координаты изображения (ширины)
+  \param a Номер изображения
+*/
 int Follower::getWidth(char a){
     return (QPixmap(QString::fromStdString("://main//Pictures//other//cloud"+to_string(a)+".png"))).width();
 }
 
+
+/*!
+  Получение Y-координаты изображения (высоты)
+  \param a Номер изображения
+*/
 int Follower::getHeight(char a){
     return (QPixmap(QString::fromStdString("://main//Pictures//other//cloud"+to_string(a)+".png"))).height();
 }
 
 
+/*!
+  Пересчёт координат отрисовки с поправкой на размеры окна
+  \param x1 X-координата (изменяется функцией)
+  \param y1 Y-координата (изменяется функцией)
+  \param s1 Номер изображения в пространстве облаков
+*/
 void Follower::recount(int &x1, int &y1, char s1){
     if(s1==11){
         x1=80;
@@ -38,16 +62,26 @@ void Follower::recount(int &x1, int &y1, char s1){
     if(x1+w>509) x1-=w;
 }
 
-
+/*!
+  Метод сокрытия отрисованного облака.
+*/
 void Follower::hider(){
     hide();
 }
 
+
+/*!
+  Слот сокрытия и последующей блокировки (класс ItemLockable)
+*/
 void Follower::f_lock(){
     hide();
     safe_lock();
 }
 
+
+/*!
+  Слот разблокировки (класс ItemLockable)
+*/
 void Follower::f_unlock(){
     unlock();
 }

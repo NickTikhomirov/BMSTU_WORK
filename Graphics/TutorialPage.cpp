@@ -1,5 +1,8 @@
 #include "TutorialPage.h"
 
+/*!
+  Конструктор правил, в котором инициализируются все изображения и тексты.
+*/
 TutorialPage::TutorialPage(QObject *par): QObject(par)
 {
     guys = new QGraphicsPixmapItem(QPixmap("://main//Pictures//other//egg1.jpg"));
@@ -78,12 +81,15 @@ TutorialPage::TutorialPage(QObject *par): QObject(par)
     text->show();
 }
 
-
 TutorialPage::~TutorialPage(){
     t.clear();
     delete text;
 }
 
+
+/*!
+  Метод листания правил вперёд - переключает текст, блокирует кнопки, добавляет картинки.
+*/
 void TutorialPage::list_forward(){
     page++;
     if(page==max) guys->show();
@@ -102,6 +108,9 @@ void TutorialPage::list_forward(){
 }
 
 
+/*!
+  Метод листания правил вперёд - переключает текст, блокирует кнопки, добавляет картинки.
+*/
 void TutorialPage::list_backward(){
     page--;
     if(page==max) {

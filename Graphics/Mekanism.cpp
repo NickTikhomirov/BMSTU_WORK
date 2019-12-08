@@ -3,7 +3,10 @@
 using std::string;
 using std::to_string;
 
-
+/*!
+    Конструктор класса, в котором инициализируются все объекты, производятся все подключения и задаются все координаты
+    \param l Указатель на объект уровня
+*/
 Mekanism::Mekanism(Level *l)
 {
     level = l;
@@ -33,6 +36,10 @@ Mekanism::Mekanism(Level *l)
     buttonReset();
 }
 
+
+/*!
+    Перевод оставшегося времени в формат "м:с" в тип данных string
+*/
 string Mekanism::timeString(){
     int min = timeleft/60;
     int sec = timeleft%60;
@@ -40,7 +47,9 @@ string Mekanism::timeString(){
 }
 
 
-
+/*!
+    Метод обновления промежуточного счёта
+*/
 void Mekanism::scoreUpdate(){
     bool cor = level->mistakes->isCorrect();
     bool empt = (score==0);
@@ -50,7 +59,9 @@ void Mekanism::scoreUpdate(){
     crossUnlock();
 }
 
-
+/*!
+    Метод завершения уровня с зелёной кнопки
+*/
 void Mekanism::finishLevel_g(){
     char fin_score = 0;
     if(score>0 || !(level->mistakes->isCorrect())) fin_score = -3;
@@ -59,6 +70,9 @@ void Mekanism::finishLevel_g(){
     emit result(fin_score);
 }
 
+/*!
+    Метод завершения уровня с красной кнопки
+*/
 void Mekanism::finishLevel_r(){
     char fin_score = 0;
     if(score==0 && level->mistakes->isCorrect()) fin_score = -2;
@@ -67,20 +81,38 @@ void Mekanism::finishLevel_r(){
     emit result(fin_score);
 }
 
+
+/*!
+    Метод завершения уровня принудительно
+*/
 void Mekanism::finishLevel_force(){
     char fin_score = 100;
     buttonReset();
     emit result(fin_score);
 }
 
+
+/*!
+    Метод переключения счётчика в режим дебага
+*/
 void Mekanism::setDebug(){
     counter->setPlainText(QString::fromStdString(level->mistakes->toString()));
 }
 
+
+/*!
+    Метод отключения режима дебага
+*/
 void Mekanism::unsetDebug(){
     counter->setPlainText(QString::fromStdString(timeString()));
 }
 
+
+
+/*!
+    Метод реакции на обновление уровня
+    \param noname не используется
+*/
 void Mekanism::levelUpdate(char){
     if(cup->param%3==0) {
         QString p = QString::fromStdString("://main//Pictures//switches//SwB"+to_string(cup->id)+".png");
@@ -89,6 +121,10 @@ void Mekanism::levelUpdate(char){
     }
 }
 
+
+/*!
+    Метод обновления счётчика (внутреннего и строкового), который подключается к таймеру
+*/
 void Mekanism::time_flow(){
     if(timeleft>0) --timeleft;
     if((cup->param)%3!=0){
@@ -96,6 +132,10 @@ void Mekanism::time_flow(){
     }
 }
 
+
+/*!
+    Метод, вызываемый при нажатии кнопки паузы. Остановка таймера, изменение соответствующего параметра в уровне и сигнал на закрытие всех окон.
+*/
 void Mekanism::pausePress(){
     if(timer->isActive()) {
         timer->stop();
@@ -106,6 +146,9 @@ void Mekanism::pausePress(){
     }
 }
 
+/*!
+    Обновление кнопок в начале уровня.
+*/
 void Mekanism::buttonReset(){
     score = 0;
     cross->safe_lock();
@@ -114,6 +157,9 @@ void Mekanism::buttonReset(){
     placeHolder->show();
 }
 
+/*!
+    Активация кнопки отказа посетителю после первой найденной ошибки.
+*/
 void Mekanism::crossUnlock(){
     cross->unlock();
     placeHolder->safe_lock();
