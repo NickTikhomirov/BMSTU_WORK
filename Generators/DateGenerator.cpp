@@ -1,5 +1,5 @@
-#include "Generators\DateGenerator.h"
-#include "Generators\Randomizer.h"
+#include "DateGenerator.h"
+#include "Randomizer.h"
 #include <string>
 
 
