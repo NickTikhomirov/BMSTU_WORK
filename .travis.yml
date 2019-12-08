@@ -31,3 +31,6 @@ install:
 script:
   - /opt/qt58/bin/qmake PREFIX=/usr
   - make
+  - cmake -H. -B.build
+  - cmake --build .build
+  - .build/tests
