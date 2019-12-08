@@ -2,6 +2,11 @@
 
 using std::to_string;
 
+
+/*!
+   Конструктор плеера
+   \param n Номер песни
+*/
 MyPlayer::MyPlayer(short n, QGraphicsItem *parent)
 {
     par=parent;
@@ -18,6 +23,9 @@ MyPlayer::MyPlayer(short n, QGraphicsItem *parent)
 }
 
 
+/*!
+   Инвертор состояния проигрывания музыки
+*/
 void MyPlayer::play_change(){
     if(isPlaying) player->pause();
     else player->play();
@@ -25,10 +33,21 @@ void MyPlayer::play_change(){
 }
 
 
+/*!
+   Вызывает одноимённый метод класса QWidget у переключателя плеера
+   \param a X-координата
+   \param b Y-координата
+*/
 void MyPlayer::setPos(int a, int b){
     lever->setPos(a,b);
 }
 
+
+/*!
+   Устанавливает проигрываемый трек и внешний вид переключателя.
+   \param song Номер трека
+   \param icon Номер спрайта переключателя
+*/
 void MyPlayer::init(short song, short icon){
     player->pause();
     if(song!=songNumber){
@@ -42,6 +61,10 @@ void MyPlayer::init(short song, short icon){
     QObject::connect(lever,SIGNAL(disable()),this,SLOT(play_change()));
 }
 
+
+/*!
+   Возвращает номер играющего трека
+*/
 char MyPlayer::getPlaying(){
     if(isPlaying) return songNumber+1;
     return 0;

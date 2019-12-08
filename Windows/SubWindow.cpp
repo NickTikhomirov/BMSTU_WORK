@@ -1,5 +1,9 @@
 #include "SubWindow.h"
 
+
+/*!
+  Инициализация объектов окна
+*/
 SubWindow::SubWindow()
 {
     credits =
@@ -15,7 +19,9 @@ SubWindow::SubWindow()
     t = new TextButton(credits,12);
 }
 
-
+/*!
+  Удаление всех объектов окна
+*/
 SubWindow::~SubWindow(){
     delete t;
     delete box;

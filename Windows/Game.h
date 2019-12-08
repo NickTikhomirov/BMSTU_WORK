@@ -23,11 +23,18 @@
 
 using std::vector;
 
+
+/*!
+    \brief Класс игры и главного окна.
+
+    Содержит в себе объекты классов MyPlayer, WindowManager, Level, SubWindow, Mekanism и все используемые в главном окне кнопки.
+    Обеспечивает существование и слаженное функционирование игры как целого и всех её составляющих в отдельности.
+    Отрисовывает все кнопки главного окна и обрабатывает их нажатия.
+*/
 class Game : public QGraphicsView
 {
     Q_OBJECT
     vector<ItemLockable*> contents;
-    //TwinButtons *b2;
 public:
     explicit Game(QWidget *parent = nullptr);
 

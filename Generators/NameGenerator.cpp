@@ -8,6 +8,9 @@ using std::unordered_set;
 using std::unordered_map;
 
 
+/*!
+    Словарь имён. При вызове генерирует случайное из десяти.
+*/
 string NameGenerator::generateName() {
     short a = (short)Randomizer::randInPool(1, 10);
     static const unordered_map<short, string> values = {
@@ -25,6 +28,10 @@ string NameGenerator::generateName() {
     return values.at(a);
 }
 
+
+/*!
+    Словарь фамилий. При вызове генерирует случайную из десяти.
+*/
 string NameGenerator::generateName2() {
     short a = (short)Randomizer::randInPool(1, 10);
     static const unordered_map<short, string> values = {
@@ -43,7 +50,9 @@ string NameGenerator::generateName2() {
 }
 
 
-
+/*!
+    Словарь правильных стран. При вызове генерирует случайную из десяти.
+*/
 string NameGenerator::generateCountry(){
     static const unordered_map<short, string> generates {
         {0,"Россия"},
@@ -60,6 +69,10 @@ string NameGenerator::generateCountry(){
     return generates.find(rand()%10)->second;
 }
 
+
+/*!
+    Словарь неправильных стран. При вызове генерирует случайную из десяти.
+*/
 string NameGenerator::generateBadCountry(){
     static const unordered_map<short, string> generates {
         {0,"Югославия"},
@@ -77,6 +90,11 @@ string NameGenerator::generateBadCountry(){
 }
 
 
+
+/*!
+    Функция порчи имён и фамилий. Принимает имя или фамилию в формате string и возвращает это же слово, но с опечаткой.
+    \param p Имя или фамилия в формате string.
+*/
 string NameGenerator::degenerateName(string p) {
     static const unordered_map<string,unordered_set<string>> degenerates{
         {"Evgeny",

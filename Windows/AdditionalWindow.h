@@ -17,6 +17,12 @@
 #include "Generators/Randomizer.h"
 #include "Logic/Level.h"
 
+
+/*!
+    \brief Класс дополнительного окна.
+
+    Используется классом WindowManager. Умеет излучать сигналы в соответствии с нажимаемыми в нём кнопками. Без класса WindowManager не встречается. Почти.
+*/
 class AdditionalWindow : public QGraphicsView
 {
     Q_OBJECT

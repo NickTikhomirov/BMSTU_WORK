@@ -1,6 +1,8 @@
 #include "WindowManager.h"
 
-
+/*!
+  Создание окна с правилами.
+*/
 WindowManager::WindowManager(QObject *parent) : QObject(parent)
 {
     level=nullptr;
@@ -17,7 +19,9 @@ WindowManager::WindowManager(QObject *parent) : QObject(parent)
 }
 
 
-
+/*!
+  Создание всех окон с документами, установка их курсоров и подключение сигналов от них.
+*/
 void WindowManager::dynamic_documents(){
     passport = new AdditionalWindow(1,level);
     agreement = new AdditionalWindow(2,level);
@@ -40,6 +44,10 @@ void WindowManager::dynamic_documents(){
     connect(agreement,SIGNAL(provide(char)),this,SLOT(provide_agreement(char)));
 }
 
+
+/*!
+  Закрытие и удаление всех окон кроме окна правил.
+*/
 void WindowManager::clear_dynamics(){
     kill();
     delete passport;
@@ -56,30 +64,52 @@ void WindowManager::clear_dynamics(){
     psycho=nullptr;
 }
 
-
+/*!
+  Обработка сигнала от окна паспорта для транспортировки в класс Game, откуда он будет передан на проверку ошибок.
+*/
 void WindowManager::provide_passport(char r){
     if(r==6) emit provide('A',7);
     else if(r==12) emit provide('A',11);
     else emit provide('P',r);
 }
 
+
+/*!
+  Обработка сигнала от окна справки для транспортировки в класс Game, откуда он будет передан на проверку ошибок.
+*/
 void WindowManager::provide_x(char r){
     if(r==6) emit provide('M',7);
     else emit provide('X',r);
 }
 
+
+/*!
+  Обработка сигнала от окна водительских прав для транспортировки в класс Game, откуда он будет передан на проверку ошибок.
+*/
 void WindowManager::provide_license(char r){
     emit provide('R',r);
 }
 
+
+/*!
+  Обработка сигнала от окна полиса для транспортировки в класс Game, откуда он будет передан на проверку ошибок.
+*/
 void WindowManager::provide_medicine(char r){
     emit provide('M',r);
 }
 
+
+/*!
+  Обработка сигнала от окна согласия на обработку для транспортировки в класс Game, откуда он будет передан на проверку ошибок.
+*/
 void WindowManager::provide_agreement(char r){
     emit provide('A',r);
 }
 
+
+/*!
+  Закрытие активных окон.
+*/
 void WindowManager::kill(){
     close1();
     close2();
@@ -87,6 +117,9 @@ void WindowManager::kill(){
 
 
 
+/*!
+  Закрытие первого активного окна.
+*/
 void WindowManager::close1(){
     if(first!=0){
         disconnect(first, SIGNAL(closed()), this, SLOT(close1()));
@@ -95,6 +128,10 @@ void WindowManager::close1(){
     }
 }
 
+
+/*!
+  Закрытие второго активного окна.
+*/
 void WindowManager::close2(){
     if(second!=0){
         disconnect(second, SIGNAL(closed()), this, SLOT(close2()));
@@ -109,7 +146,9 @@ void WindowManager::close2(){
 
 
 
-
+/*!
+  Открытие выбранного из принадлежащих окон. Вызывается самим собой от своих объектов.
+*/
 void WindowManager::open(AdditionalWindow *pr){
     if(pr==0) return;
     if(first!=pr && second!=pr){
@@ -126,6 +165,9 @@ void WindowManager::open(AdditionalWindow *pr){
 }
 
 
+/*!
+  Закрытие выбранного из принадлежащих окон. Вызывается самим собой от своих объектов.
+*/
 void WindowManager::close(AdditionalWindow *pr){
     if(pr==0) return;
     if(pr==first){
@@ -138,6 +180,9 @@ void WindowManager::close(AdditionalWindow *pr){
     }
 }
 
+/*!
+  Инвертирование состояния выбранного из принадлежащих окон (по объекту).
+*/
 void WindowManager::toggle(AdditionalWindow *pr){
     if(pr==0) return;
     if(pr==first || pr==second) close(pr);
@@ -145,6 +190,10 @@ void WindowManager::toggle(AdditionalWindow *pr){
 
 }
 
+
+/*!
+  Инвертирование состояния выбранного из принадлежащих окон (по оконному индексу).
+*/
 void WindowManager::toggleW(char a){
     if(a==1){ toggle(passport);
     } else if(a==2){ toggle(agreement);
@@ -158,19 +207,33 @@ void WindowManager::toggleW(char a){
 
 
 
-
+/*!
+  Переключение окна правил.
+*/
 void WindowManager::open_tutorial(){toggleW(7);}
 
 
+
+/*!
+  Переключение окна согласия.
+*/
 void WindowManager::open_agreement(){
     if(level->paused) return;
     toggleW(2);
 }
+
+/*!
+  Переключение окна досье.
+*/
 void WindowManager::open_stenography(){
     if(level->paused) return;
     toggleW(6);
 }
 
+
+/*!
+  Переключение окна паспорта.
+*/
 void WindowManager::open_passport(){
     if(level->paused) return;
     if(level->mistakes->isA()){
@@ -179,6 +242,10 @@ void WindowManager::open_passport(){
     }
     toggleW(1);
 }
+
+/*!
+  Переключение окна полиса.
+*/
 void WindowManager::open_medicine(){
     if(level->paused) return;
     if(level->mistakes->isA()){
@@ -187,6 +254,11 @@ void WindowManager::open_medicine(){
     }
     toggleW(3);
 }
+
+
+/*!
+  Переключение окна прав.
+*/
 void WindowManager::open_license(){
     if(level->paused) return;
     if(level->mistakes->isA()){
@@ -195,6 +267,11 @@ void WindowManager::open_license(){
     }
     toggleW(4);
 }
+
+
+/*!
+  Переключение окна справки от психиатра.
+*/
 void WindowManager::open_x(){
     if(level->paused) return;
     if(level->mistakes->isA()){
@@ -205,6 +282,10 @@ void WindowManager::open_x(){
 }
 
 
+
+/*!
+  Команда закрытия всех окон, какие нельзя читать при игре на паузе.
+*/
 void WindowManager::pausePressed(){
     close(passport);
     close(psycho);

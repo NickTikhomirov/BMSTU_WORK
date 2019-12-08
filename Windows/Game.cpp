@@ -1,5 +1,9 @@
 #include "Game.h"
 #include "Graphics/Follower.h"
+
+/*!
+  Конструктор игры
+*/
 Game::Game(QWidget *parent) : QGraphicsView(parent)
 {
     mus = new MyPlayer(0,nullptr);
@@ -19,12 +23,16 @@ Game::Game(QWidget *parent) : QGraphicsView(parent)
     mode_menu();
 }
 
-
+/*!
+  Команда закрытия всех окон и завершения приложения.
+*/
 void Game::exit0(){
     emit button_pressed();
 }
 
-
+/*!
+  Отрисовка режима игры.
+*/
 void Game::mode_play(){
     clear_items();
     scene->clear();
@@ -193,7 +201,9 @@ void Game::mode_play(){
 }
 
 
-
+/*!
+  Отрисовка режима меню
+*/
 void Game::mode_menu(){
     clear_items();
     scene->clear();
@@ -234,7 +244,9 @@ void Game::mode_menu(){
 
 
 
-
+/*!
+  Метод блокировки всего, что изображено на экране (с помощью методов интерфейса ItemLockable)
+*/
 void Game::lock_screen(){
     for(auto &a: contents){
         if(a!=nullptr) a->unsafe_lock();
@@ -242,6 +254,9 @@ void Game::lock_screen(){
     subwindowSetuper(1);
 }
 
+/*!
+  Метод разблокировки всего, что изображено на экране
+*/
 void Game::unlock_screen(){
     for(auto &a: contents){
         if(a!=nullptr) a->unlock();
@@ -249,6 +264,9 @@ void Game::unlock_screen(){
     subwindowSetuper(0);
 }
 
+/*!
+  Метод, подготавливающий игру к отрисовке малого окна в режиме справки о печатях
+*/
 void Game::show_stamps(){
     if(sw!=nullptr)
         if(sw->t!=nullptr)
@@ -256,7 +274,9 @@ void Game::show_stamps(){
 }
 
 
-
+/*!
+  Метод, отрисовывающий малое окно в том режиме, к которому игра готова
+*/
 void Game::subwindowSetuper(char a){
     if(sw->krestik->param%7!=0){
         sw->krestik->setPos(400,110);
@@ -323,12 +343,12 @@ void Game::subwindowSetuper(char a){
 
 
 
-
+/*!
+  Обработка завершения уровня, сигнал о чём поступает вместе с промежуточными баллами от объекта класса Mekanism
+*/
 void Game::level_finalize(char a){
     if(a==100) sw->t->val = 100;
     else score+=a;
-
-
     wm->clear_dynamics();
     lock_screen();
     if(timeLeft()>0) {
@@ -339,7 +359,10 @@ void Game::level_finalize(char a){
 }
 
 
-
+/*!
+  Приём объединённого сигнала от объекта класса WindowManager, проверка нажатой кнопки на списке ошибок в уровне и
+(в случае успеха) передача результатов на объект класса Mekanism.
+*/
 void Game::playersGuess(char a, char b){
     if(level->mistakes->isItYours(a,b))
         emit addPoint();
@@ -347,7 +370,9 @@ void Game::playersGuess(char a, char b){
 
 
 
-
+/*!
+  Очистка содержимого экрана
+*/
 void Game::clear_items(){
     delete level;
     level=nullptr;
@@ -370,10 +395,17 @@ void Game::switch_menu(){
     mode_menu();
 }
 
+/*!
+  Метод переключения на режим игры
+*/
 void Game::switch_play(){
     mode_play();
 }
 
+
+/*!
+  Метод переключения на экран финала
+*/
 void Game::switch_finalle(){
     clear_items();
     scene->clear();
@@ -391,6 +423,10 @@ void Game::switch_finalle(){
     connect(hand,SIGNAL(clicked()),this, SLOT(switch_finalle2()));
 }
 
+
+/*!
+  Метод переключения на экран результатов
+*/
 void Game::switch_finalle2(){
     clear_items();
     scene->clear();
@@ -432,6 +468,10 @@ void Game::switch_finalle2(){
 }
 
 
+
+/*!
+  Получение оставшегося времени
+*/
 int Game::timeLeft(){
     if(mech==nullptr) return -1;
     return mech->timeleft;

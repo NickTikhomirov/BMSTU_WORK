@@ -5,6 +5,12 @@ using std::swap;
 
 
 
+/*!
+   Конструктор дополнительного окна, который на основании номера определяет его содержание и структуру.
+   1 - паспорт, 2 - согласие на обработку, 3 - полис, 4 - водительские права, 5 - справка, 6 - досье, 7 - правила игры, 78 - секретное окно
+   \param p Номер окна
+   \param l Указатель на уровень
+*/
 AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsView(par)
 {
     scene = new QGraphicsScene;
@@ -300,15 +306,25 @@ AdditionalWindow::AdditionalWindow(char p, Level *l, QWidget *par): QGraphicsVie
 }
 
 
+
+/*!
+  Событие закрытия окна
+*/
 void AdditionalWindow::closeEvent(QCloseEvent *event){
     emit closed();
 }
 
-
+/*!
+  Передаёт нажатие кнопки как свой сигнал, благодаря чему его может принять менеджер окон
+  \param r Числовой сигнал кнопки
+*/
 void AdditionalWindow::provide_input(char r){
     if(r*r!=r) emit provide(r);
 }
 
+/*!
+  Инвертер состояния невидимости окна
+*/
 void AdditionalWindow::simpleCloser(){
     if(isVisible()) hide();
     else show();
