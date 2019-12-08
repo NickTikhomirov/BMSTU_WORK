@@ -13,13 +13,9 @@ matrix:
           packages:
             - gcc-8
             - g++-8
-            - libqt5multimedia5
+            - qtmultimedia5-dev
             - qtdeclarative5-dev
-            - libqt5core5a
-            - libqt5gui5
-            - libqt5widgets5
-            - libqt5network5
-
+            - qtbase5-dev
 
 
 
