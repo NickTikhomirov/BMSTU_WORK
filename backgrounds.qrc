@@ -88,5 +88,11 @@
         <file>Pictures/switches/SwB3'.png</file>
         <file>Pictures/switches/SwB-3.png</file>
         <file>Pictures/switches/SwB-3'.png</file>
+        <file>Pictures/other/cloud12.png</file>
+        <file>Pictures/other/cloud13.png</file>
+        <file>Pictures/other/cloud14.png</file>
+        <file>Pictures/other/cloud15.png</file>
+        <file>Pictures/other/cloud16.png</file>
+        <file>Pictures/other/cloud17.png</file>
     </qresource>
 </RCC>

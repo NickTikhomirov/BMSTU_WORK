@@ -34,15 +34,16 @@ Mistakes::Mistakes()
 
 
 
-bool Mistakes::isItYour_Mistake_With_Name(unsigned char &f, unsigned char v){
-    if(f==0 || v==0) return false;
-    if(f%2!=0) return false;
-    if(f%8==0){
-        f/=8;
+bool Mistakes::isItYour_Mistake_With_Name(char f, unsigned char v){
+    unsigned char val = mistakes[f];
+    if(val==0 || v==0) return false;
+    if(val%2!=0) return false;
+    if(val%8==0){
+        mistakes[f]/=8;
         return true;
     }
-    if(f%8==v){
-        f/=v;
+    if(val%8==v){
+        mistakes[f]/=v;
         return true;
     }
     return false;
@@ -72,7 +73,8 @@ bool Mistakes::isCorrect(){
 }
 
 bool Mistakes::isItYours(char id, unsigned char val){
-    if(mistakes[id]==0){
+    unsigned char value = mistakes[id];
+    if(value==0){
         if(val==0){
             mistakes[id] = 1;
             return true;
@@ -80,9 +82,9 @@ bool Mistakes::isItYours(char id, unsigned char val){
         return false;
     }
     if(val%2==0){
-        return isItYour_Mistake_With_Name(mistakes[id],val);
+        return isItYour_Mistake_With_Name(id,val);
     }
-    if(mistakes[id]%val==0){
+    if(value%val==0){
         mistakes[id]/=val;
         return true;
     }

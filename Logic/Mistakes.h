@@ -17,7 +17,7 @@ class Mistakes
     void makeSomebodyHappy(unsigned char);
     void oneMistake(unsigned char&);
     void twoMistakes(unsigned char&, unsigned char&);
-    bool isItYour_Mistake_With_Name(unsigned char&,unsigned char);
+    bool isItYour_Mistake_With_Name(char,unsigned char);
 
     static string interpret_high(unsigned char,char);
     static bool interpret_low(unsigned char &, unsigned char);

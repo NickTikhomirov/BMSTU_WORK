@@ -51,17 +51,17 @@ void Game::mode_play(){
     door->setPos(56,65);
 
     //Документы
-    CustomButton *passport = new CustomButton(4);
+    CustomButton *passport = new CustomButton(4,false,13);
     passport->setPos(156,315);
-    CustomButton *agreement = new CustomButton(11);
+    CustomButton *agreement = new CustomButton(11,false,14);
     agreement->setPos(190,316);
-    CustomButton *xPaper = new CustomButton(12);
+    CustomButton *xPaper = new CustomButton(12,false,17);
     xPaper->setPos(250,316);
-    CustomButton *medicine = new CustomButton(13);
+    CustomButton *medicine = new CustomButton(13,false,16);
     medicine->setPos(230,316);
     CustomButton *tutorial = new CustomButton(14,false,11);
     tutorial->setPos(90,410);
-    CustomButton *license = new CustomButton(15);
+    CustomButton *license = new CustomButton(15,false,15);
     license->setPos(156,334);
 
     //Прочая интерфейсня
@@ -150,11 +150,21 @@ void Game::mode_play(){
     connect(mech->tick,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
     connect(mech->cross,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
     connect(mech->placeHolder,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
+    connect(mech->pause,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
     connect(tutorial,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
     connect(mech->counter,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
     connect(help,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
     connect(mus->lever,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
+
     connect(faks,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
+    connect(passport,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
+    connect(xPaper,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
+    connect(license,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
+    connect(medicine,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
+    connect(agreement,SIGNAL(sendCloud(int,int,char)),r,SLOT(drawAt(int,int,char)));
+
+
+
     connect(back,SIGNAL(tingle()),r,SLOT(hider()));
     connect(help, SIGNAL(enable()),r,SLOT(f_lock()));
     connect(help, SIGNAL(disable()),r,SLOT(f_unlock()));

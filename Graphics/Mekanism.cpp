@@ -12,7 +12,7 @@ Mekanism::Mekanism(Level *l)
     placeHolder = new CustomButton(0,false,7);
     counter = new TextButton(timeString(),12,true,true,10);
     cup = new SwitchingButton(2);
-    pause = new CustomButton(2,true,6);
+    pause = new CustomButton(18,true,12);
     timer = new QTimer;
     timer->start(1000);
 
@@ -47,6 +47,7 @@ void Mekanism::scoreUpdate(){
     if(cor&empt) score = 2;
     if(empt) score+=1;
     score+=1;
+    crossUnlock();
 }
 
 
