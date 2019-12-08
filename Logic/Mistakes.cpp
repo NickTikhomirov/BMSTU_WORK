@@ -95,7 +95,7 @@ string Mistakes::toString(){
     string p;
     if(isB()) return "B";
     if(isCorrect()) return "0";
-    for(std::pair a: mistakes){
+    for(auto  a: mistakes){
         if(a.second!=1){
             p+=char(a.first)+to_string(a.second);
         }
