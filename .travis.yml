@@ -1,17 +1,17 @@
-os: linux
 language: cpp
 dist: trusty
-sudo: true
-compiler: gcc
 
-include:    
+include:
+  - os: linux
+    sudo: true
+    compiler: gcc
     addons:
       apt:
         sources:
           - ubuntu-toolchain-r-test
         packages:
-          - gcc-9
-          - g++-9
+          - gcc-8
+          - g++-8
           - qtmultimedia5-dev
           - qtmobility-dev
           - qtdeclarative5-dev
@@ -29,8 +29,5 @@ install:
 
 
 script:
-  - cmake -H. -B.build
-  - cmake --build .build
-  - .build/tests
   - /opt/qt58/bin/qmake PREFIX=/usr
   - make
