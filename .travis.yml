@@ -1,10 +1,10 @@
+os: linux
 language: cpp
 dist: trusty
+sudo: true
+compiler: gcc
 
-include:
-  - os: linux
-    sudo: true
-    compiler: gcc
+include:    
     addons:
       apt:
         sources:
