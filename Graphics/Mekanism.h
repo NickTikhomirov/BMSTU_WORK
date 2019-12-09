@@ -20,7 +20,7 @@ class Mekanism : public QObject
     char score = 0;
 public:
     Mekanism(Level *l);
-    int timeleft = 180;
+    int timeleft = 60;
     int getScore();
     string timeString();
     CustomButton* placeHolder = nullptr;

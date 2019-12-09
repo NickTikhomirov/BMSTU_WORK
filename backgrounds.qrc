@@ -4,7 +4,6 @@
         <file>Pictures/backgrounds/fon1.png</file>
         <file>Pictures/backgrounds/fon-1.png</file>
         <file>Pictures/backgrounds/fon2.png</file>
-        <file>Pictures/backgrounds/fon3.png</file>
         <file>Pictures/backgrounds/fon4.png</file>
         <file>Pictures/backgrounds/fon5.png</file>
         <file>Pictures/backgrounds/fon6.png</file>
@@ -94,5 +93,6 @@
         <file>Pictures/other/cloud15.png</file>
         <file>Pictures/other/cloud16.png</file>
         <file>Pictures/other/cloud17.png</file>
+        <file>Pictures/backgrounds/fon3.png</file>
     </qresource>
 </RCC>

@@ -27,6 +27,20 @@ TEST(Dates, randBetween) {
 	EXPECT_TRUE(b < c);
 }
 
+TEST(Dates, monthBefore) {
+	Date a(12, 4, 2016);
+	Date b = a;
+	-a;
+	EXPECT_EQ(a.day, 12);
+	EXPECT_EQ(a.month, 3);
+	EXPECT_EQ(a.year, 2016);
+	Date c = ~b;
+	EXPECT_TRUE(c<b);
+	EXPECT_TRUE(a<c);
+
+
+}
+
 TEST(Rand, Stamps) {
 	for (int i = 0; i < 100; ++i) {
 		EXPECT_TRUE(Randomizer::stampDegenerator(6)!=6);
